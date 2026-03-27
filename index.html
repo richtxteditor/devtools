@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DevTools Cheat Sheet</title>
+<style>
+  :root {
+    --shell: #3b82f6;
+    --system: #8b5cf6;
+    --git: #f97316;
+    --tmux: #10b981;
+    --neovim: #06b6d4;
+    --neovim-alt: #6366f1;
+    --runtimes: #ec4899;
+    --devdocs: #f59e0b;
+    --radius: 12px;
+    --glass: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 25%, #dbeafe 50%, #d1fae5 75%, #fef3c7 100%);
+    background-attachment: fixed;
+    color: #1e293b;
+    line-height: 1.6;
+    padding: 2rem 1rem;
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section {
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  }
+
+  .section h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .section h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 1.25rem 0 0.75rem;
+    color: #475569;
+  }
+
+  .section.shell { --accent: var(--shell); }
+  .section.system { --accent: var(--system); }
+  .section.git { --accent: var(--git); }
+  .section.tmux { --accent: var(--tmux); }
+  .section.neovim { --accent: var(--neovim); }
+  .section.neovim-sub { --accent: var(--neovim-alt); }
+  .section.runtimes { --accent: var(--runtimes); }
+  .section.devdocs { --accent: var(--devdocs); }
+
+  .section h2 .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+    flex-shrink: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 0.92rem;
+  }
+
+  thead th {
+    background: rgba(0, 0, 0, 0.04);
+    text-align: left;
+    padding: 0.6rem 0.8rem;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease;
+  }
+
+  tbody tr:nth-child(even) {
+    background: rgba(0, 0, 0, 0.02);
+  }
+
+  tbody tr:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+
+  td {
+    padding: 0.5rem 0.8rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    vertical-align: top;
+  }
+
+  td:first-child {
+    white-space: nowrap;
+  }
+
+  kbd {
+    display: inline-block;
+    padding: 0.15em 0.45em;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.85em;
+    font-weight: 600;
+    color: #1e293b;
+    background: linear-gradient(180deg, #fff, #f1f5f9);
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08), inset 0 -1px 0 rgba(0,0,0,0.05);
+  }
+
+  code {
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.88em;
+    background: rgba(99, 102, 241, 0.1);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: #4338ca;
+  }
+
+  .prefix-note {
+    background: rgba(16, 185, 129, 0.08);
+    border-left: 3px solid var(--accent);
+    padding: 0.6rem 1rem;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+  }
+
+  .prefix-note strong { color: #0f172a; }
+
+  pre {
+    background: #1e293b;
+    color: #e2e8f0;
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+    margin-top: 0.5rem;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 2rem;
+    color: #94a3b8;
+    font-size: 0.85rem;
+  }
+
+  footer a { color: #6366f1; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 640px) {
+    body { padding: 1rem 0.5rem; }
+    h1 { font-size: 1.8rem; }
+    .section { padding: 1rem; }
+    table { font-size: 0.82rem; }
+    td:first-child { white-space: normal; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>DevTools Cheat Sheet</h1>
+  <p class="subtitle">Terminal-centric development environment &mdash; Zsh + Tmux + Neovim</p>
+
+  <!-- Shell & Navigation -->
+  <div class="section shell">
+    <h2><span class="dot"></span> Shell &amp; Navigation (Zsh)</h2>
+    <table>
+      <thead><tr><th>Command</th><th>Tool</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td>zoxide</td><td>Smart <code>cd</code>. Jumps to directories based on frequency (e.g., <code>z dot</code> &rarr; <code>~/Sites/dotfiles</code>).</td></tr>
+        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td>eza</td><td>Lists files with icons, git status, and headers.</td></tr>
+        <tr><td><kbd>tree</kbd></td><td>eza</td><td>Shows a directory tree (2 levels deep).</td></tr>
+        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td>bat</td><td>Displays file contents with syntax highlighting and line numbers.</td></tr>
+        <tr><td><kbd>Ctrl + r</kbd></td><td>fzf</td><td>Fuzzy search your command history.</td></tr>
+        <tr><td><kbd>Ctrl + t</kbd></td><td>fzf</td><td>Fuzzy find a file and paste its path into the command line.</td></tr>
+        <tr><td><kbd>Ctrl + Space</kbd></td><td>autosuggest</td><td>Accept the grey &ldquo;ghost text&rdquo; suggestion.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- System & Config -->
+  <div class="section system">
+    <h2><span class="dot"></span> System &amp; Config Management</h2>
+    <table>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>update</kbd></td><td>Runs <strong>all</strong> updates: macOS, Homebrew, and Oh My Zsh.</td></tr>
+        <tr><td><kbd>bbu</kbd></td><td><strong>B</strong>rew <strong>B</strong>undle <strong>U</strong>pdate. Dumps current brew packages to the repo&rsquo;s <code>Brewfile</code>.</td></tr>
+        <tr><td><kbd>zshconfig</kbd></td><td>Opens <code>.zshrc</code> in Neovim.</td></tr>
+        <tr><td><kbd>reload</kbd></td><td>Reloads <code>.zshrc</code> without restarting the terminal.</td></tr>
+        <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td>Creates a directory and immediately <code>cd</code>s into it.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Git -->
+  <div class="section git">
+    <h2><span class="dot"></span> Git Workflow</h2>
+    <table>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>lg</kbd></td><td><strong>Lazygit</strong>. Opens a powerful terminal UI for Git.</td></tr>
+        <tr><td><kbd>gs</kbd></td><td><code>git status -sb</code> (Short status).</td></tr>
+        <tr><td><kbd>gaa</kbd></td><td><code>git add .</code> (Add all).</td></tr>
+        <tr><td><kbd>gc "msg"</kbd></td><td><code>git commit -m "msg"</code>.</td></tr>
+        <tr><td><kbd>gp</kbd></td><td><code>git push</code>.</td></tr>
+        <tr><td><kbd>gpf</kbd></td><td><code>git push --force-with-lease</code> (Safer force push).</td></tr>
+        <tr><td><kbd>gpl</kbd></td><td><code>git pull --rebase --autostash</code>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Tmux -->
+  <div class="section tmux">
+    <h2><span class="dot"></span> Tmux (Multiplexer)</h2>
+    <div class="prefix-note"><strong>Prefix:</strong> <kbd>Ctrl + a</kbd> (Replaces standard <kbd>Ctrl + b</kbd>)</div>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>ta</kbd></td><td><strong>Smart Alias:</strong> Attaches to the last session or creates a new one.</td></tr>
+        <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move between Tmux panes <strong>and</strong> Neovim splits.</td></tr>
+        <tr><td><kbd>Prefix + |</kbd></td><td>Split vertically.</td></tr>
+        <tr><td><kbd>Prefix + -</kbd></td><td>Split horizontally.</td></tr>
+        <tr><td><kbd>Prefix + c</kbd></td><td>New window.</td></tr>
+        <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td>Toggle fullscreen (zoom) for current pane.</td></tr>
+        <tr><td><kbd>Prefix + Space</kbd></td><td>Jump to last active window.</td></tr>
+        <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins</strong> (Press this if plugins look missing).</td></tr>
+        <tr><td><kbd>Prefix + [</kbd></td><td>Enter copy mode (Use <kbd>v</kbd> to select, <kbd>y</kbd> to copy).</td></tr>
+        <tr><td><kbd>Prefix + d</kbd></td><td>Detach from session (leave it running in background).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Neovim -->
+  <div class="section neovim">
+    <h2><span class="dot"></span> Neovim (Editor)</h2>
+    <div class="prefix-note"><strong>Leader Key:</strong> <kbd>Space</kbd></div>
+
+    <h3>General &amp; Files</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space e</kbd></td><td>Toggle File Explorer (NvimTree).</td></tr>
+        <tr><td><kbd>Space ff</kbd></td><td><strong>Find Files</strong> (Telescope).</td></tr>
+        <tr><td><kbd>Space fg</kbd></td><td><strong>Live Grep</strong> (Search text in project).</td></tr>
+        <tr><td><kbd>Space fo</kbd></td><td>Find Recent/Old Files.</td></tr>
+        <tr><td><kbd>Space fb</kbd></td><td>Find Buffers.</td></tr>
+        <tr><td><kbd>Space fh</kbd></td><td>Find Help Tags.</td></tr>
+        <tr><td><kbd>Space fd</kbd></td><td>Find Diagnostics.</td></tr>
+        <tr><td><kbd>Space ft</kbd></td><td>Find TODOs.</td></tr>
+        <tr><td><kbd>Space gg</kbd></td><td>Open Lazygit.</td></tr>
+        <tr><td><kbd>Space mp</kbd></td><td>Toggle Markdown Preview.</td></tr>
+        <tr><td><kbd>C-\</kbd></td><td>Toggle floating terminal (ToggleTerm).</td></tr>
+        <tr><td><kbd>Space u</kbd></td><td>Toggle Undo Tree.</td></tr>
+        <tr><td><kbd>Space o</kbd></td><td>Toggle Symbol Outline (Aerial).</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Code &amp; LSP</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>gd</kbd></td><td>Go to Definition.</td></tr>
+        <tr><td><kbd>gr</kbd></td><td>Find References.</td></tr>
+        <tr><td><kbd>K</kbd></td><td>Hover Documentation (LSP or per-language fallback).</td></tr>
+        <tr><td><kbd>Space K</kbd></td><td>Search DevDocs (offline docs for 300+ languages).</td></tr>
+        <tr><td><kbd>Space cf</kbd></td><td>Format Code.</td></tr>
+        <tr><td><kbd>Space rn</kbd></td><td>Rename Symbol (live preview).</td></tr>
+        <tr><td><kbd>Space ca</kbd></td><td>Code Action.</td></tr>
+        <tr><td><kbd>Space ci</kbd></td><td>Incoming Calls (call hierarchy).</td></tr>
+        <tr><td><kbd>Space co</kbd></td><td>Outgoing Calls (call hierarchy).</td></tr>
+        <tr><td><kbd>Space dd</kbd></td><td>Show Error/Warning (Float).</td></tr>
+        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td>Previous / Next Diagnostic.</td></tr>
+        <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td>Previous / Next Quickfix Item.</td></tr>
+        <tr><td><kbd>Space xx</kbd></td><td>Toggle Diagnostics (Trouble).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Testing & Debugging -->
+  <div class="section neovim-sub">
+    <h2><span class="dot"></span> Testing, Debugging &amp; Tasks</h2>
+
+    <h3>Testing (Neotest)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space nt</kbd></td><td>Run Nearest Test.</td></tr>
+        <tr><td><kbd>Space nf</kbd></td><td>Run All Tests in File.</td></tr>
+        <tr><td><kbd>Space ns</kbd></td><td>Toggle Test Summary.</td></tr>
+        <tr><td><kbd>Space no</kbd></td><td>Show Test Output.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Debugging (DAP)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>F5</kbd></td><td>Start / Continue.</td></tr>
+        <tr><td><kbd>F6</kbd></td><td>Stop / Terminate.</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>Toggle Breakpoint.</td></tr>
+        <tr><td><kbd>F10</kbd></td><td>Step Over.</td></tr>
+        <tr><td><kbd>F11</kbd></td><td>Step Into.</td></tr>
+        <tr><td><kbd>F8</kbd></td><td>Step Out.</td></tr>
+        <tr><td><kbd>Space du</kbd></td><td>Toggle Debug UI.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Tasks &amp; Running (Overseer)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space tr</kbd></td><td><strong>Run Task</strong> (Auto-detected: make, npm, cargo, go, etc.).</td></tr>
+        <tr><td><kbd>Space to</kbd></td><td>Toggle Task Output.</td></tr>
+        <tr><td><kbd>Space tc</kbd></td><td>Run Custom Command.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Git (in Neovim)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space gg</kbd></td><td>Open LazyGit.</td></tr>
+        <tr><td><kbd>Space gd</kbd></td><td>Git Diff View (Diffview).</td></tr>
+        <tr><td><kbd>Space gh</kbd></td><td>Git File History (Diffview).</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Navigation (Flash)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>s</kbd></td><td><strong>Flash Jump</strong>. Jump to any character on screen.</td></tr>
+        <tr><td><kbd>S</kbd></td><td><strong>Flash Treesitter</strong>. Select logical blocks of code.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Runtimes -->
+  <div class="section runtimes">
+    <h2><span class="dot"></span> Runtimes &amp; Languages</h2>
+    <table>
+      <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Node.js</strong></td><td>Managed by <code>nvm</code>. Run <code>nvm install 20</code>.</td></tr>
+        <tr><td><strong>Python</strong></td><td>Managed by <code>pyenv</code>. Run <code>pyenv install 3.12</code>.</td></tr>
+        <tr><td><strong>Ruby</strong></td><td>Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code>.</td></tr>
+        <tr><td><strong>Go</strong></td><td>Installed via Homebrew. LSP: <code>gopls</code>. Formatters: <code>goimports</code>, <code>gofumpt</code>.</td></tr>
+        <tr><td><strong>Rust</strong></td><td>Installed via Homebrew. LSP: <code>rust-analyzer</code>. DAP: <code>codelldb</code>.</td></tr>
+        <tr><td><strong>Java</strong></td><td><code>openjdk</code> installed. Neovim uses <code>jdtls</code> &amp; <code>google-java-format</code>.</td></tr>
+        <tr><td><strong>C/C++</strong></td><td><code>clang</code> / <code>llvm</code> installed. Neovim uses <code>clangd</code> &amp; <code>clang-format</code>. DAP: <code>codelldb</code>.</td></tr>
+        <tr><td><strong>TypeScript</strong></td><td>Uses <code>ts_ls</code>, <code>prettier</code>, <code>eslint</code>. Ensure <code>tsconfig.json</code> exists.</td></tr>
+        <tr><td><strong>PHP</strong></td><td>Uses <code>intelephense</code> &amp; <code>php-cs-fixer</code>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DevDocs -->
+  <div class="section devdocs">
+    <h2><span class="dot"></span> DevDocs Setup (First Time)</h2>
+    <p>After installing plugins, run these commands in Neovim to download offline docs:</p>
+    <pre>:DevdocsFetch
+:DevdocsInstall python javascript go rust c</pre>
+  </div>
+
+  <footer>
+    Built from <a href="https://github.com/richtxteditor/dotfiles">dotfiles</a>
+  </footer>
+</div>
+</body>
+</html>
