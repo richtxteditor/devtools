@@ -15,20 +15,78 @@
     --runtimes: #ec4899;
     --devdocs: #f59e0b;
     --radius: 12px;
+
+    /* Light theme (default) */
+    --bg: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 25%, #dbeafe 50%, #d1fae5 75%, #fef3c7 100%);
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --text-sub: #475569;
     --glass: rgba(255, 255, 255, 0.7);
     --glass-border: rgba(255, 255, 255, 0.4);
+    --shadow: rgba(0, 0, 0, 0.06);
+    --shadow-hover: rgba(0, 0, 0, 0.1);
+    --th-bg: rgba(0, 0, 0, 0.04);
+    --row-even: rgba(0, 0, 0, 0.02);
+    --row-hover: rgba(0, 0, 0, 0.05);
+    --td-border: rgba(0, 0, 0, 0.05);
+    --kbd-color: #1e293b;
+    --kbd-bg: linear-gradient(180deg, #fff, #f1f5f9);
+    --kbd-border: #cbd5e1;
+    --kbd-shadow: 0 1px 2px rgba(0,0,0,0.08), inset 0 -1px 0 rgba(0,0,0,0.05);
+    --code-bg: rgba(99, 102, 241, 0.1);
+    --code-color: #4338ca;
+    --note-bg: rgba(16, 185, 129, 0.08);
+    --note-strong: #0f172a;
+    --pre-bg: #1e293b;
+    --pre-color: #e2e8f0;
+    --footer-color: #94a3b8;
+    --link-color: #6366f1;
+    --toggle-bg: rgba(0, 0, 0, 0.06);
+    --toggle-hover: rgba(0, 0, 0, 0.1);
+    --h1-gradient: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+  }
+
+  [data-theme="dark"] {
+    --bg: linear-gradient(135deg, #0f172a 0%, #1a1033 25%, #0c1929 50%, #091a16 75%, #1a1508 100%);
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --text-sub: #94a3b8;
+    --glass: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(51, 65, 85, 0.5);
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.5);
+    --th-bg: rgba(255, 255, 255, 0.05);
+    --row-even: rgba(255, 255, 255, 0.02);
+    --row-hover: rgba(255, 255, 255, 0.06);
+    --td-border: rgba(255, 255, 255, 0.06);
+    --kbd-color: #e2e8f0;
+    --kbd-bg: linear-gradient(180deg, #334155, #1e293b);
+    --kbd-border: #475569;
+    --kbd-shadow: 0 1px 2px rgba(0,0,0,0.3), inset 0 -1px 0 rgba(0,0,0,0.2);
+    --code-bg: rgba(129, 140, 248, 0.15);
+    --code-color: #a5b4fc;
+    --note-bg: rgba(16, 185, 129, 0.1);
+    --note-strong: #e2e8f0;
+    --pre-bg: #0f172a;
+    --pre-color: #e2e8f0;
+    --footer-color: #64748b;
+    --link-color: #818cf8;
+    --toggle-bg: rgba(255, 255, 255, 0.08);
+    --toggle-hover: rgba(255, 255, 255, 0.14);
+    --h1-gradient: linear-gradient(135deg, #60a5fa, #a78bfa, #f472b6);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    background: linear-gradient(135deg, #e0e7ff 0%, #fce7f3 25%, #dbeafe 50%, #d1fae5 75%, #fef3c7 100%);
+    background: var(--bg);
     background-attachment: fixed;
-    color: #1e293b;
+    color: var(--text);
     line-height: 1.6;
     padding: 2rem 1rem;
     min-height: 100vh;
+    transition: background 0.3s ease, color 0.3s ease;
   }
 
   .container {
@@ -36,22 +94,51 @@
     margin: 0 auto;
   }
 
-  h1 {
+  .header {
     text-align: center;
+    margin-bottom: 2.5rem;
+    position: relative;
+  }
+
+  h1 {
     font-size: 2.5rem;
     font-weight: 800;
     margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+    background: var(--h1-gradient);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .subtitle {
-    text-align: center;
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 1.1rem;
-    margin-bottom: 2.5rem;
+  }
+
+  .theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+    background: var(--toggle-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+
+  .theme-toggle:hover {
+    background: var(--toggle-hover);
+    transform: scale(1.1);
   }
 
   .section {
@@ -62,13 +149,13 @@
     border-radius: var(--radius);
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 24px var(--shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, border-color 0.3s ease;
   }
 
   .section:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 32px var(--shadow-hover);
   }
 
   .section h2 {
@@ -86,7 +173,7 @@
     font-size: 1.1rem;
     font-weight: 600;
     margin: 1.25rem 0 0.75rem;
-    color: #475569;
+    color: var(--text-sub);
   }
 
   .section.shell { --accent: var(--shell); }
@@ -117,11 +204,11 @@
   }
 
   thead th {
-    background: rgba(0, 0, 0, 0.04);
+    background: var(--th-bg);
     text-align: left;
     padding: 0.6rem 0.8rem;
     font-weight: 600;
-    color: #475569;
+    color: var(--text-sub);
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -132,16 +219,16 @@
   }
 
   tbody tr:nth-child(even) {
-    background: rgba(0, 0, 0, 0.02);
+    background: var(--row-even);
   }
 
   tbody tr:hover {
-    background: rgba(0, 0, 0, 0.05);
+    background: var(--row-hover);
   }
 
   td {
     padding: 0.5rem 0.8rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid var(--td-border);
     vertical-align: top;
   }
 
@@ -155,24 +242,24 @@
     font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     font-size: 0.85em;
     font-weight: 600;
-    color: #1e293b;
-    background: linear-gradient(180deg, #fff, #f1f5f9);
-    border: 1px solid #cbd5e1;
+    color: var(--kbd-color);
+    background: var(--kbd-bg);
+    border: 1px solid var(--kbd-border);
     border-radius: 5px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.08), inset 0 -1px 0 rgba(0,0,0,0.05);
+    box-shadow: var(--kbd-shadow);
   }
 
   code {
     font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     font-size: 0.88em;
-    background: rgba(99, 102, 241, 0.1);
+    background: var(--code-bg);
     padding: 0.15em 0.4em;
     border-radius: 4px;
-    color: #4338ca;
+    color: var(--code-color);
   }
 
   .prefix-note {
-    background: rgba(16, 185, 129, 0.08);
+    background: var(--note-bg);
     border-left: 3px solid var(--accent);
     padding: 0.6rem 1rem;
     border-radius: 0 8px 8px 0;
@@ -180,11 +267,11 @@
     font-size: 0.92rem;
   }
 
-  .prefix-note strong { color: #0f172a; }
+  .prefix-note strong { color: var(--note-strong); }
 
   pre {
-    background: #1e293b;
-    color: #e2e8f0;
+    background: var(--pre-bg);
+    color: var(--pre-color);
     padding: 0.8rem 1rem;
     border-radius: 8px;
     font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
@@ -196,11 +283,11 @@
   footer {
     text-align: center;
     margin-top: 2rem;
-    color: #94a3b8;
+    color: var(--footer-color);
     font-size: 0.85rem;
   }
 
-  footer a { color: #6366f1; text-decoration: none; }
+  footer a { color: var(--link-color); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
   @media (max-width: 640px) {
@@ -213,9 +300,12 @@
 </style>
 </head>
 <body>
+<button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"></button>
 <div class="container">
-  <h1>DevTools Cheat Sheet</h1>
-  <p class="subtitle">Terminal-centric development environment &mdash; Zsh + Tmux + Neovim</p>
+  <div class="header">
+    <h1>DevTools Cheat Sheet</h1>
+    <p class="subtitle">Terminal-centric development environment &mdash; Zsh + Tmux + Neovim</p>
+  </div>
 
   <!-- Shell & Navigation -->
   <div class="section shell">
@@ -423,5 +513,38 @@
     Built from <a href="https://github.com/richtxteditor/dotfiles">dotfiles</a>
   </footer>
 </div>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  const html = document.documentElement;
+
+  function getSystemTheme() {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    toggle.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+  }
+
+  // Load saved preference or follow system
+  const saved = localStorage.getItem('theme');
+  applyTheme(saved || getSystemTheme());
+
+  // Manual toggle
+  toggle.addEventListener('click', () => {
+    const current = html.getAttribute('data-theme');
+    const next = current === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', next);
+    applyTheme(next);
+  });
+
+  // Listen for system theme changes (only if no manual override)
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+</script>
 </body>
 </html>
