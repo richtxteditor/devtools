@@ -404,12 +404,180 @@
   footer a { color: var(--link-color); text-decoration: none; }
   footer a:hover { text-decoration: underline; }
 
+  /* Toolbar */
+  .toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .search-box {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    background: var(--glass);
+    color: var(--text);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .search-box:focus {
+    border-color: var(--link-color);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+  }
+
+  .search-box::placeholder { color: var(--text-muted); }
+
+  .search-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .search-wrap svg {
+    position: absolute;
+    left: 0.65rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    pointer-events: none;
+  }
+
+  .toolbar-btn {
+    padding: 0.45rem 0.75rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    background: var(--glass);
+    color: var(--text-sub);
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .toolbar-btn:hover {
+    background: var(--row-hover);
+    color: var(--text);
+  }
+
+  /* Filter pills */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.6rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    background: var(--glass);
+    color: var(--text-sub);
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .filter-pill:hover {
+    background: var(--row-hover);
+  }
+
+  .filter-pill.active {
+    background: var(--filter-color, var(--link-color));
+    color: #fff;
+    border-color: transparent;
+  }
+
+  .filter-pill .pill-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  /* Collapsible sections */
+  .section h2 {
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .section h2 .collapse-icon {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .section.collapsed h2 .collapse-icon {
+    transform: rotate(-90deg);
+  }
+
+  .section.collapsed .section-body {
+    display: none;
+  }
+
+  /* Doc links */
+  .doc-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .doc-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    color: var(--link-color);
+    border: 1px solid var(--glass-border);
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+
+  .doc-link:hover {
+    background: var(--row-hover);
+    border-color: var(--link-color);
+  }
+
+  .doc-link svg {
+    width: 11px;
+    height: 11px;
+    flex-shrink: 0;
+  }
+
+  /* No results */
+  .no-results {
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem 1rem;
+    font-size: 0.95rem;
+    display: none;
+  }
+
+  /* Search highlight */
+  .search-match { background: rgba(251, 191, 36, 0.3); border-radius: 2px; }
+
   @media (max-width: 640px) {
     body { padding: 1rem 0.5rem; }
     h1 { font-size: 1.8rem; }
     .section { padding: 1rem; }
     table { font-size: 0.82rem; }
     td:first-child { white-space: normal; }
+    .toolbar { flex-direction: column; }
+    .search-wrap { width: 100%; }
   }
 </style>
 </head>
@@ -442,9 +610,42 @@
     <p class="subtitle">Terminal-centric development environment &mdash; Zsh + Tmux + Neovim</p>
   </div>
 
+  <!-- Toolbar: Search + Collapse -->
+  <div class="toolbar">
+    <div class="search-wrap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="text" class="search-box" id="searchBox" placeholder="Search commands, tools, descriptions...">
+    </div>
+    <button class="toolbar-btn" id="collapseAll">Collapse All</button>
+  </div>
+
+  <!-- Filter pills -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-pill active" data-filter="all">All</button>
+    <button class="filter-pill" data-filter="shell" style="--filter-color:var(--shell)"><span class="pill-dot" style="background:var(--shell)"></span>Shell</button>
+    <button class="filter-pill" data-filter="system" style="--filter-color:var(--system)"><span class="pill-dot" style="background:var(--system)"></span>System</button>
+    <button class="filter-pill" data-filter="git" style="--filter-color:var(--git)"><span class="pill-dot" style="background:var(--git)"></span>Git</button>
+    <button class="filter-pill" data-filter="tmux" style="--filter-color:var(--tmux)"><span class="pill-dot" style="background:var(--tmux)"></span>Tmux</button>
+    <button class="filter-pill" data-filter="neovim" style="--filter-color:var(--neovim)"><span class="pill-dot" style="background:var(--neovim)"></span>Neovim</button>
+    <button class="filter-pill" data-filter="neovim-sub" style="--filter-color:var(--neovim-alt)"><span class="pill-dot" style="background:var(--neovim-alt)"></span>Testing</button>
+    <button class="filter-pill" data-filter="runtimes" style="--filter-color:var(--runtimes)"><span class="pill-dot" style="background:var(--runtimes)"></span>Runtimes</button>
+    <button class="filter-pill" data-filter="devdocs" style="--filter-color:var(--devdocs)"><span class="pill-dot" style="background:var(--devdocs)"></span>DevDocs</button>
+    <button class="filter-pill" data-filter="ghostty" style="--filter-color:var(--ghostty)"><span class="pill-dot" style="background:var(--ghostty)"></span>Ghostty</button>
+  </div>
+
+  <div id="noResults" class="no-results">No matching commands found.</div>
+
   <!-- Shell & Navigation -->
   <div class="section shell" id="shell">
-    <h2><span class="dot"></span> Shell &amp; Navigation (Zsh)</h2>
+    <h2><span class="dot"></span> Shell &amp; Navigation (Zsh) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>zoxide</a>
+      <a class="doc-link" href="https://github.com/eza-community/eza" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>eza</a>
+      <a class="doc-link" href="https://github.com/sharkdp/bat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>bat</a>
+      <a class="doc-link" href="https://github.com/junegunn/fzf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>fzf</a>
+      <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>zsh-autosuggestions</a>
+    </div>
     <table>
       <thead><tr><th>Command</th><th>Tool</th><th>Description</th></tr></thead>
       <tbody>
@@ -457,11 +658,17 @@
         <tr><td><kbd>Ctrl + Space</kbd></td><td>autosuggest</td><td>Accept the grey &ldquo;ghost text&rdquo; suggestion.</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- System & Config -->
   <div class="section system" id="system">
-    <h2><span class="dot"></span> System &amp; Config Management</h2>
+    <h2><span class="dot"></span> System &amp; Config Management <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://brew.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Homebrew</a>
+      <a class="doc-link" href="https://ohmyz.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Oh My Zsh</a>
+    </div>
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
@@ -472,11 +679,17 @@
         <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td>Creates a directory and immediately <code>cd</code>s into it.</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- Git -->
   <div class="section git" id="git">
-    <h2><span class="dot"></span> Git Workflow</h2>
+    <h2><span class="dot"></span> Git Workflow <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/jesseduffield/lazygit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lazygit</a>
+      <a class="doc-link" href="https://git-scm.com/doc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Git Docs</a>
+    </div>
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
@@ -489,11 +702,18 @@
         <tr><td><kbd>gpl</kbd></td><td><code>git pull --rebase --autostash</code>.</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- Tmux -->
   <div class="section tmux" id="tmux">
-    <h2><span class="dot"></span> Tmux (Multiplexer)</h2>
+    <h2><span class="dot"></span> Tmux (Multiplexer) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Tmux Wiki</a>
+      <a class="doc-link" href="https://github.com/tmux-plugins/tpm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>TPM</a>
+      <a class="doc-link" href="https://github.com/christoomey/vim-tmux-navigator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>vim-tmux-navigator</a>
+    </div>
     <div class="prefix-note"><strong>Prefix:</strong> <kbd>Ctrl + a</kbd> (Replaces standard <kbd>Ctrl + b</kbd>)</div>
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
@@ -510,11 +730,19 @@
         <tr><td><kbd>Prefix + d</kbd></td><td>Detach from session (leave it running in background).</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- Neovim -->
   <div class="section neovim" id="neovim">
-    <h2><span class="dot"></span> Neovim (Editor)</h2>
+    <h2><span class="dot"></span> Neovim (Editor) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://neovim.io/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Neovim Docs</a>
+      <a class="doc-link" href="https://github.com/nvim-telescope/telescope.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Telescope</a>
+      <a class="doc-link" href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>NvimTree</a>
+      <a class="doc-link" href="https://github.com/folke/trouble.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Trouble</a>
+    </div>
     <div class="prefix-note"><strong>Leader Key:</strong> <kbd>Space</kbd></div>
 
     <h3>General &amp; Files</h3>
@@ -556,11 +784,20 @@
         <tr><td><kbd>Space xx</kbd></td><td>Toggle Diagnostics (Trouble).</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- Testing & Debugging -->
   <div class="section neovim-sub" id="testing">
-    <h2><span class="dot"></span> Testing, Debugging &amp; Tasks</h2>
+    <h2><span class="dot"></span> Testing, Debugging &amp; Tasks <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/nvim-neotest/neotest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Neotest</a>
+      <a class="doc-link" href="https://github.com/mfussenegger/nvim-dap" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>nvim-dap</a>
+      <a class="doc-link" href="https://github.com/stevearc/overseer.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Overseer</a>
+      <a class="doc-link" href="https://github.com/folke/flash.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Flash</a>
+      <a class="doc-link" href="https://github.com/sindrets/diffview.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Diffview</a>
+    </div>
 
     <h3>Testing (Neotest)</h3>
     <table>
@@ -615,11 +852,20 @@
         <tr><td><kbd>S</kbd></td><td><strong>Flash Treesitter</strong>. Select logical blocks of code.</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- Runtimes -->
   <div class="section runtimes" id="runtimes">
-    <h2><span class="dot"></span> Runtimes &amp; Languages</h2>
+    <h2><span class="dot"></span> Runtimes &amp; Languages <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>nvm</a>
+      <a class="doc-link" href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>pyenv</a>
+      <a class="doc-link" href="https://github.com/rbenv/rbenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>rbenv</a>
+      <a class="doc-link" href="https://go.dev/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Go</a>
+      <a class="doc-link" href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Rust</a>
+    </div>
     <table>
       <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
       <tbody>
@@ -634,19 +880,31 @@
         <tr><td><strong>PHP</strong></td><td>Uses <code>intelephense</code> &amp; <code>php-cs-fixer</code>.</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <!-- DevDocs -->
   <div class="section devdocs" id="devdocs">
-    <h2><span class="dot"></span> DevDocs Setup (First Time)</h2>
+    <h2><span class="dot"></span> DevDocs Setup (First Time) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/luckasRanaworded/nvim-devdocs" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>nvim-devdocs</a>
+      <a class="doc-link" href="https://devdocs.io" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>DevDocs.io</a>
+    </div>
     <p>After installing plugins, run these commands in Neovim to download offline docs:</p>
     <pre>:DevdocsFetch
 :DevdocsInstall python javascript go rust c</pre>
+    </div>
   </div>
 
   <!-- Ghostty -->
   <div class="section ghostty" id="ghostty">
-    <h2><span class="dot"></span> Ghostty (Terminal)</h2>
+    <h2><span class="dot"></span> Ghostty (Terminal) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://ghostty.org/docs" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Ghostty Docs</a>
+      <a class="doc-link" href="https://ghostty.org/docs/config/reference" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Config Reference</a>
+    </div>
 
     <h3>Window &amp; Tabs</h3>
     <table>
@@ -732,6 +990,7 @@
         <tr><td><kbd>Alt + Left</kbd> / <kbd>Right</kbd></td><td>Jump word backward / forward.</td></tr>
       </tbody>
     </table>
+    </div>
   </div>
 
   <footer>
@@ -785,6 +1044,109 @@
       navLinks.classList.remove('open');
     });
   });
+
+  // --- Search ---
+  const searchBox = document.getElementById('searchBox');
+  const sections = document.querySelectorAll('.section');
+  const noResults = document.getElementById('noResults');
+
+  searchBox.addEventListener('input', () => {
+    const query = searchBox.value.toLowerCase().trim();
+    let anyVisible = false;
+
+    sections.forEach(section => {
+      if (section.style.display === 'none') return; // skip filtered-out sections
+
+      const rows = section.querySelectorAll('tbody tr');
+      let sectionHasMatch = false;
+
+      if (!query) {
+        rows.forEach(row => row.style.display = '');
+        sectionHasMatch = true;
+      } else {
+        rows.forEach(row => {
+          const text = row.textContent.toLowerCase();
+          const match = text.includes(query);
+          row.style.display = match ? '' : 'none';
+          if (match) sectionHasMatch = true;
+        });
+      }
+
+      // For sections without tables (like DevDocs), check full text
+      if (rows.length === 0) {
+        sectionHasMatch = !query || section.textContent.toLowerCase().includes(query);
+      }
+
+      // Don't hide filtered sections, just dim them if no match
+      if (activeFilter === 'all' || section.classList.contains(activeFilter)) {
+        section.style.display = sectionHasMatch ? '' : 'none';
+        if (sectionHasMatch) anyVisible = true;
+      }
+    });
+
+    noResults.style.display = anyVisible || !query ? 'none' : 'block';
+  });
+
+  // --- Filter by tool ---
+  let activeFilter = 'all';
+  const filterBar = document.getElementById('filterBar');
+  const filterPills = filterBar.querySelectorAll('.filter-pill');
+
+  filterPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const wasActive = pill.classList.contains('active') && pill.dataset.filter !== 'all';
+      filterPills.forEach(p => p.classList.remove('active'));
+      if (wasActive) {
+        filterBar.querySelector('[data-filter="all"]').classList.add('active');
+        activeFilter = 'all';
+      } else {
+        pill.classList.add('active');
+        activeFilter = pill.dataset.filter;
+      }
+
+      sections.forEach(section => {
+        if (activeFilter === 'all') {
+          section.style.display = '';
+        } else {
+          section.style.display = section.classList.contains(activeFilter) ? '' : 'none';
+        }
+      });
+
+      // Re-run search to combine filters
+      searchBox.dispatchEvent(new Event('input'));
+    });
+  });
+
+  // --- Collapse All / Expand All ---
+  const collapseBtn = document.getElementById('collapseAll');
+  let allCollapsed = false;
+
+  // Individual section collapse toggle
+  sections.forEach(section => {
+    const h2 = section.querySelector('h2');
+    h2.addEventListener('click', () => {
+      section.classList.toggle('collapsed');
+      updateCollapseBtn();
+    });
+  });
+
+  collapseBtn.addEventListener('click', () => {
+    allCollapsed = !allCollapsed;
+    sections.forEach(section => {
+      if (allCollapsed) {
+        section.classList.add('collapsed');
+      } else {
+        section.classList.remove('collapsed');
+      }
+    });
+    updateCollapseBtn();
+  });
+
+  function updateCollapseBtn() {
+    const collapsed = document.querySelectorAll('.section.collapsed').length;
+    allCollapsed = collapsed === sections.length;
+    collapseBtn.textContent = allCollapsed ? 'Expand All' : 'Collapse All';
+  }
 </script>
 </body>
 </html>
