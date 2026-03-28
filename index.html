@@ -264,6 +264,7 @@
     box-shadow: 0 4px 24px var(--shadow);
     transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, border-color 0.3s ease;
     scroll-margin-top: 4rem;
+    overflow: hidden;
   }
 
   .section:hover {
@@ -308,8 +309,15 @@
     flex-shrink: 0;
   }
 
+  .table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 8px;
+  }
+
   table {
     width: 100%;
+    min-width: 400px;
     border-collapse: separate;
     border-spacing: 0;
     border-radius: 8px;
@@ -391,7 +399,9 @@
     font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     font-size: 0.85rem;
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     margin-top: 0.5rem;
+    word-break: break-word;
   }
 
   footer {
@@ -407,21 +417,19 @@
   /* Toolbar */
   .toolbar {
     display: flex;
-    flex-wrap: wrap;
     gap: 0.75rem;
     align-items: center;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .search-box {
-    flex: 1;
-    min-width: 200px;
-    padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+    width: 100%;
+    padding: 0.6rem 0.85rem 0.6rem 2.4rem;
     border: 1px solid var(--glass-border);
-    border-radius: 8px;
+    border-radius: 10px;
     background: var(--glass);
     color: var(--text);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     outline: none;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
@@ -436,12 +444,11 @@
   .search-wrap {
     position: relative;
     flex: 1;
-    min-width: 200px;
   }
 
   .search-wrap svg {
     position: absolute;
-    left: 0.65rem;
+    left: 0.7rem;
     top: 50%;
     transform: translateY(-50%);
     color: var(--text-muted);
@@ -449,9 +456,9 @@
   }
 
   .toolbar-btn {
-    padding: 0.45rem 0.75rem;
+    padding: 0.55rem 0.85rem;
     border: 1px solid var(--glass-border);
-    border-radius: 8px;
+    border-radius: 10px;
     background: var(--glass);
     color: var(--text-sub);
     font-size: 0.82rem;
@@ -459,6 +466,7 @@
     cursor: pointer;
     transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
     white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .toolbar-btn:hover {
@@ -470,20 +478,21 @@
   .filter-bar {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-bottom: 1.25rem;
+    gap: 0.5rem 0.6rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
   }
 
   .filter-pill {
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
-    padding: 0.3rem 0.6rem;
+    gap: 0.35rem;
+    padding: 0.4rem 0.75rem;
     border: 1px solid var(--glass-border);
     border-radius: 20px;
     background: var(--glass);
     color: var(--text-sub);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 500;
     cursor: pointer;
     transition: all 0.15s ease;
@@ -500,8 +509,8 @@
   }
 
   .filter-pill .pill-dot {
-    width: 7px;
-    height: 7px;
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
   }
 
@@ -570,14 +579,49 @@
   /* Search highlight */
   .search-match { background: rgba(251, 191, 36, 0.3); border-radius: 2px; }
 
+  /* Back to top */
+  .back-to-top {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: var(--glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-sub);
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 12px var(--shadow);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.2s ease, background 0.15s ease;
+    z-index: 40;
+  }
+
+  .back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .back-to-top:hover {
+    background: var(--row-hover);
+    transform: translateY(-2px);
+  }
+
   @media (max-width: 640px) {
     body { padding: 1rem 0.5rem; }
     h1 { font-size: 1.8rem; }
     .section { padding: 1rem; }
     table { font-size: 0.82rem; }
     td:first-child { white-space: normal; }
-    .toolbar { flex-direction: column; }
-    .search-wrap { width: 100%; }
+    .filter-bar { gap: 0.4rem; }
+    .filter-pill { padding: 0.35rem 0.6rem; font-size: 0.75rem; }
   }
 </style>
 </head>
@@ -587,15 +631,15 @@
   <div class="nav-inner">
     <button class="nav-burger" id="navBurger" aria-label="Toggle navigation">&#9776;</button>
     <div class="nav-links" id="navLinks">
-      <a href="#shell"><span class="nav-dot" style="background:var(--shell)"></span>Shell</a>
-      <a href="#system"><span class="nav-dot" style="background:var(--system)"></span>System</a>
-      <a href="#git"><span class="nav-dot" style="background:var(--git)"></span>Git</a>
-      <a href="#tmux"><span class="nav-dot" style="background:var(--tmux)"></span>Tmux</a>
-      <a href="#neovim"><span class="nav-dot" style="background:var(--neovim)"></span>Neovim</a>
-      <a href="#testing"><span class="nav-dot" style="background:var(--neovim-alt)"></span>Testing</a>
-      <a href="#runtimes"><span class="nav-dot" style="background:var(--runtimes)"></span>Runtimes</a>
       <a href="#devdocs"><span class="nav-dot" style="background:var(--devdocs)"></span>DevDocs</a>
       <a href="#ghostty"><span class="nav-dot" style="background:var(--ghostty)"></span>Ghostty</a>
+      <a href="#git"><span class="nav-dot" style="background:var(--git)"></span>Git</a>
+      <a href="#neovim"><span class="nav-dot" style="background:var(--neovim)"></span>Neovim</a>
+      <a href="#runtimes"><span class="nav-dot" style="background:var(--runtimes)"></span>Runtimes</a>
+      <a href="#shell"><span class="nav-dot" style="background:var(--shell)"></span>Shell</a>
+      <a href="#system"><span class="nav-dot" style="background:var(--system)"></span>System</a>
+      <a href="#testing"><span class="nav-dot" style="background:var(--neovim-alt)"></span>Testing</a>
+      <a href="#tmux"><span class="nav-dot" style="background:var(--tmux)"></span>Tmux</a>
     </div>
     <a href="https://github.com/richtxteditor/devtools" target="_blank" rel="noopener noreferrer" class="nav-github" aria-label="GitHub repository">
       <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
@@ -607,7 +651,7 @@
 <div class="container">
   <div class="header">
     <h1>DevTools Cheat Sheet</h1>
-    <p class="subtitle">Terminal-centric development environment &mdash; Zsh + Tmux + Neovim</p>
+    <p class="subtitle">Terminal-centric development environment &mdash; Zsh + Tmux + Neovim<br>by <a href="https://richtxteditor.github.io" target="_blank" rel="noopener" style="color:var(--link-color);text-decoration:none">richtxteditor</a></p>
   </div>
 
   <!-- Toolbar: Search + Collapse -->
@@ -622,268 +666,19 @@
   <!-- Filter pills -->
   <div class="filter-bar" id="filterBar">
     <button class="filter-pill active" data-filter="all">All</button>
-    <button class="filter-pill" data-filter="shell" style="--filter-color:var(--shell)"><span class="pill-dot" style="background:var(--shell)"></span>Shell</button>
-    <button class="filter-pill" data-filter="system" style="--filter-color:var(--system)"><span class="pill-dot" style="background:var(--system)"></span>System</button>
-    <button class="filter-pill" data-filter="git" style="--filter-color:var(--git)"><span class="pill-dot" style="background:var(--git)"></span>Git</button>
-    <button class="filter-pill" data-filter="tmux" style="--filter-color:var(--tmux)"><span class="pill-dot" style="background:var(--tmux)"></span>Tmux</button>
-    <button class="filter-pill" data-filter="neovim" style="--filter-color:var(--neovim)"><span class="pill-dot" style="background:var(--neovim)"></span>Neovim</button>
-    <button class="filter-pill" data-filter="neovim-sub" style="--filter-color:var(--neovim-alt)"><span class="pill-dot" style="background:var(--neovim-alt)"></span>Testing</button>
-    <button class="filter-pill" data-filter="runtimes" style="--filter-color:var(--runtimes)"><span class="pill-dot" style="background:var(--runtimes)"></span>Runtimes</button>
     <button class="filter-pill" data-filter="devdocs" style="--filter-color:var(--devdocs)"><span class="pill-dot" style="background:var(--devdocs)"></span>DevDocs</button>
     <button class="filter-pill" data-filter="ghostty" style="--filter-color:var(--ghostty)"><span class="pill-dot" style="background:var(--ghostty)"></span>Ghostty</button>
+    <button class="filter-pill" data-filter="git" style="--filter-color:var(--git)"><span class="pill-dot" style="background:var(--git)"></span>Git</button>
+    <button class="filter-pill" data-filter="neovim" style="--filter-color:var(--neovim)"><span class="pill-dot" style="background:var(--neovim)"></span>Neovim</button>
+    <button class="filter-pill" data-filter="runtimes" style="--filter-color:var(--runtimes)"><span class="pill-dot" style="background:var(--runtimes)"></span>Runtimes</button>
+    <button class="filter-pill" data-filter="shell" style="--filter-color:var(--shell)"><span class="pill-dot" style="background:var(--shell)"></span>Shell</button>
+    <button class="filter-pill" data-filter="system" style="--filter-color:var(--system)"><span class="pill-dot" style="background:var(--system)"></span>System</button>
+    <button class="filter-pill" data-filter="neovim-sub" style="--filter-color:var(--neovim-alt)"><span class="pill-dot" style="background:var(--neovim-alt)"></span>Testing</button>
+    <button class="filter-pill" data-filter="tmux" style="--filter-color:var(--tmux)"><span class="pill-dot" style="background:var(--tmux)"></span>Tmux</button>
   </div>
 
   <div id="noResults" class="no-results">No matching commands found.</div>
-
-  <!-- Shell & Navigation -->
-  <div class="section shell" id="shell">
-    <h2><span class="dot"></span> Shell &amp; Navigation (Zsh) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
-    <div class="doc-links">
-      <a class="doc-link" href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>zoxide</a>
-      <a class="doc-link" href="https://github.com/eza-community/eza" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>eza</a>
-      <a class="doc-link" href="https://github.com/sharkdp/bat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>bat</a>
-      <a class="doc-link" href="https://github.com/junegunn/fzf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>fzf</a>
-      <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>zsh-autosuggestions</a>
-    </div>
-    <table>
-      <thead><tr><th>Command</th><th>Tool</th><th>Description</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td>zoxide</td><td>Smart <code>cd</code>. Jumps to directories based on frequency (e.g., <code>z dot</code> &rarr; <code>~/Sites/dotfiles</code>).</td></tr>
-        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td>eza</td><td>Lists files with icons, git status, and headers.</td></tr>
-        <tr><td><kbd>tree</kbd></td><td>eza</td><td>Shows a directory tree (2 levels deep).</td></tr>
-        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td>bat</td><td>Displays file contents with syntax highlighting and line numbers.</td></tr>
-        <tr><td><kbd>Ctrl + r</kbd></td><td>fzf</td><td>Fuzzy search your command history.</td></tr>
-        <tr><td><kbd>Ctrl + t</kbd></td><td>fzf</td><td>Fuzzy find a file and paste its path into the command line.</td></tr>
-        <tr><td><kbd>Ctrl + Space</kbd></td><td>autosuggest</td><td>Accept the grey &ldquo;ghost text&rdquo; suggestion.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- System & Config -->
-  <div class="section system" id="system">
-    <h2><span class="dot"></span> System &amp; Config Management <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
-    <div class="doc-links">
-      <a class="doc-link" href="https://brew.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Homebrew</a>
-      <a class="doc-link" href="https://ohmyz.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Oh My Zsh</a>
-    </div>
-    <table>
-      <thead><tr><th>Command</th><th>Description</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>update</kbd></td><td>Runs <strong>all</strong> updates: macOS, Homebrew, and Oh My Zsh.</td></tr>
-        <tr><td><kbd>bbu</kbd></td><td><strong>B</strong>rew <strong>B</strong>undle <strong>U</strong>pdate. Dumps current brew packages to the repo&rsquo;s <code>Brewfile</code>.</td></tr>
-        <tr><td><kbd>zshconfig</kbd></td><td>Opens <code>.zshrc</code> in Neovim.</td></tr>
-        <tr><td><kbd>reload</kbd></td><td>Reloads <code>.zshrc</code> without restarting the terminal.</td></tr>
-        <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td>Creates a directory and immediately <code>cd</code>s into it.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- Git -->
-  <div class="section git" id="git">
-    <h2><span class="dot"></span> Git Workflow <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
-    <div class="doc-links">
-      <a class="doc-link" href="https://github.com/jesseduffield/lazygit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lazygit</a>
-      <a class="doc-link" href="https://git-scm.com/doc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Git Docs</a>
-    </div>
-    <table>
-      <thead><tr><th>Command</th><th>Description</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>lg</kbd></td><td><strong>Lazygit</strong>. Opens a powerful terminal UI for Git.</td></tr>
-        <tr><td><kbd>gs</kbd></td><td><code>git status -sb</code> (Short status).</td></tr>
-        <tr><td><kbd>gaa</kbd></td><td><code>git add .</code> (Add all).</td></tr>
-        <tr><td><kbd>gc "msg"</kbd></td><td><code>git commit -m "msg"</code>.</td></tr>
-        <tr><td><kbd>gp</kbd></td><td><code>git push</code>.</td></tr>
-        <tr><td><kbd>gpf</kbd></td><td><code>git push --force-with-lease</code> (Safer force push).</td></tr>
-        <tr><td><kbd>gpl</kbd></td><td><code>git pull --rebase --autostash</code>.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- Tmux -->
-  <div class="section tmux" id="tmux">
-    <h2><span class="dot"></span> Tmux (Multiplexer) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
-    <div class="doc-links">
-      <a class="doc-link" href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Tmux Wiki</a>
-      <a class="doc-link" href="https://github.com/tmux-plugins/tpm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>TPM</a>
-      <a class="doc-link" href="https://github.com/christoomey/vim-tmux-navigator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>vim-tmux-navigator</a>
-    </div>
-    <div class="prefix-note"><strong>Prefix:</strong> <kbd>Ctrl + a</kbd> (Replaces standard <kbd>Ctrl + b</kbd>)</div>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>ta</kbd></td><td><strong>Smart Alias:</strong> Attaches to the last session or creates a new one.</td></tr>
-        <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move between Tmux panes <strong>and</strong> Neovim splits.</td></tr>
-        <tr><td><kbd>Prefix + |</kbd></td><td>Split vertically.</td></tr>
-        <tr><td><kbd>Prefix + -</kbd></td><td>Split horizontally.</td></tr>
-        <tr><td><kbd>Prefix + c</kbd></td><td>New window.</td></tr>
-        <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td>Toggle fullscreen (zoom) for current pane.</td></tr>
-        <tr><td><kbd>Prefix + Space</kbd></td><td>Jump to last active window.</td></tr>
-        <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins</strong> (Press this if plugins look missing).</td></tr>
-        <tr><td><kbd>Prefix + [</kbd></td><td>Enter copy mode (Use <kbd>v</kbd> to select, <kbd>y</kbd> to copy).</td></tr>
-        <tr><td><kbd>Prefix + d</kbd></td><td>Detach from session (leave it running in background).</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- Neovim -->
-  <div class="section neovim" id="neovim">
-    <h2><span class="dot"></span> Neovim (Editor) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
-    <div class="doc-links">
-      <a class="doc-link" href="https://neovim.io/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Neovim Docs</a>
-      <a class="doc-link" href="https://github.com/nvim-telescope/telescope.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Telescope</a>
-      <a class="doc-link" href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>NvimTree</a>
-      <a class="doc-link" href="https://github.com/folke/trouble.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Trouble</a>
-    </div>
-    <div class="prefix-note"><strong>Leader Key:</strong> <kbd>Space</kbd></div>
-
-    <h3>General &amp; Files</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>Space e</kbd></td><td>Toggle File Explorer (NvimTree).</td></tr>
-        <tr><td><kbd>Space ff</kbd></td><td><strong>Find Files</strong> (Telescope).</td></tr>
-        <tr><td><kbd>Space fg</kbd></td><td><strong>Live Grep</strong> (Search text in project).</td></tr>
-        <tr><td><kbd>Space fo</kbd></td><td>Find Recent/Old Files.</td></tr>
-        <tr><td><kbd>Space fb</kbd></td><td>Find Buffers.</td></tr>
-        <tr><td><kbd>Space fh</kbd></td><td>Find Help Tags.</td></tr>
-        <tr><td><kbd>Space fd</kbd></td><td>Find Diagnostics.</td></tr>
-        <tr><td><kbd>Space ft</kbd></td><td>Find TODOs.</td></tr>
-        <tr><td><kbd>Space gg</kbd></td><td>Open Lazygit.</td></tr>
-        <tr><td><kbd>Space mp</kbd></td><td>Toggle Markdown Preview.</td></tr>
-        <tr><td><kbd>C-\</kbd></td><td>Toggle floating terminal (ToggleTerm).</td></tr>
-        <tr><td><kbd>Space u</kbd></td><td>Toggle Undo Tree.</td></tr>
-        <tr><td><kbd>Space o</kbd></td><td>Toggle Symbol Outline (Aerial).</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Code &amp; LSP</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>gd</kbd></td><td>Go to Definition.</td></tr>
-        <tr><td><kbd>gr</kbd></td><td>Find References.</td></tr>
-        <tr><td><kbd>K</kbd></td><td>Hover Documentation (LSP or per-language fallback).</td></tr>
-        <tr><td><kbd>Space K</kbd></td><td>Search DevDocs (offline docs for 300+ languages).</td></tr>
-        <tr><td><kbd>Space cf</kbd></td><td>Format Code.</td></tr>
-        <tr><td><kbd>Space rn</kbd></td><td>Rename Symbol (live preview).</td></tr>
-        <tr><td><kbd>Space ca</kbd></td><td>Code Action.</td></tr>
-        <tr><td><kbd>Space ci</kbd></td><td>Incoming Calls (call hierarchy).</td></tr>
-        <tr><td><kbd>Space co</kbd></td><td>Outgoing Calls (call hierarchy).</td></tr>
-        <tr><td><kbd>Space dd</kbd></td><td>Show Error/Warning (Float).</td></tr>
-        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td>Previous / Next Diagnostic.</td></tr>
-        <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td>Previous / Next Quickfix Item.</td></tr>
-        <tr><td><kbd>Space xx</kbd></td><td>Toggle Diagnostics (Trouble).</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- Testing & Debugging -->
-  <div class="section neovim-sub" id="testing">
-    <h2><span class="dot"></span> Testing, Debugging &amp; Tasks <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
-    <div class="doc-links">
-      <a class="doc-link" href="https://github.com/nvim-neotest/neotest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Neotest</a>
-      <a class="doc-link" href="https://github.com/mfussenegger/nvim-dap" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>nvim-dap</a>
-      <a class="doc-link" href="https://github.com/stevearc/overseer.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Overseer</a>
-      <a class="doc-link" href="https://github.com/folke/flash.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Flash</a>
-      <a class="doc-link" href="https://github.com/sindrets/diffview.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Diffview</a>
-    </div>
-
-    <h3>Testing (Neotest)</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>Space nt</kbd></td><td>Run Nearest Test.</td></tr>
-        <tr><td><kbd>Space nf</kbd></td><td>Run All Tests in File.</td></tr>
-        <tr><td><kbd>Space ns</kbd></td><td>Toggle Test Summary.</td></tr>
-        <tr><td><kbd>Space no</kbd></td><td>Show Test Output.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Debugging (DAP)</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>F5</kbd></td><td>Start / Continue.</td></tr>
-        <tr><td><kbd>F6</kbd></td><td>Stop / Terminate.</td></tr>
-        <tr><td><kbd>F9</kbd></td><td>Toggle Breakpoint.</td></tr>
-        <tr><td><kbd>F10</kbd></td><td>Step Over.</td></tr>
-        <tr><td><kbd>F11</kbd></td><td>Step Into.</td></tr>
-        <tr><td><kbd>F8</kbd></td><td>Step Out.</td></tr>
-        <tr><td><kbd>Space du</kbd></td><td>Toggle Debug UI.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Tasks &amp; Running (Overseer)</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>Space tr</kbd></td><td><strong>Run Task</strong> (Auto-detected: make, npm, cargo, go, etc.).</td></tr>
-        <tr><td><kbd>Space to</kbd></td><td>Toggle Task Output.</td></tr>
-        <tr><td><kbd>Space tc</kbd></td><td>Run Custom Command.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Git (in Neovim)</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>Space gg</kbd></td><td>Open LazyGit.</td></tr>
-        <tr><td><kbd>Space gd</kbd></td><td>Git Diff View (Diffview).</td></tr>
-        <tr><td><kbd>Space gh</kbd></td><td>Git File History (Diffview).</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Navigation (Flash)</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>s</kbd></td><td><strong>Flash Jump</strong>. Jump to any character on screen.</td></tr>
-        <tr><td><kbd>S</kbd></td><td><strong>Flash Treesitter</strong>. Select logical blocks of code.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- Runtimes -->
-  <div class="section runtimes" id="runtimes">
-    <h2><span class="dot"></span> Runtimes &amp; Languages <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
-    <div class="doc-links">
-      <a class="doc-link" href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>nvm</a>
-      <a class="doc-link" href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>pyenv</a>
-      <a class="doc-link" href="https://github.com/rbenv/rbenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>rbenv</a>
-      <a class="doc-link" href="https://go.dev/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Go</a>
-      <a class="doc-link" href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Rust</a>
-    </div>
-    <table>
-      <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Node.js</strong></td><td>Managed by <code>nvm</code>. Run <code>nvm install 20</code>.</td></tr>
-        <tr><td><strong>Python</strong></td><td>Managed by <code>pyenv</code>. Run <code>pyenv install 3.12</code>.</td></tr>
-        <tr><td><strong>Ruby</strong></td><td>Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code>.</td></tr>
-        <tr><td><strong>Go</strong></td><td>Installed via Homebrew. LSP: <code>gopls</code>. Formatters: <code>goimports</code>, <code>gofumpt</code>.</td></tr>
-        <tr><td><strong>Rust</strong></td><td>Installed via Homebrew. LSP: <code>rust-analyzer</code>. DAP: <code>codelldb</code>.</td></tr>
-        <tr><td><strong>Java</strong></td><td><code>openjdk</code> installed. Neovim uses <code>jdtls</code> &amp; <code>google-java-format</code>.</td></tr>
-        <tr><td><strong>C/C++</strong></td><td><code>clang</code> / <code>llvm</code> installed. Neovim uses <code>clangd</code> &amp; <code>clang-format</code>. DAP: <code>codelldb</code>.</td></tr>
-        <tr><td><strong>TypeScript</strong></td><td>Uses <code>ts_ls</code>, <code>prettier</code>, <code>eslint</code>. Ensure <code>tsconfig.json</code> exists.</td></tr>
-        <tr><td><strong>PHP</strong></td><td>Uses <code>intelephense</code> &amp; <code>php-cs-fixer</code>.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-
-  <!-- DevDocs -->
+<!-- DevDocs -->
   <div class="section devdocs" id="devdocs">
     <h2><span class="dot"></span> DevDocs Setup (First Time) <span class="collapse-icon">&#9660;</span></h2>
     <div class="section-body">
@@ -896,8 +691,7 @@
 :DevdocsInstall python javascript go rust c</pre>
     </div>
   </div>
-
-  <!-- Ghostty -->
+<!-- Ghostty -->
   <div class="section ghostty" id="ghostty">
     <h2><span class="dot"></span> Ghostty (Terminal) <span class="collapse-icon">&#9660;</span></h2>
     <div class="section-body">
@@ -992,11 +786,256 @@
     </table>
     </div>
   </div>
+<!-- Git -->
+  <div class="section git" id="git">
+    <h2><span class="dot"></span> Git Workflow <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/jesseduffield/lazygit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Lazygit</a>
+      <a class="doc-link" href="https://git-scm.com/doc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Git Docs</a>
+    </div>
+    <table>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>lg</kbd></td><td><strong>Lazygit</strong>. Opens a powerful terminal UI for Git.</td></tr>
+        <tr><td><kbd>gs</kbd></td><td><code>git status -sb</code> (Short status).</td></tr>
+        <tr><td><kbd>gaa</kbd></td><td><code>git add .</code> (Add all).</td></tr>
+        <tr><td><kbd>gc "msg"</kbd></td><td><code>git commit -m "msg"</code>.</td></tr>
+        <tr><td><kbd>gp</kbd></td><td><code>git push</code>.</td></tr>
+        <tr><td><kbd>gpf</kbd></td><td><code>git push --force-with-lease</code> (Safer force push).</td></tr>
+        <tr><td><kbd>gpl</kbd></td><td><code>git pull --rebase --autostash</code>.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- Neovim -->
+  <div class="section neovim" id="neovim">
+    <h2><span class="dot"></span> Neovim (Editor) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://neovim.io/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Neovim Docs</a>
+      <a class="doc-link" href="https://github.com/nvim-telescope/telescope.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Telescope</a>
+      <a class="doc-link" href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>NvimTree</a>
+      <a class="doc-link" href="https://github.com/folke/trouble.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Trouble</a>
+    </div>
+    <div class="prefix-note"><strong>Leader Key:</strong> <kbd>Space</kbd></div>
+
+    <h3>General &amp; Files</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space e</kbd></td><td>Toggle File Explorer (NvimTree).</td></tr>
+        <tr><td><kbd>Space ff</kbd></td><td><strong>Find Files</strong> (Telescope).</td></tr>
+        <tr><td><kbd>Space fg</kbd></td><td><strong>Live Grep</strong> (Search text in project).</td></tr>
+        <tr><td><kbd>Space fo</kbd></td><td>Find Recent/Old Files.</td></tr>
+        <tr><td><kbd>Space fb</kbd></td><td>Find Buffers.</td></tr>
+        <tr><td><kbd>Space fh</kbd></td><td>Find Help Tags.</td></tr>
+        <tr><td><kbd>Space fd</kbd></td><td>Find Diagnostics.</td></tr>
+        <tr><td><kbd>Space ft</kbd></td><td>Find TODOs.</td></tr>
+        <tr><td><kbd>Space gg</kbd></td><td>Open Lazygit.</td></tr>
+        <tr><td><kbd>Space mp</kbd></td><td>Toggle Markdown Preview.</td></tr>
+        <tr><td><kbd>C-\</kbd></td><td>Toggle floating terminal (ToggleTerm).</td></tr>
+        <tr><td><kbd>Space u</kbd></td><td>Toggle Undo Tree.</td></tr>
+        <tr><td><kbd>Space o</kbd></td><td>Toggle Symbol Outline (Aerial).</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Code &amp; LSP</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>gd</kbd></td><td>Go to Definition.</td></tr>
+        <tr><td><kbd>gr</kbd></td><td>Find References.</td></tr>
+        <tr><td><kbd>K</kbd></td><td>Hover Documentation (LSP or per-language fallback).</td></tr>
+        <tr><td><kbd>Space K</kbd></td><td>Search DevDocs (offline docs for 300+ languages).</td></tr>
+        <tr><td><kbd>Space cf</kbd></td><td>Format Code.</td></tr>
+        <tr><td><kbd>Space rn</kbd></td><td>Rename Symbol (live preview).</td></tr>
+        <tr><td><kbd>Space ca</kbd></td><td>Code Action.</td></tr>
+        <tr><td><kbd>Space ci</kbd></td><td>Incoming Calls (call hierarchy).</td></tr>
+        <tr><td><kbd>Space co</kbd></td><td>Outgoing Calls (call hierarchy).</td></tr>
+        <tr><td><kbd>Space dd</kbd></td><td>Show Error/Warning (Float).</td></tr>
+        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td>Previous / Next Diagnostic.</td></tr>
+        <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td>Previous / Next Quickfix Item.</td></tr>
+        <tr><td><kbd>Space xx</kbd></td><td>Toggle Diagnostics (Trouble).</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- Runtimes -->
+  <div class="section runtimes" id="runtimes">
+    <h2><span class="dot"></span> Runtimes &amp; Languages <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>nvm</a>
+      <a class="doc-link" href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>pyenv</a>
+      <a class="doc-link" href="https://github.com/rbenv/rbenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>rbenv</a>
+      <a class="doc-link" href="https://go.dev/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Go</a>
+      <a class="doc-link" href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Rust</a>
+    </div>
+    <table>
+      <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Node.js</strong></td><td>Managed by <code>nvm</code>. Run <code>nvm install 20</code>.</td></tr>
+        <tr><td><strong>Python</strong></td><td>Managed by <code>pyenv</code>. Run <code>pyenv install 3.12</code>.</td></tr>
+        <tr><td><strong>Ruby</strong></td><td>Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code>.</td></tr>
+        <tr><td><strong>Go</strong></td><td>Installed via Homebrew. LSP: <code>gopls</code>. Formatters: <code>goimports</code>, <code>gofumpt</code>.</td></tr>
+        <tr><td><strong>Rust</strong></td><td>Installed via Homebrew. LSP: <code>rust-analyzer</code>. DAP: <code>codelldb</code>.</td></tr>
+        <tr><td><strong>Java</strong></td><td><code>openjdk</code> installed. Neovim uses <code>jdtls</code> &amp; <code>google-java-format</code>.</td></tr>
+        <tr><td><strong>C/C++</strong></td><td><code>clang</code> / <code>llvm</code> installed. Neovim uses <code>clangd</code> &amp; <code>clang-format</code>. DAP: <code>codelldb</code>.</td></tr>
+        <tr><td><strong>TypeScript</strong></td><td>Uses <code>ts_ls</code>, <code>prettier</code>, <code>eslint</code>. Ensure <code>tsconfig.json</code> exists.</td></tr>
+        <tr><td><strong>PHP</strong></td><td>Uses <code>intelephense</code> &amp; <code>php-cs-fixer</code>.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- Shell & Navigation -->
+  <div class="section shell" id="shell">
+    <h2><span class="dot"></span> Shell &amp; Navigation (Zsh) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>zoxide</a>
+      <a class="doc-link" href="https://github.com/eza-community/eza" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>eza</a>
+      <a class="doc-link" href="https://github.com/sharkdp/bat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>bat</a>
+      <a class="doc-link" href="https://github.com/junegunn/fzf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>fzf</a>
+      <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>zsh-autosuggestions</a>
+    </div>
+    <table>
+      <thead><tr><th>Command</th><th>Tool</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td>zoxide</td><td>Smart <code>cd</code>. Jumps to directories based on frequency (e.g., <code>z dot</code> &rarr; <code>~/Sites/dotfiles</code>).</td></tr>
+        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td>eza</td><td>Lists files with icons, git status, and headers.</td></tr>
+        <tr><td><kbd>tree</kbd></td><td>eza</td><td>Shows a directory tree (2 levels deep).</td></tr>
+        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td>bat</td><td>Displays file contents with syntax highlighting and line numbers.</td></tr>
+        <tr><td><kbd>Ctrl + r</kbd></td><td>fzf</td><td>Fuzzy search your command history.</td></tr>
+        <tr><td><kbd>Ctrl + t</kbd></td><td>fzf</td><td>Fuzzy find a file and paste its path into the command line.</td></tr>
+        <tr><td><kbd>Ctrl + Space</kbd></td><td>autosuggest</td><td>Accept the grey &ldquo;ghost text&rdquo; suggestion.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- System & Config -->
+  <div class="section system" id="system">
+    <h2><span class="dot"></span> System &amp; Config Management <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://brew.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Homebrew</a>
+      <a class="doc-link" href="https://ohmyz.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Oh My Zsh</a>
+    </div>
+    <table>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>update</kbd></td><td>Runs <strong>all</strong> updates: macOS, Homebrew, and Oh My Zsh.</td></tr>
+        <tr><td><kbd>bbu</kbd></td><td><strong>B</strong>rew <strong>B</strong>undle <strong>U</strong>pdate. Dumps current brew packages to the repo&rsquo;s <code>Brewfile</code>.</td></tr>
+        <tr><td><kbd>zshconfig</kbd></td><td>Opens <code>.zshrc</code> in Neovim.</td></tr>
+        <tr><td><kbd>reload</kbd></td><td>Reloads <code>.zshrc</code> without restarting the terminal.</td></tr>
+        <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td>Creates a directory and immediately <code>cd</code>s into it.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- Testing & Debugging -->
+  <div class="section neovim-sub" id="testing">
+    <h2><span class="dot"></span> Testing, Debugging &amp; Tasks <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/nvim-neotest/neotest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Neotest</a>
+      <a class="doc-link" href="https://github.com/mfussenegger/nvim-dap" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>nvim-dap</a>
+      <a class="doc-link" href="https://github.com/stevearc/overseer.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Overseer</a>
+      <a class="doc-link" href="https://github.com/folke/flash.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Flash</a>
+      <a class="doc-link" href="https://github.com/sindrets/diffview.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Diffview</a>
+    </div>
+
+    <h3>Testing (Neotest)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space nt</kbd></td><td>Run Nearest Test.</td></tr>
+        <tr><td><kbd>Space nf</kbd></td><td>Run All Tests in File.</td></tr>
+        <tr><td><kbd>Space ns</kbd></td><td>Toggle Test Summary.</td></tr>
+        <tr><td><kbd>Space no</kbd></td><td>Show Test Output.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Debugging (DAP)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>F5</kbd></td><td>Start / Continue.</td></tr>
+        <tr><td><kbd>F6</kbd></td><td>Stop / Terminate.</td></tr>
+        <tr><td><kbd>F9</kbd></td><td>Toggle Breakpoint.</td></tr>
+        <tr><td><kbd>F10</kbd></td><td>Step Over.</td></tr>
+        <tr><td><kbd>F11</kbd></td><td>Step Into.</td></tr>
+        <tr><td><kbd>F8</kbd></td><td>Step Out.</td></tr>
+        <tr><td><kbd>Space du</kbd></td><td>Toggle Debug UI.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Tasks &amp; Running (Overseer)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space tr</kbd></td><td><strong>Run Task</strong> (Auto-detected: make, npm, cargo, go, etc.).</td></tr>
+        <tr><td><kbd>Space to</kbd></td><td>Toggle Task Output.</td></tr>
+        <tr><td><kbd>Space tc</kbd></td><td>Run Custom Command.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Git (in Neovim)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space gg</kbd></td><td>Open LazyGit.</td></tr>
+        <tr><td><kbd>Space gd</kbd></td><td>Git Diff View (Diffview).</td></tr>
+        <tr><td><kbd>Space gh</kbd></td><td>Git File History (Diffview).</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Navigation (Flash)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>s</kbd></td><td><strong>Flash Jump</strong>. Jump to any character on screen.</td></tr>
+        <tr><td><kbd>S</kbd></td><td><strong>Flash Treesitter</strong>. Select logical blocks of code.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- Tmux -->
+  <div class="section tmux" id="tmux">
+    <h2><span class="dot"></span> Tmux (Multiplexer) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="section-body">
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>Tmux Wiki</a>
+      <a class="doc-link" href="https://github.com/tmux-plugins/tpm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>TPM</a>
+      <a class="doc-link" href="https://github.com/christoomey/vim-tmux-navigator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>vim-tmux-navigator</a>
+    </div>
+    <div class="prefix-note"><strong>Prefix:</strong> <kbd>Ctrl + a</kbd> (Replaces standard <kbd>Ctrl + b</kbd>)</div>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>ta</kbd></td><td><strong>Smart Alias:</strong> Attaches to the last session or creates a new one.</td></tr>
+        <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move between Tmux panes <strong>and</strong> Neovim splits.</td></tr>
+        <tr><td><kbd>Prefix + |</kbd></td><td>Split vertically.</td></tr>
+        <tr><td><kbd>Prefix + -</kbd></td><td>Split horizontally.</td></tr>
+        <tr><td><kbd>Prefix + c</kbd></td><td>New window.</td></tr>
+        <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td>Toggle fullscreen (zoom) for current pane.</td></tr>
+        <tr><td><kbd>Prefix + Space</kbd></td><td>Jump to last active window.</td></tr>
+        <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins</strong> (Press this if plugins look missing).</td></tr>
+        <tr><td><kbd>Prefix + [</kbd></td><td>Enter copy mode (Use <kbd>v</kbd> to select, <kbd>y</kbd> to copy).</td></tr>
+        <tr><td><kbd>Prefix + d</kbd></td><td>Detach from session (leave it running in background).</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
 
   <footer>
-    Built from <a href="https://github.com/richtxteditor/dotfiles">dotfiles</a> &middot; <a href="https://github.com/richtxteditor/devtools">Source</a>
+    Built by <a href="https://richtxteditor.github.io">richtxteditor</a> &middot; <a href="https://github.com/richtxteditor/dotfiles">dotfiles</a> &middot; <a href="https://github.com/richtxteditor/devtools">Source</a>
   </footer>
 </div>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+</button>
 
 <script>
   const toggle = document.getElementById('themeToggle');
@@ -1140,6 +1179,23 @@
       }
     });
     updateCollapseBtn();
+  });
+
+  // --- Back to top ---
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    backToTop.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  backToTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // --- Wrap tables for horizontal scroll on small screens ---
+  document.querySelectorAll('.section table').forEach(table => {
+    const wrap = document.createElement('div');
+    wrap.className = 'table-wrap';
+    table.parentNode.insertBefore(wrap, table);
+    wrap.appendChild(table);
   });
 
   function updateCollapseBtn() {
