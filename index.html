@@ -323,6 +323,7 @@
     border-radius: 8px;
     overflow: hidden;
     font-size: 0.92rem;
+    table-layout: fixed;
   }
 
   thead th {
@@ -354,7 +355,9 @@
     vertical-align: top;
   }
 
-  td:first-child {
+  td:first-child,
+  thead th:first-child {
+    width: 38%;
     white-space: nowrap;
   }
 
@@ -619,7 +622,7 @@
     h1 { font-size: 1.8rem; }
     .section { padding: 1rem; }
     table { font-size: 0.82rem; }
-    td:first-child { white-space: normal; }
+    td:first-child, thead th:first-child { white-space: normal; width: 35%; }
     .filter-bar { gap: 0.4rem; }
     .filter-pill { padding: 0.35rem 0.6rem; font-size: 0.75rem; }
   }
@@ -913,22 +916,22 @@
       <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>zsh-autosuggestions</a>
     </div>
     <table>
-      <thead><tr><th>Command</th><th>Tool</th><th>Description</th></tr></thead>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td>zoxide</td><td>Smart <code>cd</code>. Jumps to directories based on frequency (e.g., <code>z dot</code> &rarr; <code>~/Sites/dotfiles</code>).</td></tr>
-        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td>eza</td><td>Lists files with icons, git status, and headers.</td></tr>
-        <tr><td><kbd>tree</kbd></td><td>eza</td><td>Shows a directory tree (2 levels deep).</td></tr>
-        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td>bat</td><td>Displays file contents with syntax highlighting and line numbers.</td></tr>
-        <tr><td><kbd>la</kbd></td><td>eza</td><td>Lists all files including hidden, with icons and git status.</td></tr>
-        <tr><td><kbd>cls</kbd></td><td>shell</td><td>Clear the terminal screen.</td></tr>
-        <tr><td><kbd>Ctrl + r</kbd></td><td>fzf</td><td>Fuzzy search your command history.</td></tr>
-        <tr><td><kbd>Ctrl + t</kbd></td><td>fzf</td><td>Fuzzy find a file and paste its path into the command line.</td></tr>
-        <tr><td><kbd>Alt + c</kbd></td><td>fzf</td><td>Fuzzy find a directory and <code>cd</code> into it.</td></tr>
-        <tr><td><kbd>Ctrl + Space</kbd></td><td>autosuggest</td><td>Accept the grey &ldquo;ghost text&rdquo; suggestion.</td></tr>
-        <tr><td><kbd>rm / cp / mv</kbd></td><td>shell</td><td>Safety aliases: always prompt before overwriting (<code>-i</code> flag).</td></tr>
-        <tr><td><kbd>venv &lt;name&gt;</kbd></td><td>python</td><td>Create a Python virtual environment.</td></tr>
-        <tr><td><kbd>venvact</kbd></td><td>python</td><td>Activate the <code>.venv</code> in the current directory.</td></tr>
-        <tr><td><kbd>explain &lt;question&gt;</kbd></td><td>AI</td><td>Ask Gemini a question from the terminal.</td></tr>
+        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td>Smart <code>cd</code> (zoxide). Jumps to directories based on frequency.</td></tr>
+        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td>List files with icons and git status (eza).</td></tr>
+        <tr><td><kbd>la</kbd></td><td>List all files including hidden (eza).</td></tr>
+        <tr><td><kbd>tree</kbd></td><td>Directory tree, 2 levels deep (eza).</td></tr>
+        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td>Syntax-highlighted file viewer (bat).</td></tr>
+        <tr><td><kbd>cls</kbd></td><td>Clear the terminal screen.</td></tr>
+        <tr><td><kbd>Ctrl + r</kbd></td><td>Fuzzy search command history (fzf).</td></tr>
+        <tr><td><kbd>Ctrl + t</kbd></td><td>Fuzzy find a file and paste its path (fzf).</td></tr>
+        <tr><td><kbd>Alt + c</kbd></td><td>Fuzzy find a directory and <code>cd</code> into it (fzf).</td></tr>
+        <tr><td><kbd>Ctrl + Space</kbd></td><td>Accept ghost text suggestion (autosuggestions).</td></tr>
+        <tr><td><kbd>rm / cp / mv</kbd></td><td>Safety aliases: prompt before overwriting (<code>-i</code>).</td></tr>
+        <tr><td><kbd>venv &lt;name&gt;</kbd></td><td>Create a Python virtual environment.</td></tr>
+        <tr><td><kbd>venvact</kbd></td><td>Activate the <code>.venv</code> in the current directory.</td></tr>
+        <tr><td><kbd>explain &lt;question&gt;</kbd></td><td>Ask Gemini a question from the terminal.</td></tr>
       </tbody>
     </table>
     </div>
