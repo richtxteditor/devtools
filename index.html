@@ -725,6 +725,7 @@
         <tr><td><kbd>Cmd + D</kbd></td><td>Split right (vertical).</td></tr>
         <tr><td><kbd>Cmd + Shift + D</kbd></td><td>Split down (horizontal).</td></tr>
         <tr><td><kbd>Cmd + [</kbd> / <kbd>]</kbd></td><td>Previous / next split.</td></tr>
+        <tr><td><kbd>Cmd + Alt + H/J/K/L</kbd></td><td>Navigate splits (left/down/up/right, vim-style).</td></tr>
         <tr><td><kbd>Cmd + Alt + Arrows</kbd></td><td>Navigate splits directionally.</td></tr>
         <tr><td><kbd>Cmd + Ctrl + Arrows</kbd></td><td>Resize splits.</td></tr>
         <tr><td><kbd>Cmd + Ctrl + =</kbd></td><td>Equalize all splits.</td></tr>
@@ -764,6 +765,7 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
+        <tr><td><kbd>Cmd + `</kbd></td><td>Toggle Quick Terminal (drops down from top, global keybind).</td></tr>
         <tr><td><kbd>Cmd + Shift + P</kbd></td><td>Command palette.</td></tr>
         <tr><td><kbd>Cmd + ,</kbd></td><td>Open config.</td></tr>
         <tr><td><kbd>Cmd + Shift + ,</kbd></td><td>Reload config.</td></tr>
@@ -804,6 +806,7 @@
         <tr><td><kbd>gp</kbd></td><td><code>git push</code>.</td></tr>
         <tr><td><kbd>gpf</kbd></td><td><code>git push --force-with-lease</code> (Safer force push).</td></tr>
         <tr><td><kbd>gpl</kbd></td><td><code>git pull --rebase --autostash</code>.</td></tr>
+        <tr><td><kbd>gl</kbd></td><td><code>git log --oneline --graph --decorate --all</code>.</td></tr>
       </tbody>
     </table>
     </div>
@@ -824,6 +827,10 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
+        <tr><td><kbd>Space w</kbd></td><td>Save File.</td></tr>
+        <tr><td><kbd>Space q</kbd></td><td>Quit Window.</td></tr>
+        <tr><td><kbd>Space Q</kbd></td><td>Force Quit All.</td></tr>
+        <tr><td><kbd>Space Space</kbd></td><td>Clear Search Highlight.</td></tr>
         <tr><td><kbd>Space e</kbd></td><td>Toggle File Explorer (NvimTree).</td></tr>
         <tr><td><kbd>Space ff</kbd></td><td><strong>Find Files</strong> (Telescope).</td></tr>
         <tr><td><kbd>Space fg</kbd></td><td><strong>Live Grep</strong> (Search text in project).</td></tr>
@@ -834,6 +841,7 @@
         <tr><td><kbd>Space ft</kbd></td><td>Find TODOs.</td></tr>
         <tr><td><kbd>Space gg</kbd></td><td>Open Lazygit.</td></tr>
         <tr><td><kbd>Space mp</kbd></td><td>Toggle Markdown Preview.</td></tr>
+        <tr><td><kbd>Space ms</kbd></td><td>Stop Markdown Preview.</td></tr>
         <tr><td><kbd>C-\</kbd></td><td>Toggle floating terminal (ToggleTerm).</td></tr>
         <tr><td><kbd>Space u</kbd></td><td>Toggle Undo Tree.</td></tr>
         <tr><td><kbd>Space o</kbd></td><td>Toggle Symbol Outline (Aerial).</td></tr>
@@ -856,7 +864,12 @@
         <tr><td><kbd>Space dd</kbd></td><td>Show Error/Warning (Float).</td></tr>
         <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td>Previous / Next Diagnostic.</td></tr>
         <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td>Previous / Next Quickfix Item.</td></tr>
+        <tr><td><kbd>[Q</kbd> / <kbd>]Q</kbd></td><td>First / Last Quickfix Item.</td></tr>
         <tr><td><kbd>Space xx</kbd></td><td>Toggle Diagnostics (Trouble).</td></tr>
+        <tr><td><kbd>Space xw</kbd></td><td>Toggle Warnings (Trouble).</td></tr>
+        <tr><td><kbd>Space xd</kbd></td><td>Document Diagnostics (Trouble).</td></tr>
+        <tr><td><kbd>Space xL</kbd></td><td>Location List (Trouble).</td></tr>
+        <tr><td><kbd>Space xQ</kbd></td><td>Quickfix List (Trouble).</td></tr>
       </tbody>
     </table>
     </div>
@@ -906,9 +919,16 @@
         <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td>eza</td><td>Lists files with icons, git status, and headers.</td></tr>
         <tr><td><kbd>tree</kbd></td><td>eza</td><td>Shows a directory tree (2 levels deep).</td></tr>
         <tr><td><kbd>cat &lt;file&gt;</kbd></td><td>bat</td><td>Displays file contents with syntax highlighting and line numbers.</td></tr>
+        <tr><td><kbd>la</kbd></td><td>eza</td><td>Lists all files including hidden, with icons and git status.</td></tr>
+        <tr><td><kbd>cls</kbd></td><td>shell</td><td>Clear the terminal screen.</td></tr>
         <tr><td><kbd>Ctrl + r</kbd></td><td>fzf</td><td>Fuzzy search your command history.</td></tr>
         <tr><td><kbd>Ctrl + t</kbd></td><td>fzf</td><td>Fuzzy find a file and paste its path into the command line.</td></tr>
+        <tr><td><kbd>Alt + c</kbd></td><td>fzf</td><td>Fuzzy find a directory and <code>cd</code> into it.</td></tr>
         <tr><td><kbd>Ctrl + Space</kbd></td><td>autosuggest</td><td>Accept the grey &ldquo;ghost text&rdquo; suggestion.</td></tr>
+        <tr><td><kbd>rm / cp / mv</kbd></td><td>shell</td><td>Safety aliases: always prompt before overwriting (<code>-i</code> flag).</td></tr>
+        <tr><td><kbd>venv &lt;name&gt;</kbd></td><td>python</td><td>Create a Python virtual environment.</td></tr>
+        <tr><td><kbd>venvact</kbd></td><td>python</td><td>Activate the <code>.venv</code> in the current directory.</td></tr>
+        <tr><td><kbd>explain &lt;question&gt;</kbd></td><td>AI</td><td>Ask Gemini a question from the terminal.</td></tr>
       </tbody>
     </table>
     </div>
@@ -929,6 +949,7 @@
         <tr><td><kbd>zshconfig</kbd></td><td>Opens <code>.zshrc</code> in Neovim.</td></tr>
         <tr><td><kbd>reload</kbd></td><td>Reloads <code>.zshrc</code> without restarting the terminal.</td></tr>
         <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td>Creates a directory and immediately <code>cd</code>s into it.</td></tr>
+        <tr><td><kbd>icloud</kbd> / <kbd>ic</kbd></td><td>Jump to iCloud Drive directory.</td></tr>
       </tbody>
     </table>
     </div>
@@ -967,6 +988,9 @@
         <tr><td><kbd>F11</kbd></td><td>Step Into.</td></tr>
         <tr><td><kbd>F8</kbd></td><td>Step Out.</td></tr>
         <tr><td><kbd>Space du</kbd></td><td>Toggle Debug UI.</td></tr>
+        <tr><td><kbd>Space b</kbd></td><td>Toggle Breakpoint.</td></tr>
+        <tr><td><kbd>Space dr</kbd></td><td>Open Debug REPL.</td></tr>
+        <tr><td><kbd>Space de</kbd></td><td>Evaluate Expression Under Cursor.</td></tr>
       </tbody>
     </table>
 
@@ -996,6 +1020,10 @@
       <tbody>
         <tr><td><kbd>s</kbd></td><td><strong>Flash Jump</strong>. Jump to any character on screen.</td></tr>
         <tr><td><kbd>S</kbd></td><td><strong>Flash Treesitter</strong>. Select logical blocks of code.</td></tr>
+        <tr><td><kbd>r</kbd></td><td><strong>Remote Flash</strong> (operator-pending mode). Act on a remote target.</td></tr>
+        <tr><td><kbd>R</kbd></td><td><strong>Treesitter Search</strong> (operator/visual mode).</td></tr>
+        <tr><td><kbd>Ctrl + s</kbd></td><td>Toggle Flash Search (in command mode).</td></tr>
+        <tr><td><kbd>[t</kbd> / <kbd>]t</kbd></td><td>Previous / Next TODO comment.</td></tr>
       </tbody>
     </table>
     </div>
@@ -1014,13 +1042,30 @@
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
         <tr><td><kbd>ta</kbd></td><td><strong>Smart Alias:</strong> Attaches to the last session or creates a new one.</td></tr>
+        <tr><td><kbd>tls</kbd></td><td>List all tmux sessions.</td></tr>
+        <tr><td><kbd>tk &lt;name&gt;</kbd></td><td>Kill a tmux session by name.</td></tr>
+        <tr><td><kbd>tka</kbd></td><td>Kill all tmux sessions.</td></tr>
         <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move between Tmux panes <strong>and</strong> Neovim splits.</td></tr>
         <tr><td><kbd>Prefix + |</kbd></td><td>Split vertically.</td></tr>
         <tr><td><kbd>Prefix + -</kbd></td><td>Split horizontally.</td></tr>
+        <tr><td><kbd>Prefix + H/J/K/L</kbd></td><td>Resize panes (left/down/up/right).</td></tr>
         <tr><td><kbd>Prefix + c</kbd></td><td>New window.</td></tr>
+        <tr><td><kbd>Prefix + n</kbd></td><td>Next window.</td></tr>
+        <tr><td><kbd>Prefix + p</kbd></td><td>Previous window.</td></tr>
+        <tr><td><kbd>Prefix + ,</kbd></td><td>Rename current window.</td></tr>
+        <tr><td><kbd>Prefix + &amp;</kbd></td><td>Kill current window.</td></tr>
         <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td>Toggle fullscreen (zoom) for current pane.</td></tr>
+        <tr><td><kbd>Prefix + b</kbd></td><td>Break pane into its own window.</td></tr>
+        <tr><td><kbd>Prefix + x</kbd></td><td>Kill current pane.</td></tr>
         <tr><td><kbd>Prefix + Space</kbd></td><td>Jump to last active window.</td></tr>
+        <tr><td><kbd>Prefix + $</kbd></td><td>Rename current session.</td></tr>
+        <tr><td><kbd>Prefix + s</kbd></td><td>List / switch sessions.</td></tr>
+        <tr><td><kbd>Ctrl + j</kbd></td><td>Fuzzy session switcher (custom).</td></tr>
         <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins</strong> (Press this if plugins look missing).</td></tr>
+        <tr><td><kbd>Prefix + U</kbd></td><td>Update Plugins.</td></tr>
+        <tr><td><kbd>Prefix + Ctrl + s</kbd></td><td>Save session (tmux-resurrect).</td></tr>
+        <tr><td><kbd>Prefix + Ctrl + r</kbd></td><td>Restore session (tmux-resurrect).</td></tr>
+        <tr><td><kbd>Prefix + r</kbd></td><td>Reload tmux config.</td></tr>
         <tr><td><kbd>Prefix + [</kbd></td><td>Enter copy mode (Use <kbd>v</kbd> to select, <kbd>y</kbd> to copy).</td></tr>
         <tr><td><kbd>Prefix + d</kbd></td><td>Detach from session (leave it running in background).</td></tr>
       </tbody>
