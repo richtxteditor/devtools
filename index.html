@@ -707,17 +707,17 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Cmd + N</kbd></td><td>New window.</td></tr>
-        <tr><td><kbd>Cmd + T</kbd></td><td>New tab.</td></tr>
-        <tr><td><kbd>Cmd + W</kbd></td><td>Close terminal/split.</td></tr>
-        <tr><td><kbd>Cmd + Alt + W</kbd></td><td>Close tab.</td></tr>
-        <tr><td><kbd>Cmd + Shift + W</kbd></td><td>Close window.</td></tr>
-        <tr><td><kbd>Cmd + 1-8</kbd></td><td>Jump to tab by number.</td></tr>
-        <tr><td><kbd>Cmd + 9</kbd></td><td>Jump to last tab.</td></tr>
-        <tr><td><kbd>Cmd + Shift + [</kbd> / <kbd>]</kbd></td><td>Previous / next tab.</td></tr>
-        <tr><td><kbd>Ctrl + Tab</kbd></td><td>Next tab.</td></tr>
-        <tr><td><kbd>Ctrl + Shift + Tab</kbd></td><td>Previous tab.</td></tr>
-        <tr><td><kbd>Cmd + Enter</kbd></td><td>Toggle fullscreen.</td></tr>
+        <tr><td><kbd>Cmd + N</kbd></td><td>Open a completely new Ghostty window.</td></tr>
+        <tr><td><kbd>Cmd + T</kbd></td><td>Create a new tab in the current window.</td></tr>
+        <tr><td><kbd>Cmd + W</kbd></td><td>Close the active split or the current tab if no splits exist.</td></tr>
+        <tr><td><kbd>Cmd + Alt + W</kbd></td><td>Close the entire current tab and all its splits.</td></tr>
+        <tr><td><kbd>Cmd + Shift + W</kbd></td><td>Close the entire Ghostty window.</td></tr>
+        <tr><td><kbd>Cmd + 1-8</kbd></td><td>Switch directly to a specific tab by its index.</td></tr>
+        <tr><td><kbd>Cmd + 9</kbd></td><td>Quickly jump to the last tab in the window.</td></tr>
+        <tr><td><kbd>Cmd + Shift + [</kbd> / <kbd>]</kbd></td><td>Cycle through tabs to the left or right.</td></tr>
+        <tr><td><kbd>Ctrl + Tab</kbd></td><td>Move to the next tab in the sequence.</td></tr>
+        <tr><td><kbd>Ctrl + Shift + Tab</kbd></td><td>Move to the previous tab in the sequence.</td></tr>
+        <tr><td><kbd>Cmd + Enter</kbd></td><td>Toggle between windowed and fullscreen mode.</td></tr>
       </tbody>
     </table>
 
@@ -725,14 +725,14 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Cmd + D</kbd></td><td>Split right (vertical).</td></tr>
-        <tr><td><kbd>Cmd + Shift + D</kbd></td><td>Split down (horizontal).</td></tr>
-        <tr><td><kbd>Cmd + [</kbd> / <kbd>]</kbd></td><td>Previous / next split.</td></tr>
-        <tr><td><kbd>Cmd + Alt + H/J/K/L</kbd></td><td>Navigate splits (left/down/up/right, vim-style).</td></tr>
-        <tr><td><kbd>Cmd + Alt + Arrows</kbd></td><td>Navigate splits directionally.</td></tr>
-        <tr><td><kbd>Cmd + Ctrl + Arrows</kbd></td><td>Resize splits.</td></tr>
-        <tr><td><kbd>Cmd + Ctrl + =</kbd></td><td>Equalize all splits.</td></tr>
-        <tr><td><kbd>Cmd + Shift + Enter</kbd></td><td>Toggle split zoom.</td></tr>
+        <tr><td><kbd>Cmd + D</kbd></td><td>Split the current view vertically (side-by-side).</td></tr>
+        <tr><td><kbd>Cmd + Shift + D</kbd></td><td>Split the current view horizontally (stacked).</td></tr>
+        <tr><td><kbd>Cmd + [</kbd> / <kbd>]</kbd></td><td>Cycle focus through existing splits.</td></tr>
+        <tr><td><kbd>Cmd + Alt + H/J/K/L</kbd></td><td>Navigate between splits using Vim-style keys (Left, Down, Up, Right).</td></tr>
+        <tr><td><kbd>Cmd + Alt + Arrows</kbd></td><td>Navigate between splits using directional arrow keys.</td></tr>
+        <tr><td><kbd>Cmd + Ctrl + Arrows</kbd></td><td>Adjust the size of the focused split.</td></tr>
+        <tr><td><kbd>Cmd + Ctrl + =</kbd></td><td>Automatically resize all splits to equal proportions.</td></tr>
+        <tr><td><kbd>Cmd + Shift + Enter</kbd></td><td>Zoom the active split to fill the tab (toggle).</td></tr>
       </tbody>
     </table>
 
@@ -740,14 +740,14 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Cmd + F</kbd></td><td>Start search.</td></tr>
-        <tr><td><kbd>Cmd + G</kbd></td><td>Next search result.</td></tr>
-        <tr><td><kbd>Cmd + Shift + G</kbd></td><td>Previous search result.</td></tr>
-        <tr><td><kbd>Cmd + Shift + F</kbd></td><td>End search.</td></tr>
-        <tr><td><kbd>Cmd + Shift + Up</kbd></td><td>Jump to previous prompt.</td></tr>
-        <tr><td><kbd>Cmd + Shift + Down</kbd></td><td>Jump to next prompt.</td></tr>
-        <tr><td><kbd>Cmd + Home</kbd></td><td>Scroll to top.</td></tr>
-        <tr><td><kbd>Cmd + End</kbd></td><td>Scroll to bottom.</td></tr>
+        <tr><td><kbd>Cmd + F</kbd></td><td>Open the find bar to search through scrollback buffer.</td></tr>
+        <tr><td><kbd>Cmd + G</kbd></td><td>Jump to the next occurrence of the search term.</td></tr>
+        <tr><td><kbd>Cmd + Shift + G</kbd></td><td>Jump to the previous occurrence of the search term.</td></tr>
+        <tr><td><kbd>Cmd + Shift + F</kbd></td><td>Close the search interface.</td></tr>
+        <tr><td><kbd>Cmd + Shift + Up</kbd></td><td>Jump the view back to the previous shell prompt.</td></tr>
+        <tr><td><kbd>Cmd + Shift + Down</kbd></td><td>Jump the view forward to the next shell prompt.</td></tr>
+        <tr><td><kbd>Cmd + Home</kbd></td><td>Instantly scroll to the very top of the buffer.</td></tr>
+        <tr><td><kbd>Cmd + End</kbd></td><td>Instantly scroll to the very bottom (live output).</td></tr>
       </tbody>
     </table>
 
@@ -755,12 +755,12 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Cmd + C</kbd></td><td>Copy selection.</td></tr>
-        <tr><td><kbd>Cmd + V</kbd></td><td>Paste from clipboard.</td></tr>
-        <tr><td><kbd>Cmd + A</kbd></td><td>Select all.</td></tr>
-        <tr><td><kbd>Cmd + K</kbd></td><td>Clear screen and scrollback.</td></tr>
-        <tr><td><kbd>Cmd + +</kbd> / <kbd>-</kbd></td><td>Increase / decrease font size.</td></tr>
-        <tr><td><kbd>Cmd + 0</kbd></td><td>Reset font size.</td></tr>
+        <tr><td><kbd>Cmd + C</kbd></td><td>Copy the selected text to the system clipboard.</td></tr>
+        <tr><td><kbd>Cmd + V</kbd></td><td>Paste text from the clipboard into the terminal.</td></tr>
+        <tr><td><kbd>Cmd + A</kbd></td><td>Select all text in the current scrollback buffer.</td></tr>
+        <tr><td><kbd>Cmd + K</kbd></td><td>Hard reset: clear the screen and wipe the scrollback history.</td></tr>
+        <tr><td><kbd>Cmd + +</kbd> / <kbd>-</kbd></td><td>Zoom the font size in or out globally.</td></tr>
+        <tr><td><kbd>Cmd + 0</kbd></td><td>Restore the font size to the default configured value.</td></tr>
       </tbody>
     </table>
 
@@ -768,25 +768,25 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Cmd + `</kbd></td><td>Toggle Quick Terminal (drops down from top, global keybind).</td></tr>
-        <tr><td><kbd>Cmd + Shift + P</kbd></td><td>Command palette.</td></tr>
-        <tr><td><kbd>Cmd + ,</kbd></td><td>Open config.</td></tr>
-        <tr><td><kbd>Cmd + Shift + ,</kbd></td><td>Reload config.</td></tr>
-        <tr><td><kbd>Cmd + Alt + I</kbd></td><td>Toggle inspector.</td></tr>
-        <tr><td><kbd>Cmd + Z</kbd></td><td>Undo.</td></tr>
-        <tr><td><kbd>Cmd + Shift + Z</kbd></td><td>Redo.</td></tr>
+        <tr><td><kbd>Cmd + `</kbd></td><td>Toggle the Global Quick Terminal (overlay window).</td></tr>
+        <tr><td><kbd>Cmd + Shift + P</kbd></td><td>Open the Command Palette for quick access to Ghostty features.</td></tr>
+        <tr><td><kbd>Cmd + ,</kbd></td><td>Open the Ghostty configuration file in your default editor.</td></tr>
+        <tr><td><kbd>Cmd + Shift + ,</kbd></td><td>Instantly reload the configuration without restarting.</td></tr>
+        <tr><td><kbd>Cmd + Alt + I</kbd></td><td>Toggle the internal inspector/debug tool.</td></tr>
+        <tr><td><kbd>Cmd + Z</kbd></td><td>Undo the last text action (where supported).</td></tr>
+        <tr><td><kbd>Cmd + Shift + Z</kbd></td><td>Redo the last undone text action.</td></tr>
       </tbody>
     </table>
 
     <h3>Line Editing (Terminal)</h3>
-    <div class="prefix-note"><strong>Note:</strong> These work at the shell prompt via Ghostty key mappings.</div>
+    <div class="prefix-note"><strong>Note:</strong> These shortcuts use Ghostty key mappings to simulate standard Emacs/Readline behavior.</div>
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Cmd + Left</kbd></td><td>Jump to beginning of line (<code>Ctrl+A</code>).</td></tr>
-        <tr><td><kbd>Cmd + Right</kbd></td><td>Jump to end of line (<code>Ctrl+E</code>).</td></tr>
-        <tr><td><kbd>Cmd + Backspace</kbd></td><td>Delete to beginning of line (<code>Ctrl+U</code>).</td></tr>
-        <tr><td><kbd>Alt + Left</kbd> / <kbd>Right</kbd></td><td>Jump word backward / forward.</td></tr>
+        <tr><td><kbd>Cmd + Left</kbd></td><td>Move the cursor to the very beginning of the current line.</td></tr>
+        <tr><td><kbd>Cmd + Right</kbd></td><td>Move the cursor to the very end of the current line.</td></tr>
+        <tr><td><kbd>Cmd + Backspace</kbd></td><td>Delete everything from the cursor back to the start of the line.</td></tr>
+        <tr><td><kbd>Alt + Left</kbd> / <kbd>Right</kbd></td><td>Jump the cursor backward or forward by one full word.</td></tr>
       </tbody>
     </table>
     </div>
@@ -802,14 +802,14 @@
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><kbd>lg</kbd></td><td><strong>Lazygit</strong>. Opens a powerful terminal UI for Git.</td></tr>
-        <tr><td><kbd>gs</kbd></td><td><code>git status -sb</code> (Short status).</td></tr>
-        <tr><td><kbd>gaa</kbd></td><td><code>git add .</code> (Add all).</td></tr>
-        <tr><td><kbd>gc "msg"</kbd></td><td><code>git commit -m "msg"</code>.</td></tr>
-        <tr><td><kbd>gp</kbd></td><td><code>git push</code>.</td></tr>
-        <tr><td><kbd>gpf</kbd></td><td><code>git push --force-with-lease</code> (Safer force push).</td></tr>
-        <tr><td><kbd>gpl</kbd></td><td><code>git pull --rebase --autostash</code>.</td></tr>
-        <tr><td><kbd>gl</kbd></td><td><code>git log --oneline --graph --decorate --all</code>.</td></tr>
+        <tr><td><kbd>lg</kbd></td><td>Launch <strong>Lazygit</strong>, a comprehensive TUI for managing commits, branches, and stashes.</td></tr>
+        <tr><td><kbd>gs</kbd></td><td>Show the current repository status in a concise, short-format summary.</td></tr>
+        <tr><td><kbd>gaa</kbd></td><td>Stage all changes in the current directory, including new and deleted files.</td></tr>
+        <tr><td><kbd>gc "msg"</kbd></td><td>Commit staged changes with the specified descriptive message.</td></tr>
+        <tr><td><kbd>gp</kbd></td><td>Push local commits to the upstream remote repository.</td></tr>
+        <tr><td><kbd>gpf</kbd></td><td>Safely force push changes, ensuring you don't overwrite others' work blindly.</td></tr>
+        <tr><td><kbd>gpl</kbd></td><td>Fetch and integrate remote changes using rebase while auto-stashing local work.</td></tr>
+        <tr><td><kbd>gl</kbd></td><td>Display a clean, one-line graphical representation of the commit history.</td></tr>
       </tbody>
     </table>
     </div>
@@ -830,24 +830,48 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Space w</kbd></td><td>Save File.</td></tr>
-        <tr><td><kbd>Space q</kbd></td><td>Quit Window.</td></tr>
-        <tr><td><kbd>Space Q</kbd></td><td>Force Quit All.</td></tr>
-        <tr><td><kbd>Space Space</kbd></td><td>Clear Search Highlight.</td></tr>
-        <tr><td><kbd>Space e</kbd></td><td>Toggle File Explorer (NvimTree).</td></tr>
-        <tr><td><kbd>Space ff</kbd></td><td><strong>Find Files</strong> (Telescope).</td></tr>
-        <tr><td><kbd>Space fg</kbd></td><td><strong>Live Grep</strong> (Search text in project).</td></tr>
-        <tr><td><kbd>Space fo</kbd></td><td>Find Recent/Old Files.</td></tr>
-        <tr><td><kbd>Space fb</kbd></td><td>Find Buffers.</td></tr>
-        <tr><td><kbd>Space fh</kbd></td><td>Find Help Tags.</td></tr>
-        <tr><td><kbd>Space fd</kbd></td><td>Find Diagnostics.</td></tr>
-        <tr><td><kbd>Space ft</kbd></td><td>Find TODOs.</td></tr>
-        <tr><td><kbd>Space gg</kbd></td><td>Open Lazygit.</td></tr>
-        <tr><td><kbd>Space mp</kbd></td><td>Toggle Markdown Preview.</td></tr>
-        <tr><td><kbd>Space ms</kbd></td><td>Stop Markdown Preview.</td></tr>
-        <tr><td><kbd>C-\</kbd></td><td>Toggle floating terminal (ToggleTerm).</td></tr>
-        <tr><td><kbd>Space u</kbd></td><td>Toggle Undo Tree.</td></tr>
-        <tr><td><kbd>Space o</kbd></td><td>Toggle Symbol Outline (Aerial).</td></tr>
+        <tr><td><kbd>Space w</kbd></td><td><strong>Save:</strong> Persist the current buffer to disk.</td></tr>
+        <tr><td><kbd>Space q</kbd></td><td><strong>Close:</strong> Close the focused window (split).</td></tr>
+        <tr><td><kbd>Space Q</kbd></td><td><strong>Exit:</strong> Force-close all windows and quit Neovim.</td></tr>
+        <tr><td><kbd>Space Space</kbd></td><td><strong>Clear:</strong> Wipe the current search highlight.</td></tr>
+        <tr><td><kbd>Space uw</kbd></td><td><strong>Toggle Wrap:</strong> Toggle line wrapping in the current buffer.</td></tr>
+        <tr><td><kbd>Space e</kbd></td><td><strong>Explore:</strong> Toggle the sidebar file tree (NvimTree).</td></tr>
+        <tr><td><kbd>Space ff</kbd></td><td><strong>File Search:</strong> Interactively search for files by name using Telescope.</td></tr>
+        <tr><td><kbd>Space fg</kbd></td><td><strong>Project Search:</strong> Live-grep through all files in the current workspace.</td></tr>
+        <tr><td><kbd>Space fo</kbd></td><td><strong>Recent:</strong> Quickly reopen recently accessed files.</td></tr>
+        <tr><td><kbd>Space fb</kbd></td><td><strong>Buffers:</strong> List and switch between currently open buffers.</td></tr>
+        <tr><td><kbd>Space fh</kbd></td><td><strong>Help:</strong> Search through Neovim&rsquo;s internal help documentation.</td></tr>
+        <tr><td><kbd>Space fd</kbd></td><td><strong>Workspace Diagnostics:</strong> List all errors/warnings in the project.</td></tr>
+        <tr><td><kbd>Space ft</kbd></td><td><strong>Todo Search:</strong> Find all TODO, FIXME, or HACK comments in the codebase.</td></tr>
+        <tr><td><kbd>Space mp</kbd></td><td><strong>Markdown Preview:</strong> Start a live-reloading preview in your browser.</td></tr>
+        <tr><td><kbd>Space ms</kbd></td><td><strong>Stop Preview:</strong> Halt the running Markdown preview server.</td></tr>
+        <tr><td><kbd>C-\</kbd></td><td><strong>Terminal:</strong> Toggle the integrated floating terminal overlay.</td></tr>
+        <tr><td><kbd>Space u</kbd></td><td><strong>Undo Tree:</strong> Visualize and navigate your edit history graphically.</td></tr>
+        <tr><td><kbd>Space o</kbd></td><td><strong>Symbol Outline:</strong> Show a navigable list of functions/classes in the file.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>FFF (Fuzzy Finder)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>ff</kbd></td><td><strong>FFFind Files:</strong> High-performance fuzzy file search across the project.</td></tr>
+        <tr><td><kbd>fg</kbd></td><td><strong>LiFFFe Grep:</strong> Fast live grep through all files using FFF engine.</td></tr>
+        <tr><td><kbd>fz</kbd></td><td><strong>Fuzzy Grep:</strong> Grep with switchable search modes (regex, fixed, etc.).</td></tr>
+        <tr><td><kbd>fc</kbd></td><td><strong>Current Word:</strong> Search for the word under the cursor across the project.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Completion</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>C-k</kbd></td><td><strong>Previous Item:</strong> Select the previous suggestion in the completion menu.</td></tr>
+        <tr><td><kbd>C-j</kbd></td><td><strong>Next Item:</strong> Select the next suggestion in the completion menu.</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td><strong>Confirm:</strong> Accept the currently highlighted completion.</td></tr>
+        <tr><td><kbd>C-Space</kbd></td><td><strong>Trigger:</strong> Manually invoke the completion menu.</td></tr>
+        <tr><td><kbd>Tab</kbd></td><td><strong>Next/Jump:</strong> Select next item or jump to next snippet placeholder.</td></tr>
+        <tr><td><kbd>S-Tab</kbd></td><td><strong>Previous:</strong> Select previous item or jump to previous snippet placeholder.</td></tr>
       </tbody>
     </table>
 
@@ -855,24 +879,24 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>gd</kbd></td><td>Go to Definition.</td></tr>
-        <tr><td><kbd>gr</kbd></td><td>Find References.</td></tr>
-        <tr><td><kbd>K</kbd></td><td>Hover Documentation (LSP or per-language fallback).</td></tr>
-        <tr><td><kbd>Space K</kbd></td><td>Search DevDocs (offline docs for 300+ languages).</td></tr>
-        <tr><td><kbd>Space cf</kbd></td><td>Format Code.</td></tr>
-        <tr><td><kbd>Space rn</kbd></td><td>Rename Symbol (live preview).</td></tr>
-        <tr><td><kbd>Space ca</kbd></td><td>Code Action.</td></tr>
-        <tr><td><kbd>Space ci</kbd></td><td>Incoming Calls (call hierarchy).</td></tr>
-        <tr><td><kbd>Space co</kbd></td><td>Outgoing Calls (call hierarchy).</td></tr>
-        <tr><td><kbd>Space dd</kbd></td><td>Show Error/Warning (Float).</td></tr>
-        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td>Previous / Next Diagnostic.</td></tr>
-        <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td>Previous / Next Quickfix Item.</td></tr>
-        <tr><td><kbd>[Q</kbd> / <kbd>]Q</kbd></td><td>First / Last Quickfix Item.</td></tr>
-        <tr><td><kbd>Space xx</kbd></td><td>Toggle Diagnostics (Trouble).</td></tr>
-        <tr><td><kbd>Space xw</kbd></td><td>Toggle Warnings (Trouble).</td></tr>
-        <tr><td><kbd>Space xd</kbd></td><td>Document Diagnostics (Trouble).</td></tr>
-        <tr><td><kbd>Space xL</kbd></td><td>Location List (Trouble).</td></tr>
-        <tr><td><kbd>Space xQ</kbd></td><td>Quickfix List (Trouble).</td></tr>
+        <tr><td><kbd>gd</kbd></td><td><strong>Definition:</strong> Jump to where the symbol under the cursor is defined.</td></tr>
+        <tr><td><kbd>gr</kbd></td><td><strong>References:</strong> Find every location where the current symbol is used.</td></tr>
+        <tr><td><kbd>K</kbd></td><td><strong>Documentation:</strong> Show the hover-doc or type signature for the symbol.</td></tr>
+        <tr><td><kbd>Space K</kbd></td><td><strong>DevDocs Search:</strong> Look up the current keyword in comprehensive offline documentation.</td></tr>
+        <tr><td><kbd>Space cf</kbd></td><td><strong>Format:</strong> Automatically tidy the current file using configured formatters.</td></tr>
+        <tr><td><kbd>Space rn</kbd></td><td><strong>Refactor Rename:</strong> Rename the symbol globally with a live preview of changes.</td></tr>
+        <tr><td><kbd>Space ca</kbd></td><td><strong>Code Action:</strong> Open quick-fix or refactoring suggestions (LSP).</td></tr>
+        <tr><td><kbd>Space ci</kbd></td><td><strong>Callers:</strong> View a tree of functions that call the current one.</td></tr>
+        <tr><td><kbd>Space co</kbd></td><td><strong>Callees:</strong> View a tree of functions called by the current one.</td></tr>
+        <tr><td><kbd>Space dd</kbd></td><td><strong>Diagnostic Info:</strong> Show full error/warning message in a floating window.</td></tr>
+        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td><strong>Jump Diagnostic:</strong> Navigate to the previous or next code issue.</td></tr>
+        <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td><strong>Jump Quickfix:</strong> Navigate to the previous or next item in the quickfix list.</td></tr>
+        <tr><td><kbd>[Q</kbd> / <kbd>]Q</kbd></td><td><strong>Start/End Quickfix:</strong> Jump to the first or last item in the quickfix list.</td></tr>
+        <tr><td><kbd>Space xx</kbd></td><td><strong>Issues Panel:</strong> Toggle the main diagnostics viewer (Trouble).</td></tr>
+        <tr><td><kbd>Space xw</kbd></td><td><strong>Warnings Panel:</strong> Focus specifically on warning-level issues.</td></tr>
+        <tr><td><kbd>Space xd</kbd></td><td><strong>Buffer Diagnostics:</strong> Show issues only for the current file.</td></tr>
+        <tr><td><kbd>Space xL</kbd></td><td><strong>Location View:</strong> Show items from the location list in Trouble.</td></tr>
+        <tr><td><kbd>Space xQ</kbd></td><td><strong>Quickfix View:</strong> Show items from the quickfix list in Trouble.</td></tr>
       </tbody>
     </table>
     </div>
@@ -891,15 +915,15 @@
     <table>
       <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
       <tbody>
-        <tr><td><strong>Node.js</strong></td><td>Managed by <code>nvm</code>. Run <code>nvm install 20</code>.</td></tr>
-        <tr><td><strong>Python</strong></td><td>Managed by <code>pyenv</code>. Run <code>pyenv install 3.12</code>.</td></tr>
-        <tr><td><strong>Ruby</strong></td><td>Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code>.</td></tr>
-        <tr><td><strong>Go</strong></td><td>Installed via Homebrew. LSP: <code>gopls</code>. Formatters: <code>goimports</code>, <code>gofumpt</code>.</td></tr>
-        <tr><td><strong>Rust</strong></td><td>Installed via Homebrew. LSP: <code>rust-analyzer</code>. DAP: <code>codelldb</code>.</td></tr>
-        <tr><td><strong>Java</strong></td><td><code>openjdk</code> installed. Neovim uses <code>jdtls</code> &amp; <code>google-java-format</code>.</td></tr>
-        <tr><td><strong>C/C++</strong></td><td><code>clang</code> / <code>llvm</code> installed. Neovim uses <code>clangd</code> &amp; <code>clang-format</code>. DAP: <code>codelldb</code>.</td></tr>
-        <tr><td><strong>TypeScript</strong></td><td>Uses <code>ts_ls</code>, <code>prettier</code>, <code>eslint</code>. Ensure <code>tsconfig.json</code> exists.</td></tr>
-        <tr><td><strong>PHP</strong></td><td>Uses <code>intelephense</code> &amp; <code>php-cs-fixer</code>.</td></tr>
+        <tr><td><strong>Node.js</strong></td><td><strong>Version Manager:</strong> Managed by <code>nvm</code>. Run <code>nvm install 20</code> to install the latest LTS version.</td></tr>
+        <tr><td><strong>Python</strong></td><td><strong>Environment Manager:</strong> Managed by <code>pyenv</code>. Run <code>pyenv install 3.12</code> to install and manage multiple Python versions.</td></tr>
+        <tr><td><strong>Ruby</strong></td><td><strong>Version Manager:</strong> Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code> to switch between different Ruby environments.</td></tr>
+        <tr><td><strong>Go</strong></td><td><strong>System Install:</strong> Installed via Homebrew. Uses <code>gopls</code> for LSP and <code>goimports</code>/<code>gofumpt</code> for strict formatting.</td></tr>
+        <tr><td><strong>Rust</strong></td><td><strong>System Install:</strong> Installed via Homebrew. Uses <code>rust-analyzer</code> for deep code analysis and <code>codelldb</code> for debugging.</td></tr>
+        <tr><td><strong>Java</strong></td><td><strong>OpenJDK:</strong> Installed via Homebrew. Neovim integration via <code>jdtls</code> and <code>google-java-format</code> for standard styling.</td></tr>
+        <tr><td><strong>C/C++</strong></td><td><strong>Clang Toolchain:</strong> Uses <code>llvm</code>/<code>clangd</code> for LSP and <code>clang-format</code> for code style. Debugging is handled by <code>codelldb</code>.</td></tr>
+        <tr><td><strong>TypeScript</strong></td><td><strong>Web Development:</strong> Full support via <code>ts_ls</code>, <code>prettier</code> for formatting, and <code>eslint</code> for linting. Requires a <code>tsconfig.json</code>.</td></tr>
+        <tr><td><strong>PHP</strong></td><td><strong>Server-Side:</strong> Supported through <code>intelephense</code> for intelligent code completion and <code>php-cs-fixer</code> for formatting.</td></tr>
       </tbody>
     </table>
     </div>
@@ -918,20 +942,22 @@
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td>Smart <code>cd</code> (zoxide). Jumps to directories based on frequency.</td></tr>
-        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td>List files with icons and git status (eza).</td></tr>
-        <tr><td><kbd>la</kbd></td><td>List all files including hidden (eza).</td></tr>
-        <tr><td><kbd>tree</kbd></td><td>Directory tree, 2 levels deep (eza).</td></tr>
-        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td>Syntax-highlighted file viewer (bat).</td></tr>
-        <tr><td><kbd>cls</kbd></td><td>Clear the terminal screen.</td></tr>
-        <tr><td><kbd>Ctrl + r</kbd></td><td>Fuzzy search command history (fzf).</td></tr>
-        <tr><td><kbd>Ctrl + t</kbd></td><td>Fuzzy find a file and paste its path (fzf).</td></tr>
-        <tr><td><kbd>Alt + c</kbd></td><td>Fuzzy find a directory and <code>cd</code> into it (fzf).</td></tr>
-        <tr><td><kbd>Ctrl + Space</kbd></td><td>Accept ghost text suggestion (autosuggestions).</td></tr>
-        <tr><td><kbd>rm / cp / mv</kbd></td><td>Safety aliases: prompt before overwriting (<code>-i</code>).</td></tr>
-        <tr><td><kbd>venv &lt;name&gt;</kbd></td><td>Create a Python virtual environment.</td></tr>
-        <tr><td><kbd>venvact</kbd></td><td>Activate the <code>.venv</code> in the current directory.</td></tr>
-        <tr><td><kbd>explain &lt;question&gt;</kbd></td><td>Ask Gemini a question from the terminal.</td></tr>
+        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td><strong>Smart Jump:</strong> Uses <code>zoxide</code> to jump to your most frequent/recent directories using partial names.</td></tr>
+        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td><strong>Enhanced Listing:</strong> Uses <code>eza</code> to list files with color-coding, icons, and Git integration.</td></tr>
+        <tr><td><kbd>la</kbd></td><td><strong>List All:</strong> Show all files, including hidden dotfiles, in a detailed grid format.</td></tr>
+        <tr><td><kbd>tree</kbd></td><td><strong>Visual Hierarchy:</strong> Display a recursive directory tree (defaulting to 2 levels deep).</td></tr>
+        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td><strong>Smart View:</strong> Uses <code>bat</code> to display file contents with syntax highlighting and line numbers.</td></tr>
+        <tr><td><kbd>cls</kbd></td><td><strong>Clear Screen:</strong> Quickly wipe the current terminal display (alias for <code>clear</code>).</td></tr>
+        <tr><td><kbd>Ctrl + r</kbd></td><td><strong>Fuzzy History:</strong> Interactively search through your entire command history using <code>fzf</code>.</td></tr>
+        <tr><td><kbd>Ctrl + t</kbd></td><td><strong>Fuzzy File:</strong> Find a file anywhere in the current project and paste its path into the command line.</td></tr>
+        <tr><td><kbd>Alt + c</kbd></td><td><strong>Fuzzy CD:</strong> Find a subdirectory and immediately change into it using a fuzzy interface.</td></tr>
+        <tr><td><kbd>Ctrl + Space</kbd> / <kbd>→</kbd></td><td><strong>Auto-Complete:</strong> Instantly accept the gray "ghost text" suggestion provided by <code>zsh-autosuggestions</code>.</td></tr>
+        <tr><td><kbd>Tab</kbd></td><td><strong>Interactive Complete:</strong> Open <code>fzf-tab</code> for fuzzy-searchable tab completion of commands, paths, and arguments.</td></tr>
+        <tr><td><kbd>Shift + Tab</kbd></td><td><strong>Reverse Complete:</strong> Cycle backwards through the completion menu options.</td></tr>
+        <tr><td><kbd>rm / cp / mv</kbd></td><td><strong>Safe Mode:</strong> Aliased to always prompt for confirmation (<code>-i</code>) before destructive operations.</td></tr>
+        <tr><td><kbd>venv &lt;name&gt;</kbd></td><td><strong>Python Setup:</strong> Quickly initialize a new Python virtual environment in the current folder.</td></tr>
+        <tr><td><kbd>venvact</kbd></td><td><strong>Python Activate:</strong> Find and activate the <code>.venv</code> or <code>venv</code> folder in your current directory.</td></tr>
+        <tr><td><kbd>explain &lt;question&gt;</kbd></td><td><strong>AI Assistant:</strong> Send a natural language query directly to the Gemini API for terminal help.</td></tr>
       </tbody>
     </table>
     </div>
@@ -947,12 +973,12 @@
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><kbd>update</kbd></td><td>Runs <strong>all</strong> updates: macOS, Homebrew, and Oh My Zsh.</td></tr>
-        <tr><td><kbd>bbu</kbd></td><td><strong>B</strong>rew <strong>B</strong>undle <strong>U</strong>pdate. Dumps current brew packages to the repo&rsquo;s <code>Brewfile</code>.</td></tr>
-        <tr><td><kbd>zshconfig</kbd></td><td>Opens <code>.zshrc</code> in Neovim.</td></tr>
-        <tr><td><kbd>reload</kbd></td><td>Reloads <code>.zshrc</code> without restarting the terminal.</td></tr>
-        <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td>Creates a directory and immediately <code>cd</code>s into it.</td></tr>
-        <tr><td><kbd>icloud</kbd> / <kbd>ic</kbd></td><td>Jump to iCloud Drive directory.</td></tr>
+        <tr><td><kbd>update</kbd></td><td><strong>Global Update:</strong> Orchestrate updates for macOS, Homebrew packages, and Oh My Zsh plugins.</td></tr>
+        <tr><td><kbd>bbu</kbd></td><td><strong>Brew Bundle:</strong> Synchronize your installed Homebrew packages to the <code>Brewfile</code> for version control.</td></tr>
+        <tr><td><kbd>zshconfig</kbd></td><td><strong>Edit Config:</strong> Open the <code>.zshrc</code> configuration file in Neovim for quick customization.</td></tr>
+        <tr><td><kbd>reload</kbd></td><td><strong>Source Config:</strong> Apply changes from <code>.zshrc</code> to the current session without restarting the terminal.</td></tr>
+        <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td><strong>Create & Jump:</strong> Create a new directory and immediately change into it in a single step.</td></tr>
+        <tr><td><kbd>icloud</kbd> / <kbd>ic</kbd></td><td><strong>Jump to iCloud:</strong> Quickly navigate to your personal iCloud Drive folder in the terminal.</td></tr>
       </tbody>
     </table>
     </div>
@@ -973,10 +999,10 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Space nt</kbd></td><td>Run Nearest Test.</td></tr>
-        <tr><td><kbd>Space nf</kbd></td><td>Run All Tests in File.</td></tr>
-        <tr><td><kbd>Space ns</kbd></td><td>Toggle Test Summary.</td></tr>
-        <tr><td><kbd>Space no</kbd></td><td>Show Test Output.</td></tr>
+        <tr><td><kbd>Space nt</kbd></td><td><strong>Nearest:</strong> Execute the single test case closest to the current cursor position.</td></tr>
+        <tr><td><kbd>Space nf</kbd></td><td><strong>File:</strong> Run all test cases within the currently active buffer.</td></tr>
+        <tr><td><kbd>Space ns</kbd></td><td><strong>Summary:</strong> Toggle the Neotest summary panel to view a hierarchy of test results.</td></tr>
+        <tr><td><kbd>Space no</kbd></td><td><strong>Output:</strong> Open a floating window showing the live output of the running tests.</td></tr>
       </tbody>
     </table>
 
@@ -984,16 +1010,16 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>F5</kbd></td><td>Start / Continue.</td></tr>
-        <tr><td><kbd>F6</kbd></td><td>Stop / Terminate.</td></tr>
-        <tr><td><kbd>F9</kbd></td><td>Toggle Breakpoint.</td></tr>
-        <tr><td><kbd>F10</kbd></td><td>Step Over.</td></tr>
-        <tr><td><kbd>F11</kbd></td><td>Step Into.</td></tr>
-        <tr><td><kbd>F8</kbd></td><td>Step Out.</td></tr>
-        <tr><td><kbd>Space du</kbd></td><td>Toggle Debug UI.</td></tr>
-        <tr><td><kbd>Space b</kbd></td><td>Toggle Breakpoint.</td></tr>
-        <tr><td><kbd>Space dr</kbd></td><td>Open Debug REPL.</td></tr>
-        <tr><td><kbd>Space de</kbd></td><td>Evaluate Expression Under Cursor.</td></tr>
+        <tr><td><kbd>F5</kbd></td><td><strong>Start/Continue:</strong> Launch the debugger or resume execution until the next breakpoint.</td></tr>
+        <tr><td><kbd>F6</kbd></td><td><strong>Stop:</strong> Terminate the current debugging session and close the process.</td></tr>
+        <tr><td><kbd>F9</kbd></td><td><strong>Breakpoint:</strong> Toggle a stop point on the current line of code.</td></tr>
+        <tr><td><kbd>F10</kbd></td><td><strong>Step Over:</strong> Execute the current line and advance to the next without entering functions.</td></tr>
+        <tr><td><kbd>F11</kbd></td><td><strong>Step Into:</strong> Step inside the function call on the current line for granular debugging.</td></tr>
+        <tr><td><kbd>F8</kbd></td><td><strong>Step Out:</strong> Finish the current function and return focus to the caller.</td></tr>
+        <tr><td><kbd>Space du</kbd></td><td><strong>Debug UI:</strong> Toggle the graphical dashboard showing variables, stack, and watches.</td></tr>
+        <tr><td><kbd>Space b</kbd></td><td><strong>Breakpoint:</strong> Toggle a stop point on the current line (alternative mapping).</td></tr>
+        <tr><td><kbd>Space dr</kbd></td><td><strong>REPL:</strong> Open the interactive debugger shell for run-time evaluation.</td></tr>
+        <tr><td><kbd>Space de</kbd></td><td><strong>Evaluate:</strong> Show the value of the expression or variable under the cursor.</td></tr>
       </tbody>
     </table>
 
@@ -1001,9 +1027,9 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Space tr</kbd></td><td><strong>Run Task</strong> (Auto-detected: make, npm, cargo, go, etc.).</td></tr>
-        <tr><td><kbd>Space to</kbd></td><td>Toggle Task Output.</td></tr>
-        <tr><td><kbd>Space tc</kbd></td><td>Run Custom Command.</td></tr>
+        <tr><td><kbd>Space tr</kbd></td><td><strong>Run Task:</strong> Launch auto-detected build scripts from Makefile, package.json, or Cargo.toml.</td></tr>
+        <tr><td><kbd>Space to</kbd></td><td><strong>Output:</strong> Toggle the task execution log to monitor progress and errors.</td></tr>
+        <tr><td><kbd>Space tc</kbd></td><td><strong>Custom:</strong> Manually enter a command to be managed and tracked by Overseer.</td></tr>
       </tbody>
     </table>
 
@@ -1011,9 +1037,9 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>Space gg</kbd></td><td>Open LazyGit.</td></tr>
-        <tr><td><kbd>Space gd</kbd></td><td>Git Diff View (Diffview).</td></tr>
-        <tr><td><kbd>Space gh</kbd></td><td>Git File History (Diffview).</td></tr>
+        <tr><td><kbd>Space gg</kbd></td><td><strong>LazyGit:</strong> Open the Lazygit terminal interface in a floating overlay.</td></tr>
+        <tr><td><kbd>Space gd</kbd></td><td><strong>Diff:</strong> Launch a side-by-side comparison of changes in the repository.</td></tr>
+        <tr><td><kbd>Space gh</kbd></td><td><strong>History:</strong> Open the commit history for the current file using Diffview.</td></tr>
       </tbody>
     </table>
 
@@ -1021,12 +1047,12 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>s</kbd></td><td><strong>Flash Jump</strong>. Jump to any character on screen.</td></tr>
-        <tr><td><kbd>S</kbd></td><td><strong>Flash Treesitter</strong>. Select logical blocks of code.</td></tr>
-        <tr><td><kbd>r</kbd></td><td><strong>Remote Flash</strong> (operator-pending mode). Act on a remote target.</td></tr>
-        <tr><td><kbd>R</kbd></td><td><strong>Treesitter Search</strong> (operator/visual mode).</td></tr>
-        <tr><td><kbd>Ctrl + s</kbd></td><td>Toggle Flash Search (in command mode).</td></tr>
-        <tr><td><kbd>[t</kbd> / <kbd>]t</kbd></td><td>Previous / Next TODO comment.</td></tr>
+        <tr><td><kbd>s</kbd></td><td><strong>Flash Jump:</strong> Interactively jump to any character or label visible on the screen.</td></tr>
+        <tr><td><kbd>S</kbd></td><td><strong>Flash Treesitter:</strong> Select logical code blocks (functions, classes) using fuzzy search.</td></tr>
+        <tr><td><kbd>r</kbd></td><td><strong>Remote:</strong> Perform an operation (delete, yank) on a target located elsewhere.</td></tr>
+        <tr><td><kbd>R</kbd></td><td><strong>Treesitter Search:</strong> Search and select code blocks within visual or operator-pending modes.</td></tr>
+        <tr><td><kbd>Ctrl + s</kbd></td><td><strong>Search Toggle:</strong> Enable or disable Flash-enhanced search while in command-line mode.</td></tr>
+        <tr><td><kbd>[t</kbd> / <kbd>]t</kbd></td><td><strong>TODO Jump:</strong> Quickly navigate to the previous or next comment tag in the file.</td></tr>
       </tbody>
     </table>
     </div>
@@ -1045,32 +1071,35 @@
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
         <tr><td><kbd>ta</kbd></td><td><strong>Smart Alias:</strong> Attaches to the last session or creates a new one.</td></tr>
-        <tr><td><kbd>tls</kbd></td><td>List all tmux sessions.</td></tr>
-        <tr><td><kbd>tk &lt;name&gt;</kbd></td><td>Kill a tmux session by name.</td></tr>
-        <tr><td><kbd>tka</kbd></td><td>Kill all tmux sessions.</td></tr>
-        <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move between Tmux panes <strong>and</strong> Neovim splits.</td></tr>
-        <tr><td><kbd>Prefix + |</kbd></td><td>Split vertically.</td></tr>
-        <tr><td><kbd>Prefix + -</kbd></td><td>Split horizontally.</td></tr>
-        <tr><td><kbd>Prefix + H/J/K/L</kbd></td><td>Resize panes (left/down/up/right).</td></tr>
-        <tr><td><kbd>Prefix + c</kbd></td><td>New window.</td></tr>
-        <tr><td><kbd>Prefix + n</kbd></td><td>Next window.</td></tr>
-        <tr><td><kbd>Prefix + p</kbd></td><td>Previous window.</td></tr>
-        <tr><td><kbd>Prefix + ,</kbd></td><td>Rename current window.</td></tr>
-        <tr><td><kbd>Prefix + &amp;</kbd></td><td>Kill current window.</td></tr>
-        <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td>Toggle fullscreen (zoom) for current pane.</td></tr>
-        <tr><td><kbd>Prefix + b</kbd></td><td>Break pane into its own window.</td></tr>
-        <tr><td><kbd>Prefix + x</kbd></td><td>Kill current pane.</td></tr>
-        <tr><td><kbd>Prefix + Space</kbd></td><td>Jump to last active window.</td></tr>
-        <tr><td><kbd>Prefix + $</kbd></td><td>Rename current session.</td></tr>
-        <tr><td><kbd>Prefix + s</kbd></td><td>List / switch sessions.</td></tr>
-        <tr><td><kbd>Ctrl + j</kbd></td><td>Fuzzy session switcher (custom).</td></tr>
-        <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins</strong> (Press this if plugins look missing).</td></tr>
-        <tr><td><kbd>Prefix + U</kbd></td><td>Update Plugins.</td></tr>
-        <tr><td><kbd>Prefix + Ctrl + s</kbd></td><td>Save session (tmux-resurrect).</td></tr>
-        <tr><td><kbd>Prefix + Ctrl + r</kbd></td><td>Restore session (tmux-resurrect).</td></tr>
-        <tr><td><kbd>Prefix + r</kbd></td><td>Reload tmux config.</td></tr>
-        <tr><td><kbd>Prefix + [</kbd></td><td>Enter copy mode (Use <kbd>v</kbd> to select, <kbd>y</kbd> to copy).</td></tr>
-        <tr><td><kbd>Prefix + d</kbd></td><td>Detach from session (leave it running in background).</td></tr>
+        <tr><td><kbd>tls</kbd></td><td><strong>List Sessions:</strong> Show all active Tmux sessions and their number of windows.</td></tr>
+        <tr><td><kbd>tk &lt;name&gt;</kbd></td><td><strong>Kill Session:</strong> Terminate a specific Tmux session by its name.</td></tr>
+        <tr><td><kbd>tka</kbd></td><td><strong>Kill All:</strong> Wipe out all running Tmux sessions and processes.</td></tr>
+        <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move focus between Tmux panes and Neovim splits without extra prefixes.</td></tr>
+        <tr><td><kbd>Prefix + |</kbd></td><td><strong>Vertical Split:</strong> Divide the current pane into two side-by-side.</td></tr>
+        <tr><td><kbd>Prefix + -</kbd></td><td><strong>Horizontal Split:</strong> Divide the current pane into two stacked on top of each other.</td></tr>
+        <tr><td><kbd>Prefix + H/J/K/L</kbd></td><td><strong>Resize Pane:</strong> Use arrow-style keys to expand or shrink the focused pane.</td></tr>
+        <tr><td><kbd>Prefix + c</kbd></td><td><strong>New Window:</strong> Create a completely new window within the current session.</td></tr>
+        <tr><td><kbd>Prefix + n</kbd></td><td><strong>Next Window:</strong> Cycle to the next window in the sequence.</td></tr>
+        <tr><td><kbd>Prefix + p</kbd></td><td><strong>Previous Window:</strong> Cycle to the previous window in the sequence.</td></tr>
+        <tr><td><kbd>Prefix + ,</kbd></td><td><strong>Rename Window:</strong> Open a prompt to change the name of the active window.</td></tr>
+        <tr><td><kbd>Prefix + &amp;</kbd></td><td><strong>Kill Window:</strong> Close the current window and all its contained panes.</td></tr>
+        <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td><strong>Toggle Zoom:</strong> Expand the current pane to fill the entire window (and back).</td></tr>
+        <tr><td><kbd>Prefix + b</kbd></td><td><strong>Break Pane:</strong> Move the current pane out into its own dedicated window.</td></tr>
+        <tr><td><kbd>Prefix + x</kbd></td><td><strong>Kill Pane:</strong> Prompt to terminate the currently focused pane.</td></tr>
+        <tr><td><kbd>Prefix + Space</kbd></td><td><strong>Last Window:</strong> Instantly jump back to the most recently active window.</td></tr>
+        <tr><td><kbd>Prefix + $</kbd></td><td><strong>Rename Session:</strong> Assign a new name to the current Tmux session.</td></tr>
+        <tr><td><kbd>Prefix + s</kbd></td><td><strong>Choose Session:</strong> Open an interactive list to switch between sessions.</td></tr>
+        <tr><td><kbd>Ctrl + j</kbd></td><td><strong>Fuzzy Switcher:</strong> Quickly jump between sessions using a fuzzy search menu.</td></tr>
+        <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins:</strong> Download and initialize new plugins via TPM.</td></tr>
+        <tr><td><kbd>Prefix + U</kbd></td><td><strong>Update Plugins:</strong> Check for and install updates for all Tmux plugins.</td></tr>
+        <tr><td><kbd>Prefix + Ctrl + s</kbd></td><td><strong>Save Session:</strong> Manually save the current Tmux layout and history.</td></tr>
+        <tr><td><kbd>Prefix + Ctrl + r</kbd></td><td><strong>Restore Session:</strong> Recover the last saved Tmux environment.</td></tr>
+        <tr><td><kbd>Prefix + r</kbd></td><td><strong>Reload Config:</strong> Instantly apply changes made to <code>.tmux.conf</code>.</td></tr>
+        <tr><td><kbd>Prefix + [</kbd></td><td><strong>Copy Mode:</strong> Enter scrollback buffer (v: select, y: copy).</td></tr>
+        <tr><td><kbd>Prefix + d</kbd></td><td><strong>Detach:</strong> Exit the session while keeping it running in the background.</td></tr>
+        <tr><td><kbd>Prefix + :</kbd></td><td><strong>Command Mode:</strong> Open the Tmux command prompt for direct commands.</td></tr>
+        <tr><td><kbd>Prefix + ?</kbd></td><td><strong>List Keybinds:</strong> Show all current Tmux key bindings.</td></tr>
+        <tr><td><kbd>Prefix + ]</kbd></td><td><strong>Paste:</strong> Paste text from the Tmux copy buffer.</td></tr>
       </tbody>
     </table>
     </div>
@@ -1136,19 +1165,62 @@
   const searchBox = document.getElementById('searchBox');
   const sections = document.querySelectorAll('.section');
   const noResults = document.getElementById('noResults');
+  // Track which sections were collapsed before a search, so we can restore on clear
+  const collapsedBeforeSearch = new Set();
+  let searchWasActive = false;
 
   searchBox.addEventListener('input', () => {
     const query = searchBox.value.toLowerCase().trim();
     let anyVisible = false;
 
+    // When search activates, remember which sections are collapsed and expand them
+    if (query && !searchWasActive) {
+      sections.forEach(section => {
+        if (section.classList.contains('collapsed')) {
+          collapsedBeforeSearch.add(section);
+        }
+      });
+      searchWasActive = true;
+    }
+
+    // When search is cleared, restore previously collapsed sections
+    if (!query && searchWasActive) {
+      collapsedBeforeSearch.forEach(section => {
+        section.classList.add('collapsed');
+      });
+      collapsedBeforeSearch.clear();
+      searchWasActive = false;
+    }
+
+    // While searching, expand all filtered-in sections so results are visible
+    if (query) {
+      sections.forEach(section => section.classList.remove('collapsed'));
+    }
+
     sections.forEach(section => {
-      if (section.style.display === 'none') return; // skip filtered-out sections
+      const isFilteredIn = activeFilter === 'all' || section.classList.contains(activeFilter);
+      if (!isFilteredIn) {
+        section.style.display = 'none';
+        return;
+      }
 
       const rows = section.querySelectorAll('tbody tr');
       let sectionHasMatch = false;
 
+      const tables = section.querySelectorAll('table');
+
       if (!query) {
         rows.forEach(row => row.style.display = '');
+        tables.forEach(table => {
+          table.style.display = '';
+          const wrapper = table.closest('.table-wrap');
+          if (wrapper) wrapper.style.display = '';
+          let el = (wrapper || table).previousElementSibling;
+          while (el && (el.tagName === 'H3' || el.classList.contains('prefix-note'))) {
+            el.style.display = '';
+            el = el.previousElementSibling;
+          }
+        });
         sectionHasMatch = true;
       } else {
         rows.forEach(row => {
@@ -1157,18 +1229,31 @@
           row.style.display = match ? '' : 'none';
           if (match) sectionHasMatch = true;
         });
+
+        // Hide sub-tables (and their h3/notes) when all their rows are hidden
+        tables.forEach(table => {
+          const tbody = table.querySelector('tbody');
+          const visibleCount = tbody ? Array.from(tbody.rows).filter(r => r.style.display !== 'none').length : 0;
+          const hasVisible = visibleCount > 0;
+          table.style.display = hasVisible ? '' : 'none';
+          const wrapper = table.closest('.table-wrap');
+          if (wrapper) wrapper.style.display = hasVisible ? '' : 'none';
+          // Walk backwards from the table wrapper, hiding h3 and prefix-note siblings
+          let el = (wrapper || table).previousElementSibling;
+          while (el && (el.tagName === 'H3' || el.classList.contains('prefix-note'))) {
+            el.style.display = hasVisible ? '' : 'none';
+            el = el.previousElementSibling;
+          }
+        });
       }
 
       // For sections without tables (like DevDocs), check full text
-      if (rows.length === 0) {
+      if (tables.length === 0) {
         sectionHasMatch = !query || section.textContent.toLowerCase().includes(query);
       }
 
-      // Don't hide filtered sections, just dim them if no match
-      if (activeFilter === 'all' || section.classList.contains(activeFilter)) {
-        section.style.display = sectionHasMatch ? '' : 'none';
-        if (sectionHasMatch) anyVisible = true;
-      }
+      section.style.display = sectionHasMatch ? '' : 'none';
+      if (sectionHasMatch) anyVisible = true;
     });
 
     noResults.style.display = anyVisible || !query ? 'none' : 'block';
