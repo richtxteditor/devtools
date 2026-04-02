@@ -263,13 +263,12 @@
     padding: 1.5rem;
     margin-bottom: 1.5rem;
     box-shadow: 0 4px 24px var(--shadow);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, border-color 0.3s ease;
+    transition: box-shadow 0.2s ease, background 0.3s ease, border-color 0.3s ease;
     scroll-margin-top: 4rem;
     overflow: hidden;
   }
 
   .section:hover {
-    transform: translateY(-2px);
     box-shadow: 0 8px 32px var(--shadow-hover);
   }
 
@@ -557,13 +556,12 @@
     border: 1px solid var(--glass-border);
     border-radius: 6px;
     text-decoration: none;
-    transition: background 0.15s ease, border-color 0.15s ease;
+    transition: background 0.15s ease;
     line-height: 1.3;
   }
 
   .doc-link:hover {
     background: var(--row-hover);
-    border-color: var(--link-color);
   }
 
   .doc-link svg {
@@ -809,11 +807,11 @@
 <!-- Git -->
   <div class="section git" id="git">
     <h2><span class="dot"></span> Git Workflow <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
     <div class="doc-links">
       <a class="doc-link" href="https://github.com/jesseduffield/lazygit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Lazygit<span class="doc-desc">Terminal UI for Git</span></span></a>
       <a class="doc-link" href="https://git-scm.com/doc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Git Docs<span class="doc-desc">Official Git reference</span></span></a>
     </div>
+    <div class="section-body">
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
@@ -832,13 +830,13 @@
 <!-- Neovim -->
   <div class="section neovim" id="neovim">
     <h2><span class="dot"></span> Neovim (Editor) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
     <div class="doc-links">
       <a class="doc-link" href="https://neovim.io/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Neovim Docs<span class="doc-desc">Official Neovim reference</span></span></a>
       <a class="doc-link" href="https://github.com/nvim-telescope/telescope.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Telescope<span class="doc-desc">Fuzzy finder for Neovim</span></span></a>
       <a class="doc-link" href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">NvimTree<span class="doc-desc">File explorer sidebar</span></span></a>
       <a class="doc-link" href="https://github.com/folke/trouble.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Trouble<span class="doc-desc">Diagnostics list panel</span></span></a>
     </div>
+    <div class="section-body">
     <div class="prefix-note"><strong>Leader Key:</strong> <kbd>Space</kbd></div>
 
     <h3>General &amp; Files</h3>
@@ -919,7 +917,6 @@
 <!-- Runtimes -->
   <div class="section runtimes" id="runtimes">
     <h2><span class="dot"></span> Runtimes &amp; Languages <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
     <div class="doc-links">
       <a class="doc-link" href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvm<span class="doc-desc">Node version manager</span></span></a>
       <a class="doc-link" href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">pyenv<span class="doc-desc">Python version manager</span></span></a>
@@ -927,6 +924,7 @@
       <a class="doc-link" href="https://go.dev/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Go<span class="doc-desc">Go language reference</span></span></a>
       <a class="doc-link" href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Rust<span class="doc-desc">The Rust Book</span></span></a>
     </div>
+    <div class="section-body">
     <table>
       <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
       <tbody>
@@ -946,7 +944,6 @@
 <!-- Shell & Navigation -->
   <div class="section shell" id="shell">
     <h2><span class="dot"></span> Shell &amp; Navigation (Zsh) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
     <div class="doc-links">
       <a class="doc-link" href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">zoxide<span class="doc-desc">Smarter cd command</span></span></a>
       <a class="doc-link" href="https://github.com/eza-community/eza" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">eza<span class="doc-desc">Modern ls replacement</span></span></a>
@@ -954,6 +951,7 @@
       <a class="doc-link" href="https://github.com/junegunn/fzf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">fzf<span class="doc-desc">Command-line fuzzy finder</span></span></a>
       <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">zsh-autosuggestions<span class="doc-desc">Fish-like shell suggestions</span></span></a>
     </div>
+    <div class="section-body">
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
@@ -980,11 +978,11 @@
 <!-- System & Config -->
   <div class="section system" id="system">
     <h2><span class="dot"></span> System &amp; Config Management <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
     <div class="doc-links">
       <a class="doc-link" href="https://brew.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Homebrew<span class="doc-desc">macOS package manager</span></span></a>
       <a class="doc-link" href="https://ohmyz.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Oh My Zsh<span class="doc-desc">Zsh config framework</span></span></a>
     </div>
+    <div class="section-body">
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
@@ -1001,7 +999,6 @@
 <!-- Testing & Debugging -->
   <div class="section neovim-sub" id="testing">
     <h2><span class="dot"></span> Testing, Debugging &amp; Tasks <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
     <div class="doc-links">
       <a class="doc-link" href="https://github.com/nvim-neotest/neotest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Neotest<span class="doc-desc">Test runner framework</span></span></a>
       <a class="doc-link" href="https://github.com/mfussenegger/nvim-dap" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvim-dap<span class="doc-desc">Debug adapter protocol</span></span></a>
@@ -1009,6 +1006,7 @@
       <a class="doc-link" href="https://github.com/folke/flash.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Flash<span class="doc-desc">Quick cursor navigation</span></span></a>
       <a class="doc-link" href="https://github.com/sindrets/diffview.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Diffview<span class="doc-desc">Git diff and merge tool</span></span></a>
     </div>
+    <div class="section-body">
 
     <h3>Testing (Neotest)</h3>
     <table>
@@ -1075,12 +1073,12 @@
 <!-- Tmux -->
   <div class="section tmux" id="tmux">
     <h2><span class="dot"></span> Tmux (Multiplexer) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="section-body">
     <div class="doc-links">
       <a class="doc-link" href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Tmux Wiki<span class="doc-desc">Official tmux reference</span></span></a>
       <a class="doc-link" href="https://github.com/tmux-plugins/tpm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">TPM<span class="doc-desc">Tmux plugin manager</span></span></a>
       <a class="doc-link" href="https://github.com/christoomey/vim-tmux-navigator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">vim-tmux-navigator<span class="doc-desc">Seamless vim/tmux panes</span></span></a>
     </div>
+    <div class="section-body">
     <div class="prefix-note"><strong>Prefix:</strong> <kbd>Ctrl + a</kbd> (Replaces standard <kbd>Ctrl + b</kbd>)</div>
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
@@ -1132,33 +1130,43 @@
 <script>
   const toggle = document.getElementById('themeToggle');
   const html = document.documentElement;
+  const darkMq = window.matchMedia('(prefers-color-scheme: dark)');
 
   function getSystemTheme() {
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return darkMq.matches ? 'dark' : 'light';
   }
 
-  function applyTheme(theme) {
-    html.setAttribute('data-theme', theme);
-    toggle.textContent = theme === 'dark' ? '\u2600\uFE0F' : '\uD83C\uDF19';
+  function applyTheme(mode) {
+    const resolved = mode === 'auto' ? getSystemTheme() : mode;
+    html.setAttribute('data-theme', resolved);
+    const icons = { auto: '\uD83C\uDF13', light: '\u2600\uFE0F', dark: '\uD83C\uDF19' };
+    toggle.textContent = icons[mode];
+    toggle.title = mode === 'auto' ? 'Theme: Auto (system)' : `Theme: ${mode.charAt(0).toUpperCase() + mode.slice(1)}`;
   }
 
-  // Load saved preference or follow system
-  const saved = localStorage.getItem('theme');
-  applyTheme(saved || getSystemTheme());
+  // Migrate old key and load preference
+  const legacy = localStorage.getItem('theme');
+  if (legacy) { localStorage.setItem('theme-mode', legacy); localStorage.removeItem('theme'); }
+  const saved = localStorage.getItem('theme-mode') || 'auto';
+  applyTheme(saved);
 
-  // Manual toggle
+  // Cycle: auto -> light -> dark -> auto
   toggle.addEventListener('click', () => {
-    const current = html.getAttribute('data-theme');
-    const next = current === 'dark' ? 'light' : 'dark';
-    localStorage.setItem('theme', next);
+    const current = localStorage.getItem('theme-mode') || 'auto';
+    const cycle = { auto: 'light', light: 'dark', dark: 'auto' };
+    const next = cycle[current];
+    if (next === 'auto') {
+      localStorage.removeItem('theme-mode');
+    } else {
+      localStorage.setItem('theme-mode', next);
+    }
     applyTheme(next);
   });
 
-  // Listen for system theme changes (only if no manual override)
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      applyTheme(e.matches ? 'dark' : 'light');
-    }
+  // Follow system changes when in auto mode
+  darkMq.addEventListener('change', () => {
+    const mode = localStorage.getItem('theme-mode') || 'auto';
+    if (mode === 'auto') applyTheme('auto');
   });
 
   // Nav burger toggle
