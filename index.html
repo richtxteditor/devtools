@@ -698,13 +698,15 @@
   <div class="section devdocs" id="devdocs">
     <h2><span class="dot"></span> DevDocs Setup (First Time) <span class="collapse-icon">&#9660;</span></h2>
     <div class="doc-links">
-      <a class="doc-link" href="https://github.com/luckasRanaworded/nvim-devdocs" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvim-devdocs<span class="doc-desc">Browse docs in Neovim</span></span></a>
+      <a class="doc-link" href="https://github.com/luckasRanarison/nvim-devdocs" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvim-devdocs<span class="doc-desc">Browse docs in Neovim</span></span></a>
       <a class="doc-link" href="https://devdocs.io" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">DevDocs.io<span class="doc-desc">API docs in the browser</span></span></a>
     </div>
     <div class="section-body">
     <p>After installing plugins, run these commands in Neovim to download offline docs:</p>
     <pre>:DevdocsFetch
-:DevdocsInstall python javascript go rust c</pre>
+:DevdocsInstall python~3.12 javascript typescript html css tailwindcss django~5.2 c cpp postgresql~18</pre>
+    <p><kbd>Space K</kbd> opens DevDocs for the current filetype. For troubleshooting the current buffer, use <code>:LspStatus</code>.</p>
+    <p>The interactive <code>:DevdocsInstall</code> picker is currently unreliable upstream, so explicit install arguments are the safer workflow.</p>
     </div>
   </div>
 <!-- Ghostty -->
@@ -849,8 +851,8 @@
         <tr><td><kbd>Space Space</kbd></td><td><strong>Clear:</strong> Wipe the current search highlight.</td></tr>
         <tr><td><kbd>Space uw</kbd></td><td><strong>Toggle Wrap:</strong> Toggle line wrapping in the current buffer.</td></tr>
         <tr><td><kbd>Space e</kbd></td><td><strong>Explore:</strong> Toggle the sidebar file tree (NvimTree).</td></tr>
-        <tr><td><kbd>Space ff</kbd></td><td><strong>File Search:</strong> Interactively search for files by name using Telescope.</td></tr>
-        <tr><td><kbd>Space fg</kbd></td><td><strong>Project Search:</strong> Live-grep through all files in the current workspace.</td></tr>
+        <tr><td><kbd>Space ff</kbd></td><td><strong>File Search:</strong> Interactively search for files by name using <code>fff.nvim</code>.</td></tr>
+        <tr><td><kbd>Space fg</kbd></td><td><strong>Project Search:</strong> Live-grep through all files in the current workspace with <code>fff.nvim</code>.</td></tr>
         <tr><td><kbd>Space fo</kbd></td><td><strong>Recent:</strong> Quickly reopen recently accessed files.</td></tr>
         <tr><td><kbd>Space fb</kbd></td><td><strong>Buffers:</strong> List and switch between currently open buffers.</td></tr>
         <tr><td><kbd>Space fh</kbd></td><td><strong>Help:</strong> Search through Neovim&rsquo;s internal help documentation.</td></tr>
@@ -868,10 +870,10 @@
     <table>
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
-        <tr><td><kbd>ff</kbd></td><td><strong>FFFind Files:</strong> High-performance fuzzy file search across the project.</td></tr>
-        <tr><td><kbd>fg</kbd></td><td><strong>LiFFFe Grep:</strong> Fast live grep through all files using FFF engine.</td></tr>
-        <tr><td><kbd>fz</kbd></td><td><strong>Fuzzy Grep:</strong> Grep with switchable search modes (regex, fixed, etc.).</td></tr>
-        <tr><td><kbd>fc</kbd></td><td><strong>Current Word:</strong> Search for the word under the cursor across the project.</td></tr>
+        <tr><td><kbd>Space ff</kbd></td><td><strong>FFFind Files:</strong> High-performance fuzzy file search across the project.</td></tr>
+        <tr><td><kbd>Space fg</kbd></td><td><strong>LiFFFe Grep:</strong> Fast live grep through all files using the FFF engine.</td></tr>
+        <tr><td><kbd>Space fz</kbd></td><td><strong>Fuzzy Grep:</strong> Run live grep with switchable <code>fuzzy</code> and <code>plain</code> search modes.</td></tr>
+        <tr><td><kbd>Space fc</kbd></td><td><strong>Current Word:</strong> Search the current word across the project.</td></tr>
       </tbody>
     </table>
 
@@ -893,9 +895,11 @@
       <thead><tr><th>Key</th><th>Action</th></tr></thead>
       <tbody>
         <tr><td><kbd>gd</kbd></td><td><strong>Definition:</strong> Jump to where the symbol under the cursor is defined.</td></tr>
+        <tr><td><kbd>gD</kbd></td><td><strong>Declaration:</strong> Jump to the original symbol declaration when it differs from the definition.</td></tr>
+        <tr><td><kbd>gi</kbd></td><td><strong>Implementation:</strong> Jump to concrete implementations of the current interface or method.</td></tr>
         <tr><td><kbd>gr</kbd></td><td><strong>References:</strong> Find every location where the current symbol is used.</td></tr>
         <tr><td><kbd>K</kbd></td><td><strong>Documentation:</strong> Show the hover-doc or type signature for the symbol.</td></tr>
-        <tr><td><kbd>Space K</kbd></td><td><strong>DevDocs Search:</strong> Look up the current keyword in comprehensive offline documentation.</td></tr>
+        <tr><td><kbd>Space K</kbd></td><td><strong>Current File Docs:</strong> Open the DevDocs sets mapped to the current filetype.</td></tr>
         <tr><td><kbd>Space cf</kbd></td><td><strong>Format:</strong> Automatically tidy the current file using configured formatters.</td></tr>
         <tr><td><kbd>Space rn</kbd></td><td><strong>Refactor Rename:</strong> Rename the symbol globally with a live preview of changes.</td></tr>
         <tr><td><kbd>Space ca</kbd></td><td><strong>Code Action:</strong> Open quick-fix or refactoring suggestions (LSP).</td></tr>
@@ -910,6 +914,7 @@
         <tr><td><kbd>Space xd</kbd></td><td><strong>Buffer Diagnostics:</strong> Show issues only for the current file.</td></tr>
         <tr><td><kbd>Space xL</kbd></td><td><strong>Location View:</strong> Show items from the location list in Trouble.</td></tr>
         <tr><td><kbd>Space xQ</kbd></td><td><strong>Quickfix View:</strong> Show items from the quickfix list in Trouble.</td></tr>
+        <tr><td><kbd>:LspStatus</kbd></td><td><strong>Buffer Status:</strong> Print the current file path, filetype, project root, and attached LSP clients.</td></tr>
       </tbody>
     </table>
     </div>
@@ -921,6 +926,7 @@
       <a class="doc-link" href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvm<span class="doc-desc">Node version manager</span></span></a>
       <a class="doc-link" href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">pyenv<span class="doc-desc">Python version manager</span></span></a>
       <a class="doc-link" href="https://github.com/rbenv/rbenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">rbenv<span class="doc-desc">Ruby version manager</span></span></a>
+      <a class="doc-link" href="https://direnv.net/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">direnv<span class="doc-desc">Project-local environment loader</span></span></a>
       <a class="doc-link" href="https://go.dev/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Go<span class="doc-desc">Go language reference</span></span></a>
       <a class="doc-link" href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Rust<span class="doc-desc">The Rust Book</span></span></a>
     </div>
@@ -929,14 +935,16 @@
       <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
       <tbody>
         <tr><td><strong>Node.js</strong></td><td><strong>Version Manager:</strong> Managed by <code>nvm</code>. Run <code>nvm install 20</code> to install the latest LTS version.</td></tr>
-        <tr><td><strong>Python</strong></td><td><strong>Environment Manager:</strong> Managed by <code>pyenv</code>. Run <code>pyenv install 3.12</code> to install and manage multiple Python versions.</td></tr>
+        <tr><td><strong>Python</strong></td><td><strong>Interpreter + Project Env:</strong> Base versions are managed by <code>pyenv</code>. Project-local <code>.venv</code> activation is handled by <code>direnv</code> when an <code>.envrc</code> is present.</td></tr>
         <tr><td><strong>Ruby</strong></td><td><strong>Version Manager:</strong> Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code> to switch between different Ruby environments.</td></tr>
-        <tr><td><strong>Go</strong></td><td><strong>System Install:</strong> Installed via Homebrew. Uses <code>gopls</code> for LSP and <code>goimports</code>/<code>gofumpt</code> for strict formatting.</td></tr>
-        <tr><td><strong>Rust</strong></td><td><strong>System Install:</strong> Installed via Homebrew. Uses <code>rust-analyzer</code> for deep code analysis and <code>codelldb</code> for debugging.</td></tr>
-        <tr><td><strong>Java</strong></td><td><strong>OpenJDK:</strong> Installed via Homebrew. Neovim integration via <code>jdtls</code> and <code>google-java-format</code> for standard styling.</td></tr>
+        <tr><td><strong>Lua</strong></td><td><strong>Editor Config:</strong> Uses <code>lua_ls</code> with Neovim-aware diagnostics and completion, plus DevDocs mapping for <code>python</code>, frontend, and systems languages where useful.</td></tr>
+        <tr><td><strong>Shell</strong></td><td><strong>Shell Scripts:</strong> Uses <code>bashls</code> for LSP, <code>shellcheck</code> for linting, and <code>shfmt</code> for formatting.</td></tr>
+        <tr><td><strong>JSON / YAML</strong></td><td><strong>Config Files:</strong> Uses <code>jsonls</code> and <code>yamlls</code> for schema-aware completion and validation.</td></tr>
+        <tr><td><strong>HTML / CSS / Tailwind</strong></td><td><strong>Frontend Markup:</strong> Uses <code>html</code>, <code>cssls</code>, and <code>tailwindcss</code> LSPs with <code>prettier</code> handling formatting.</td></tr>
+        <tr><td><strong>Django Templates</strong></td><td><strong>Template Support:</strong> Uses <code>djlsp</code> on <code>htmldjango</code> files, with project-aware completions when Neovim is launched from a shell using the correct project environment.</td></tr>
+        <tr><td><strong>SQL</strong></td><td><strong>Database Queries:</strong> Uses <code>sqlls</code> for language-server support, <code>sql_formatter</code> for formatting, and PostgreSQL docs in DevDocs.</td></tr>
         <tr><td><strong>C/C++</strong></td><td><strong>Clang Toolchain:</strong> Uses <code>llvm</code>/<code>clangd</code> for LSP and <code>clang-format</code> for code style. Debugging is handled by <code>codelldb</code>.</td></tr>
-        <tr><td><strong>TypeScript</strong></td><td><strong>Web Development:</strong> Full support via <code>ts_ls</code>, <code>prettier</code> for formatting, and <code>eslint</code> for linting. Requires a <code>tsconfig.json</code>.</td></tr>
-        <tr><td><strong>PHP</strong></td><td><strong>Server-Side:</strong> Supported through <code>intelephense</code> for intelligent code completion and <code>php-cs-fixer</code> for formatting.</td></tr>
+        <tr><td><strong>TypeScript / JavaScript</strong></td><td><strong>Web Development:</strong> Uses <code>ts_ls</code> plus <code>eslint</code> for diagnostics and code actions, with <code>prettier</code> handling formatting.</td></tr>
       </tbody>
     </table>
     </div>
@@ -950,8 +958,15 @@
       <a class="doc-link" href="https://github.com/sharkdp/bat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">bat<span class="doc-desc">Cat with syntax highlighting</span></span></a>
       <a class="doc-link" href="https://github.com/junegunn/fzf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">fzf<span class="doc-desc">Command-line fuzzy finder</span></span></a>
       <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">zsh-autosuggestions<span class="doc-desc">Fish-like shell suggestions</span></span></a>
+      <a class="doc-link" href="https://starship.rs/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Starship<span class="doc-desc">Shell prompt</span></span></a>
+      <a class="doc-link" href="https://direnv.net/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">direnv<span class="doc-desc">Project-local env loader</span></span></a>
     </div>
     <div class="section-body">
+    <p><strong>Prompt:</strong> Starship shows <code>user@host</code>, shortened path, active <code>.venv</code>, <code>direnv</code> state, git branch/status, failed exit status, background jobs, and command duration for commands slower than 50ms.</p>
+    <p><strong>Python/Django Projects:</strong> <code>direnv</code> does not activate a virtualenv just because a <code>.venv</code> folder exists. Add an <code>.envrc</code> in the project root, then approve it once with <code>direnv allow</code>.</p>
+    <pre>printf '%s\n' 'source .venv/bin/activate' &gt; .envrc
+direnv allow</pre>
+    <p>If the project also needs Django-specific environment variables, extend <code>.envrc</code> with exports such as <code>DJANGO_SETTINGS_MODULE</code>.</p>
     <table>
       <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
@@ -970,6 +985,8 @@
         <tr><td><kbd>rm / cp / mv</kbd></td><td><strong>Safe Mode:</strong> Aliased to always prompt for confirmation (<code>-i</code>) before destructive operations.</td></tr>
         <tr><td><kbd>venv &lt;name&gt;</kbd></td><td><strong>Python Setup:</strong> Quickly initialize a new Python virtual environment in the current folder.</td></tr>
         <tr><td><kbd>venvact</kbd></td><td><strong>Python Activate:</strong> Find and activate the <code>.venv</code> or <code>venv</code> folder in your current directory.</td></tr>
+        <tr><td><kbd>direnv allow</kbd></td><td><strong>Project Env:</strong> Approve the current project's <code>.envrc</code> so entering the directory auto-loads its environment.</td></tr>
+        <tr><td><kbd>direnv status</kbd></td><td><strong>Env Debug:</strong> Inspect whether <code>direnv</code> has loaded the current project's <code>.envrc</code>.</td></tr>
         <tr><td><kbd>explain &lt;question&gt;</kbd></td><td><strong>AI Assistant:</strong> Send a natural language query directly to the Gemini API for terminal help.</td></tr>
       </tbody>
     </table>

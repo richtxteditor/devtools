@@ -12,8 +12,20 @@ A single-page reference for a terminal-centric development environment built aro
 - ![tmux](https://img.shields.io/badge/tmux-000?logo=tmux&logoColor=1BB91F) Tmux multiplexer keybindings
 - ![Neovim](https://img.shields.io/badge/Neovim-000?logo=neovim&logoColor=57A143) Neovim editor shortcuts (files, LSP, diagnostics)
 - ![Testing](https://img.shields.io/badge/Testing-000?logo=vitest&logoColor=6E9F18) Testing, debugging, and task running
-- ![Runtimes](https://img.shields.io/badge/Runtimes-000?logo=nodedotjs&logoColor=5FA04E) Runtime and language setup (Node, Python, Ruby, Go, Rust, Java, C/C++, TypeScript, PHP)
-- ![DevDocs](https://img.shields.io/badge/DevDocs-000?logo=readthedocs&logoColor=8CA1AF) DevDocs offline documentation
+- ![Runtimes](https://img.shields.io/badge/Runtimes-000?logo=nodedotjs&logoColor=5FA04E) Runtime and language setup (Node, Python, Ruby, Lua, Shell, JSON/YAML, HTML/CSS/Tailwind, Django, SQL, C/C++, TypeScript)
+- ![DevDocs](https://img.shields.io/badge/DevDocs-000?logo=readthedocs&logoColor=8CA1AF) DevDocs offline documentation and current-file doc lookup
+- ![direnv](https://img.shields.io/badge/direnv-000?logo=gnu-bash&logoColor=white) Project-local environments and `.venv` auto-loading
+
+## direnv quick start
+
+`direnv` does not activate a virtualenv just because a `.venv` directory exists. Add an `.envrc` file in the project root and approve it once:
+
+```sh
+printf '%s\n' 'source .venv/bin/activate' > .envrc
+direnv allow
+```
+
+For Django or other framework projects, extend `.envrc` with any required environment variables, such as `DJANGO_SETTINGS_MODULE`.
 
 ## Built with
 
