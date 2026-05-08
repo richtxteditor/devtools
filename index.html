@@ -116,11 +116,8 @@
     font-size: 1.1rem;
   }
 
-  /* Sticky Nav */
+  /* Nav */
   .sticky-nav {
-    position: sticky;
-    top: 0;
-    z-index: 50;
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -138,84 +135,11 @@
   .nav-inner {
     display: flex;
     align-items: center;
+    justify-content: flex-end;
     padding: 0.5rem 1rem;
-    gap: 0.25rem;
-    flex-wrap: wrap;
+    gap: 0.5rem;
     max-width: 960px;
     margin: 0 auto;
-  }
-
-  .nav-inner a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    padding: 0.35rem 0.65rem;
-    border-radius: 6px;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: var(--text-sub);
-    text-decoration: none;
-    transition: background 0.15s ease, color 0.15s ease;
-    white-space: nowrap;
-  }
-
-  .nav-inner a:hover {
-    background: var(--row-hover);
-    color: var(--text);
-  }
-
-  .nav-inner a .nav-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .nav-burger {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
-    color: var(--text);
-    font-size: 1.4rem;
-    line-height: 1;
-  }
-
-  .nav-spacer {
-    flex: 1;
-  }
-
-  @media (max-width: 768px) {
-    .nav-burger {
-      display: block;
-    }
-
-    .nav-links {
-      display: none;
-      width: 100%;
-      flex-direction: column;
-      padding: 0.25rem 0 0.5rem;
-    }
-
-    .nav-links.open {
-      display: flex;
-    }
-
-    .nav-inner {
-      flex-wrap: wrap;
-    }
-
-    .nav-inner a {
-      padding: 0.5rem 0.75rem;
-      font-size: 0.88rem;
-    }
-  }
-
-  @media (min-width: 769px) {
-    .nav-links {
-      display: contents;
-    }
   }
 
   .nav-github {
@@ -286,8 +210,21 @@
   .section h3 {
     font-size: 1.1rem;
     font-weight: 600;
-    margin: 1.25rem 0 0.75rem;
+    margin: 1.75rem 0 0.9rem;
     color: var(--text-sub);
+  }
+
+  .section p {
+    margin: 0 0 1rem;
+    line-height: 1.65;
+  }
+
+  .section p + p {
+    margin-top: 0.75rem;
+  }
+
+  .section-body > p:first-child {
+    margin-top: 0.25rem;
   }
 
   .section.shell { --accent: var(--shell); }
@@ -313,6 +250,7 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     border-radius: 8px;
+    margin: 1.1rem 0 1.4rem;
   }
 
   table {
@@ -350,9 +288,10 @@
   }
 
   td {
-    padding: 0.5rem 0.8rem;
+    padding: 0.7rem 0.9rem;
     border-top: 1px solid var(--td-border);
     vertical-align: top;
+    line-height: 1.55;
   }
 
   td:first-child,
@@ -386,10 +325,11 @@
   .prefix-note {
     background: var(--note-bg);
     border-left: 3px solid var(--accent);
-    padding: 0.6rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: 0 8px 8px 0;
-    margin-bottom: 1rem;
+    margin: 1rem 0 1.25rem;
     font-size: 0.92rem;
+    line-height: 1.55;
   }
 
   .prefix-note strong { color: var(--note-strong); }
@@ -397,13 +337,14 @@
   pre {
     background: var(--pre-bg);
     color: var(--pre-color);
-    padding: 0.8rem 1rem;
+    padding: 0.9rem 1rem;
     border-radius: 8px;
     font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
     font-size: 0.85rem;
+    line-height: 1.6;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin-top: 0.5rem;
+    margin: 0.85rem 0 1.25rem;
     word-break: break-word;
   }
 
@@ -542,22 +483,30 @@
   .doc-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    gap: 0.7rem;
+    justify-content: center;
+    align-items: stretch;
+    margin: 0.35rem auto 1.35rem;
+    text-align: center;
   }
 
   .doc-link {
-    display: inline-flex;
-    align-items: flex-start;
-    gap: 0.35rem;
-    padding: 0.4rem 0.6rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "title"
+      "desc";
+    justify-items: center;
+    gap: 0.05rem;
+    padding: 0.5rem 0.7rem;
     font-size: 0.75rem;
     color: var(--link-color);
     border: 1px solid var(--glass-border);
     border-radius: 6px;
     text-decoration: none;
     transition: background 0.15s ease;
-    line-height: 1.3;
+    line-height: 1.35;
+    text-align: center;
   }
 
   .doc-link:hover {
@@ -568,15 +517,22 @@
     width: 11px;
     height: 11px;
     flex-shrink: 0;
-    margin-top: 0.15rem;
   }
 
-  .doc-link .doc-text {
-    display: flex;
-    flex-direction: column;
+  .doc-link .doc-title {
+    grid-area: title;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.18rem;
+  }
+
+  .doc-link .doc-name {
+    align-self: center;
   }
 
   .doc-link .doc-desc {
+    grid-area: desc;
     font-size: 0.65rem;
     color: var(--text-muted);
     font-weight: 400;
@@ -645,18 +601,6 @@
 <!-- Sticky Nav -->
 <nav class="sticky-nav">
   <div class="nav-inner">
-    <button class="nav-burger" id="navBurger" aria-label="Toggle navigation">&#9776;</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#devdocs"><span class="nav-dot" style="background:var(--devdocs)"></span>DevDocs</a>
-      <a href="#ghostty"><span class="nav-dot" style="background:var(--ghostty)"></span>Ghostty</a>
-      <a href="#git"><span class="nav-dot" style="background:var(--git)"></span>Git</a>
-      <a href="#neovim"><span class="nav-dot" style="background:var(--neovim)"></span>Neovim</a>
-      <a href="#runtimes"><span class="nav-dot" style="background:var(--runtimes)"></span>Runtimes</a>
-      <a href="#shell"><span class="nav-dot" style="background:var(--shell)"></span>Shell</a>
-      <a href="#system"><span class="nav-dot" style="background:var(--system)"></span>System</a>
-      <a href="#testing"><span class="nav-dot" style="background:var(--neovim-alt)"></span>Testing</a>
-      <a href="#tmux"><span class="nav-dot" style="background:var(--tmux)"></span>Tmux</a>
-    </div>
     <a href="https://github.com/richtxteditor/devtools" target="_blank" rel="noopener noreferrer" class="nav-github" aria-label="GitHub repository">
       <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
     </a>
@@ -682,39 +626,206 @@
   <!-- Filter pills -->
   <div class="filter-bar" id="filterBar">
     <button class="filter-pill active" data-filter="all">All</button>
-    <button class="filter-pill" data-filter="devdocs" style="--filter-color:var(--devdocs)"><span class="pill-dot" style="background:var(--devdocs)"></span>DevDocs</button>
+    <button class="filter-pill" data-filter="shell" style="--filter-color:var(--shell)"><span class="pill-dot" style="background:var(--shell)"></span>Shell</button>
+    <button class="filter-pill" data-filter="tmux" style="--filter-color:var(--tmux)"><span class="pill-dot" style="background:var(--tmux)"></span>Tmux</button>
+    <button class="filter-pill" data-filter="neovim" style="--filter-color:var(--neovim)"><span class="pill-dot" style="background:var(--neovim)"></span>Neovim</button>
     <button class="filter-pill" data-filter="ghostty" style="--filter-color:var(--ghostty)"><span class="pill-dot" style="background:var(--ghostty)"></span>Ghostty</button>
     <button class="filter-pill" data-filter="git" style="--filter-color:var(--git)"><span class="pill-dot" style="background:var(--git)"></span>Git</button>
-    <button class="filter-pill" data-filter="neovim" style="--filter-color:var(--neovim)"><span class="pill-dot" style="background:var(--neovim)"></span>Neovim</button>
-    <button class="filter-pill" data-filter="runtimes" style="--filter-color:var(--runtimes)"><span class="pill-dot" style="background:var(--runtimes)"></span>Runtimes</button>
-    <button class="filter-pill" data-filter="shell" style="--filter-color:var(--shell)"><span class="pill-dot" style="background:var(--shell)"></span>Shell</button>
-    <button class="filter-pill" data-filter="system" style="--filter-color:var(--system)"><span class="pill-dot" style="background:var(--system)"></span>System</button>
     <button class="filter-pill" data-filter="neovim-sub" style="--filter-color:var(--neovim-alt)"><span class="pill-dot" style="background:var(--neovim-alt)"></span>Testing</button>
-    <button class="filter-pill" data-filter="tmux" style="--filter-color:var(--tmux)"><span class="pill-dot" style="background:var(--tmux)"></span>Tmux</button>
+    <button class="filter-pill" data-filter="system" style="--filter-color:var(--system)"><span class="pill-dot" style="background:var(--system)"></span>System</button>
+    <button class="filter-pill" data-filter="runtimes" style="--filter-color:var(--runtimes)"><span class="pill-dot" style="background:var(--runtimes)"></span>Runtimes</button>
+    <button class="filter-pill" data-filter="devdocs" style="--filter-color:var(--devdocs)"><span class="pill-dot" style="background:var(--devdocs)"></span>DevDocs</button>
   </div>
 
   <div id="noResults" class="no-results">No matching commands found.</div>
-<!-- DevDocs -->
-  <div class="section devdocs" id="devdocs">
-    <h2><span class="dot"></span> DevDocs Setup (First Time) <span class="collapse-icon">&#9660;</span></h2>
+<!-- Shell & Navigation -->
+  <div class="section shell" id="shell">
+    <h2><span class="dot"></span> Shell &amp; Navigation (Zsh) <span class="collapse-icon">&#9660;</span></h2>
     <div class="doc-links">
-      <a class="doc-link" href="https://github.com/luckasRanarison/nvim-devdocs" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvim-devdocs<span class="doc-desc">Browse docs in Neovim</span></span></a>
-      <a class="doc-link" href="https://devdocs.io" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">DevDocs.io<span class="doc-desc">API docs in the browser</span></span></a>
+      <a class="doc-link" href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">zoxide</span></span><span class="doc-desc">Smarter cd command</span></a>
+      <a class="doc-link" href="https://github.com/eza-community/eza" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">eza</span></span><span class="doc-desc">Modern ls replacement</span></a>
+      <a class="doc-link" href="https://github.com/sharkdp/bat" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">bat</span></span><span class="doc-desc">Cat with syntax highlighting</span></a>
+      <a class="doc-link" href="https://github.com/junegunn/fzf" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">fzf</span></span><span class="doc-desc">Command-line fuzzy finder</span></a>
+      <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">zsh-autosuggestions</span></span><span class="doc-desc">Fish-like shell suggestions</span></a>
+      <a class="doc-link" href="https://starship.rs/" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Starship</span></span><span class="doc-desc">Shell prompt</span></a>
+      <a class="doc-link" href="https://direnv.net/" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">direnv</span></span><span class="doc-desc">Project-local env loader</span></a>
     </div>
     <div class="section-body">
-    <p>After installing plugins, run these commands in Neovim to download offline docs:</p>
-    <pre>:DevdocsFetch
-:DevdocsInstall python~3.12 javascript typescript html css tailwindcss django~5.2 c cpp postgresql~18</pre>
-    <p><kbd>Space K</kbd> opens DevDocs for the current filetype. For troubleshooting the current buffer, use <code>:LspStatus</code>.</p>
-    <p>The interactive <code>:DevdocsInstall</code> picker is currently unreliable upstream, so explicit install arguments are the safer workflow.</p>
+    <p><strong>Prompt:</strong> Starship shows <code>user@host</code>, shortened path, active <code>.venv</code>, <code>direnv</code> state, git branch/status, failed exit status, background jobs, and command duration for commands slower than 50ms.</p>
+    <p><strong>Python/Django Projects:</strong> <code>direnv</code> does not activate a virtualenv just because a <code>.venv</code> folder exists. Add an <code>.envrc</code> in the project root, then approve it once with <code>direnv allow</code>.</p>
+    <pre>printf '%s\n' 'source .venv/bin/activate' &gt; .envrc
+direnv allow</pre>
+    <p>If the project also needs Django-specific environment variables, extend <code>.envrc</code> with exports such as <code>DJANGO_SETTINGS_MODULE</code>.</p>
+    <table>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td><strong>Smart Jump:</strong> Uses <code>zoxide</code> to jump to your most frequent/recent directories using partial names.</td></tr>
+        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td><strong>Enhanced Listing:</strong> Uses <code>eza</code> to list files with color-coding, icons, and Git integration.</td></tr>
+        <tr><td><kbd>la</kbd></td><td><strong>List All:</strong> Show all files, including hidden dotfiles, in a detailed grid format.</td></tr>
+        <tr><td><kbd>tree</kbd></td><td><strong>Visual Hierarchy:</strong> Display a recursive directory tree (defaulting to 2 levels deep).</td></tr>
+        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td><strong>Smart View:</strong> Uses <code>bat</code> to display file contents with syntax highlighting and line numbers.</td></tr>
+        <tr><td><kbd>cls</kbd></td><td><strong>Clear Screen:</strong> Quickly wipe the current terminal display (alias for <code>clear</code>).</td></tr>
+        <tr><td><kbd>Ctrl + r</kbd></td><td><strong>Fuzzy History:</strong> Interactively search through your entire command history using <code>fzf</code>.</td></tr>
+        <tr><td><kbd>Ctrl + t</kbd></td><td><strong>Fuzzy File:</strong> Find a file anywhere in the current project and paste its path into the command line.</td></tr>
+        <tr><td><kbd>Alt + c</kbd></td><td><strong>Fuzzy CD:</strong> Find a subdirectory and immediately change into it using a fuzzy interface.</td></tr>
+        <tr><td><kbd>→</kbd></td><td><strong>Auto-Complete:</strong> Accept the gray suggestion from <code>zsh-autosuggestions</code>.</td></tr>
+        <tr><td><kbd>Tab</kbd></td><td><strong>Interactive Complete:</strong> Open <code>fzf-tab</code> for fuzzy-searchable tab completion of commands, paths, and arguments.</td></tr>
+        <tr><td><kbd>Shift + Tab</kbd></td><td><strong>Reverse Complete:</strong> Cycle backwards through the completion menu options.</td></tr>
+        <tr><td><kbd>rm / cp / mv</kbd></td><td><strong>Safe Mode:</strong> Aliased to always prompt for confirmation (<code>-i</code>) before destructive operations.</td></tr>
+        <tr><td><kbd>venv &lt;name&gt;</kbd></td><td><strong>Python Setup:</strong> Quickly initialize a new Python virtual environment in the current folder.</td></tr>
+        <tr><td><kbd>venvact</kbd></td><td><strong>Python Activate:</strong> Find and activate the <code>.venv</code> or <code>venv</code> folder in your current directory.</td></tr>
+        <tr><td><kbd>direnv allow</kbd></td><td><strong>Project Env:</strong> Approve the current project's <code>.envrc</code> so entering the directory auto-loads its environment.</td></tr>
+        <tr><td><kbd>direnv status</kbd></td><td><strong>Env Debug:</strong> Inspect whether <code>direnv</code> has loaded the current project's <code>.envrc</code>.</td></tr>
+        <tr><td><kbd>explain &lt;question&gt;</kbd></td><td><strong>AI Assistant:</strong> Send a natural language query directly to the Gemini API for terminal help.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- Tmux -->
+  <div class="section tmux" id="tmux">
+    <h2><span class="dot"></span> Tmux (Multiplexer) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Tmux Wiki</span></span><span class="doc-desc">Official tmux reference</span></a>
+      <a class="doc-link" href="https://github.com/tmux-plugins/tpm" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">TPM</span></span><span class="doc-desc">Tmux plugin manager</span></a>
+      <a class="doc-link" href="https://github.com/christoomey/vim-tmux-navigator" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">vim-tmux-navigator</span></span><span class="doc-desc">Seamless vim/tmux panes</span></a>
+    </div>
+    <div class="section-body">
+    <div class="prefix-note"><strong>Prefix:</strong> <kbd>Ctrl + a</kbd> (Replaces standard <kbd>Ctrl + b</kbd>)</div>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>ta</kbd></td><td><strong>Smart Alias:</strong> Attaches to the last session or creates a new one.</td></tr>
+        <tr><td><kbd>tls</kbd></td><td><strong>List Sessions:</strong> Show all active Tmux sessions and their number of windows.</td></tr>
+        <tr><td><kbd>tk &lt;name&gt;</kbd></td><td><strong>Kill Session:</strong> Terminate a specific Tmux session by its name.</td></tr>
+        <tr><td><kbd>tka</kbd></td><td><strong>Kill All:</strong> Wipe out all running Tmux sessions and processes.</td></tr>
+        <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move focus between Tmux panes and Neovim splits without extra prefixes.</td></tr>
+        <tr><td><kbd>Prefix + |</kbd></td><td><strong>Vertical Split:</strong> Divide the current pane into two side-by-side.</td></tr>
+        <tr><td><kbd>Prefix + -</kbd></td><td><strong>Horizontal Split:</strong> Divide the current pane into two stacked on top of each other.</td></tr>
+        <tr><td><kbd>Prefix + H/J/K/L</kbd></td><td><strong>Resize Pane:</strong> Use arrow-style keys to expand or shrink the focused pane.</td></tr>
+        <tr><td><kbd>Prefix + c</kbd></td><td><strong>New Window:</strong> Create a completely new window within the current session.</td></tr>
+        <tr><td><kbd>Prefix + n</kbd></td><td><strong>Next Window:</strong> Cycle to the next window in the sequence.</td></tr>
+        <tr><td><kbd>Prefix + p</kbd></td><td><strong>Previous Window:</strong> Cycle to the previous window in the sequence.</td></tr>
+        <tr><td><kbd>Prefix + ,</kbd></td><td><strong>Rename Window:</strong> Open a prompt to change the name of the active window.</td></tr>
+        <tr><td><kbd>Prefix + &amp;</kbd></td><td><strong>Kill Window:</strong> Close the current window and all its contained panes.</td></tr>
+        <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td><strong>Toggle Zoom:</strong> Expand the current pane to fill the entire window (and back).</td></tr>
+        <tr><td><kbd>Prefix + b</kbd></td><td><strong>Break Pane:</strong> Move the current pane out into its own dedicated window.</td></tr>
+        <tr><td><kbd>Prefix + x</kbd></td><td><strong>Kill Pane:</strong> Prompt to terminate the currently focused pane.</td></tr>
+        <tr><td><kbd>Prefix + Space</kbd></td><td><strong>Last Window:</strong> Instantly jump back to the most recently active window.</td></tr>
+        <tr><td><kbd>Prefix + $</kbd></td><td><strong>Rename Session:</strong> Assign a new name to the current Tmux session.</td></tr>
+        <tr><td><kbd>Prefix + s</kbd></td><td><strong>Choose Session:</strong> Open an interactive list to switch between sessions.</td></tr>
+        <tr><td><kbd>Ctrl + j</kbd></td><td><strong>Fuzzy Switcher:</strong> Quickly jump between sessions using a fuzzy search menu.</td></tr>
+        <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins:</strong> Download and initialize new plugins via TPM.</td></tr>
+        <tr><td><kbd>Prefix + U</kbd></td><td><strong>Update Plugins:</strong> Check for and install updates for all Tmux plugins.</td></tr>
+        <tr><td><kbd>Prefix + Ctrl + s</kbd></td><td><strong>Save Session:</strong> Manually save the current Tmux layout and history.</td></tr>
+        <tr><td><kbd>Prefix + Ctrl + r</kbd></td><td><strong>Restore Session:</strong> Recover the last saved Tmux environment.</td></tr>
+        <tr><td><kbd>Prefix + r</kbd></td><td><strong>Reload Config:</strong> Instantly apply changes made to <code>.tmux.conf</code>.</td></tr>
+        <tr><td><kbd>Prefix + [</kbd></td><td><strong>Copy Mode:</strong> Enter scrollback buffer (v: select, y: copy).</td></tr>
+        <tr><td><kbd>Prefix + d</kbd></td><td><strong>Detach:</strong> Exit the session while keeping it running in the background.</td></tr>
+        <tr><td><kbd>Prefix + :</kbd></td><td><strong>Command Mode:</strong> Open the Tmux command prompt for direct commands.</td></tr>
+        <tr><td><kbd>Prefix + ?</kbd></td><td><strong>List Keybinds:</strong> Show all current Tmux key bindings.</td></tr>
+        <tr><td><kbd>Prefix + ]</kbd></td><td><strong>Paste:</strong> Paste text from the Tmux copy buffer.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- Neovim -->
+  <div class="section neovim" id="neovim">
+    <h2><span class="dot"></span> Neovim (Editor) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="doc-links">
+      <a class="doc-link" href="https://neovim.io/doc/" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Neovim Docs</span></span><span class="doc-desc">Official Neovim reference</span></a>
+      <a class="doc-link" href="https://github.com/nvim-telescope/telescope.nvim" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Telescope</span></span><span class="doc-desc">Fuzzy finder for Neovim</span></a>
+      <a class="doc-link" href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">NvimTree</span></span><span class="doc-desc">File explorer sidebar</span></a>
+      <a class="doc-link" href="https://github.com/folke/trouble.nvim" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Trouble</span></span><span class="doc-desc">Diagnostics list panel</span></a>
+    </div>
+    <div class="section-body">
+    <div class="prefix-note"><strong>Leader Key:</strong> <kbd>Space</kbd></div>
+
+    <h3>General &amp; Files</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space w</kbd></td><td><strong>Save:</strong> Persist the current buffer to disk.</td></tr>
+        <tr><td><kbd>Space q</kbd></td><td><strong>Close:</strong> Close the focused window (split).</td></tr>
+        <tr><td><kbd>Space Q</kbd></td><td><strong>Exit:</strong> Force-close all windows and quit Neovim.</td></tr>
+        <tr><td><kbd>Space R</kbd></td><td><strong>Restart:</strong> Restart Neovim and restore the current session.</td></tr>
+        <tr><td><kbd>Space Space</kbd></td><td><strong>Clear:</strong> Wipe the current search highlight.</td></tr>
+        <tr><td><kbd>Space uw</kbd></td><td><strong>Toggle Wrap:</strong> Toggle line wrapping in the current buffer.</td></tr>
+        <tr><td><kbd>Space e</kbd></td><td><strong>Explore:</strong> Toggle the sidebar file tree (NvimTree).</td></tr>
+        <tr><td><kbd>Space ff</kbd></td><td><strong>File Search:</strong> Interactively search for files by name using <code>fff.nvim</code>.</td></tr>
+        <tr><td><kbd>Space fg</kbd></td><td><strong>Project Search:</strong> Live-grep through all files in the current workspace with <code>fff.nvim</code>.</td></tr>
+        <tr><td><kbd>Space fo</kbd></td><td><strong>Recent:</strong> Quickly reopen recently accessed files.</td></tr>
+        <tr><td><kbd>Space fb</kbd></td><td><strong>Buffers:</strong> List and switch between currently open buffers.</td></tr>
+        <tr><td><kbd>Space fh</kbd></td><td><strong>Help:</strong> Search through Neovim&rsquo;s internal help documentation.</td></tr>
+        <tr><td><kbd>Space fd</kbd></td><td><strong>Workspace Diagnostics:</strong> List all errors/warnings in the project.</td></tr>
+        <tr><td><kbd>Space ft</kbd></td><td><strong>Todo Search:</strong> Find all TODO, FIXME, or HACK comments in the codebase.</td></tr>
+        <tr><td><kbd>Space mp</kbd></td><td><strong>Markdown Preview:</strong> Start a live-reloading preview in your browser.</td></tr>
+        <tr><td><kbd>Space ms</kbd></td><td><strong>Stop Preview:</strong> Halt the running Markdown preview server.</td></tr>
+        <tr><td><kbd>C-\</kbd></td><td><strong>Terminal:</strong> Toggle the integrated floating terminal overlay.</td></tr>
+        <tr><td><kbd>Space u</kbd></td><td><strong>Undo Tree:</strong> Visualize and navigate your edit history graphically.</td></tr>
+        <tr><td><kbd>Space o</kbd></td><td><strong>Symbol Outline:</strong> Show a navigable list of functions/classes in the file.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>FFF (Fuzzy Finder)</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>Space ff</kbd></td><td><strong>FFFind Files:</strong> High-performance fuzzy file search across the project.</td></tr>
+        <tr><td><kbd>Space fg</kbd></td><td><strong>LiFFFe Grep:</strong> Fast live grep through all files using the FFF engine.</td></tr>
+        <tr><td><kbd>Space fz</kbd></td><td><strong>Fuzzy Grep:</strong> Run live grep with switchable <code>fuzzy</code> and <code>plain</code> search modes.</td></tr>
+        <tr><td><kbd>Space fc</kbd></td><td><strong>Current Word:</strong> Search the current word across the project.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Completion</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>C-k</kbd></td><td><strong>Previous Item:</strong> Select the previous suggestion in the completion menu.</td></tr>
+        <tr><td><kbd>C-j</kbd></td><td><strong>Next Item:</strong> Select the next suggestion in the completion menu.</td></tr>
+        <tr><td><kbd>Enter</kbd></td><td><strong>Confirm:</strong> Accept the currently highlighted completion.</td></tr>
+        <tr><td><kbd>Ctrl-g c</kbd></td><td><strong>Trigger:</strong> Manually invoke the completion menu.</td></tr>
+        <tr><td><kbd>Ctrl-g d</kbd></td><td><strong>Docs Link:</strong> Open the selected completion item&rsquo;s documentation link in the browser.</td></tr>
+        <tr><td><kbd>Tab</kbd></td><td><strong>Next/Jump:</strong> Select next item or jump to next snippet placeholder.</td></tr>
+        <tr><td><kbd>S-Tab</kbd></td><td><strong>Previous:</strong> Select previous item or jump to previous snippet placeholder.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Code &amp; LSP</h3>
+    <table>
+      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td><kbd>gd</kbd></td><td><strong>Definition:</strong> Jump to where the symbol under the cursor is defined.</td></tr>
+        <tr><td><kbd>gD</kbd></td><td><strong>Declaration:</strong> Jump to the original symbol declaration when it differs from the definition.</td></tr>
+        <tr><td><kbd>gi</kbd></td><td><strong>Implementation:</strong> Jump to concrete implementations of the current interface or method.</td></tr>
+        <tr><td><kbd>gr</kbd></td><td><strong>References:</strong> Find every location where the current symbol is used.</td></tr>
+        <tr><td><kbd>K</kbd></td><td><strong>Documentation:</strong> Show the hover-doc or type signature for the symbol.</td></tr>
+        <tr><td><kbd>Space K</kbd></td><td><strong>Current File Docs:</strong> Open the DevDocs sets mapped to the current filetype.</td></tr>
+        <tr><td><kbd>Space cf</kbd></td><td><strong>Format:</strong> Automatically tidy the current file using configured formatters.</td></tr>
+        <tr><td><kbd>Space rn</kbd></td><td><strong>Refactor Rename:</strong> Rename the symbol globally with a live preview of changes.</td></tr>
+        <tr><td><kbd>Space ca</kbd></td><td><strong>Code Action:</strong> Open quick-fix or refactoring suggestions (LSP).</td></tr>
+        <tr><td><kbd>Space ci</kbd></td><td><strong>Callers:</strong> View a tree of functions that call the current one.</td></tr>
+        <tr><td><kbd>Space co</kbd></td><td><strong>Callees:</strong> View a tree of functions called by the current one.</td></tr>
+        <tr><td><kbd>Space dd</kbd></td><td><strong>Diagnostic Info:</strong> Show full error/warning message in a floating window.</td></tr>
+        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td><strong>Jump Diagnostic:</strong> Navigate to the previous or next code issue.</td></tr>
+        <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td><strong>Jump Quickfix:</strong> Navigate to the previous or next item in the quickfix list.</td></tr>
+        <tr><td><kbd>[Q</kbd> / <kbd>]Q</kbd></td><td><strong>Start/End Quickfix:</strong> Jump to the first or last item in the quickfix list.</td></tr>
+        <tr><td><kbd>Space xx</kbd></td><td><strong>Issues Panel:</strong> Toggle the main diagnostics viewer (Trouble).</td></tr>
+        <tr><td><kbd>Space xw</kbd></td><td><strong>Warnings Panel:</strong> Focus specifically on warning-level issues.</td></tr>
+        <tr><td><kbd>Space xd</kbd></td><td><strong>Buffer Diagnostics:</strong> Show issues only for the current file.</td></tr>
+        <tr><td><kbd>Space xL</kbd></td><td><strong>Location View:</strong> Show items from the location list in Trouble.</td></tr>
+        <tr><td><kbd>Space xQ</kbd></td><td><strong>Quickfix View:</strong> Show items from the quickfix list in Trouble.</td></tr>
+        <tr><td><kbd>:LspStatus</kbd></td><td><strong>Buffer Status:</strong> Print the current file path, filetype, project root, and attached LSP clients.</td></tr>
+      </tbody>
+    </table>
     </div>
   </div>
 <!-- Ghostty -->
   <div class="section ghostty" id="ghostty">
     <h2><span class="dot"></span> Ghostty (Terminal) <span class="collapse-icon">&#9660;</span></h2>
     <div class="doc-links">
-      <a class="doc-link" href="https://ghostty.org/docs" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Ghostty Docs<span class="doc-desc">Terminal emulator docs</span></span></a>
-      <a class="doc-link" href="https://ghostty.org/docs/config/reference" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Config Reference<span class="doc-desc">All Ghostty config options</span></span></a>
+      <a class="doc-link" href="https://ghostty.org/docs" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Ghostty Docs</span></span><span class="doc-desc">Terminal emulator docs</span></a>
+      <a class="doc-link" href="https://ghostty.org/docs/config/reference" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Config Reference</span></span><span class="doc-desc">All Ghostty config options</span></a>
     </div>
     <div class="section-body">
 
@@ -810,8 +921,8 @@
   <div class="section git" id="git">
     <h2><span class="dot"></span> Git Workflow <span class="collapse-icon">&#9660;</span></h2>
     <div class="doc-links">
-      <a class="doc-link" href="https://github.com/jesseduffield/lazygit" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Lazygit<span class="doc-desc">Terminal UI for Git</span></span></a>
-      <a class="doc-link" href="https://git-scm.com/doc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Git Docs<span class="doc-desc">Official Git reference</span></span></a>
+      <a class="doc-link" href="https://github.com/jesseduffield/lazygit" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Lazygit</span></span><span class="doc-desc">Terminal UI for Git</span></a>
+      <a class="doc-link" href="https://git-scm.com/doc" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Git Docs</span></span><span class="doc-desc">Official Git reference</span></a>
     </div>
     <div class="section-body">
     <table>
@@ -829,201 +940,15 @@
     </table>
     </div>
   </div>
-<!-- Neovim -->
-  <div class="section neovim" id="neovim">
-    <h2><span class="dot"></span> Neovim (Editor) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="doc-links">
-      <a class="doc-link" href="https://neovim.io/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Neovim Docs<span class="doc-desc">Official Neovim reference</span></span></a>
-      <a class="doc-link" href="https://github.com/nvim-telescope/telescope.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Telescope<span class="doc-desc">Fuzzy finder for Neovim</span></span></a>
-      <a class="doc-link" href="https://github.com/nvim-tree/nvim-tree.lua" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">NvimTree<span class="doc-desc">File explorer sidebar</span></span></a>
-      <a class="doc-link" href="https://github.com/folke/trouble.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Trouble<span class="doc-desc">Diagnostics list panel</span></span></a>
-    </div>
-    <div class="section-body">
-    <div class="prefix-note"><strong>Leader Key:</strong> <kbd>Space</kbd></div>
-
-    <h3>General &amp; Files</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>Space w</kbd></td><td><strong>Save:</strong> Persist the current buffer to disk.</td></tr>
-        <tr><td><kbd>Space q</kbd></td><td><strong>Close:</strong> Close the focused window (split).</td></tr>
-        <tr><td><kbd>Space Q</kbd></td><td><strong>Exit:</strong> Force-close all windows and quit Neovim.</td></tr>
-        <tr><td><kbd>Space R</kbd></td><td><strong>Restart:</strong> Restart Neovim and restore the current session.</td></tr>
-        <tr><td><kbd>Space Space</kbd></td><td><strong>Clear:</strong> Wipe the current search highlight.</td></tr>
-        <tr><td><kbd>Space uw</kbd></td><td><strong>Toggle Wrap:</strong> Toggle line wrapping in the current buffer.</td></tr>
-        <tr><td><kbd>Space e</kbd></td><td><strong>Explore:</strong> Toggle the sidebar file tree (NvimTree).</td></tr>
-        <tr><td><kbd>Space ff</kbd></td><td><strong>File Search:</strong> Interactively search for files by name using <code>fff.nvim</code>.</td></tr>
-        <tr><td><kbd>Space fg</kbd></td><td><strong>Project Search:</strong> Live-grep through all files in the current workspace with <code>fff.nvim</code>.</td></tr>
-        <tr><td><kbd>Space fo</kbd></td><td><strong>Recent:</strong> Quickly reopen recently accessed files.</td></tr>
-        <tr><td><kbd>Space fb</kbd></td><td><strong>Buffers:</strong> List and switch between currently open buffers.</td></tr>
-        <tr><td><kbd>Space fh</kbd></td><td><strong>Help:</strong> Search through Neovim&rsquo;s internal help documentation.</td></tr>
-        <tr><td><kbd>Space fd</kbd></td><td><strong>Workspace Diagnostics:</strong> List all errors/warnings in the project.</td></tr>
-        <tr><td><kbd>Space ft</kbd></td><td><strong>Todo Search:</strong> Find all TODO, FIXME, or HACK comments in the codebase.</td></tr>
-        <tr><td><kbd>Space mp</kbd></td><td><strong>Markdown Preview:</strong> Start a live-reloading preview in your browser.</td></tr>
-        <tr><td><kbd>Space ms</kbd></td><td><strong>Stop Preview:</strong> Halt the running Markdown preview server.</td></tr>
-        <tr><td><kbd>C-\</kbd></td><td><strong>Terminal:</strong> Toggle the integrated floating terminal overlay.</td></tr>
-        <tr><td><kbd>Space u</kbd></td><td><strong>Undo Tree:</strong> Visualize and navigate your edit history graphically.</td></tr>
-        <tr><td><kbd>Space o</kbd></td><td><strong>Symbol Outline:</strong> Show a navigable list of functions/classes in the file.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>FFF (Fuzzy Finder)</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>Space ff</kbd></td><td><strong>FFFind Files:</strong> High-performance fuzzy file search across the project.</td></tr>
-        <tr><td><kbd>Space fg</kbd></td><td><strong>LiFFFe Grep:</strong> Fast live grep through all files using the FFF engine.</td></tr>
-        <tr><td><kbd>Space fz</kbd></td><td><strong>Fuzzy Grep:</strong> Run live grep with switchable <code>fuzzy</code> and <code>plain</code> search modes.</td></tr>
-        <tr><td><kbd>Space fc</kbd></td><td><strong>Current Word:</strong> Search the current word across the project.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Completion</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>C-k</kbd></td><td><strong>Previous Item:</strong> Select the previous suggestion in the completion menu.</td></tr>
-        <tr><td><kbd>C-j</kbd></td><td><strong>Next Item:</strong> Select the next suggestion in the completion menu.</td></tr>
-        <tr><td><kbd>Enter</kbd></td><td><strong>Confirm:</strong> Accept the currently highlighted completion.</td></tr>
-        <tr><td><kbd>Ctrl-g c</kbd></td><td><strong>Trigger:</strong> Manually invoke the completion menu.</td></tr>
-        <tr><td><kbd>Ctrl-g d</kbd></td><td><strong>Docs Link:</strong> Open the selected completion item&rsquo;s documentation link in the browser.</td></tr>
-        <tr><td><kbd>Tab</kbd></td><td><strong>Next/Jump:</strong> Select next item or jump to next snippet placeholder.</td></tr>
-        <tr><td><kbd>S-Tab</kbd></td><td><strong>Previous:</strong> Select previous item or jump to previous snippet placeholder.</td></tr>
-      </tbody>
-    </table>
-
-    <h3>Code &amp; LSP</h3>
-    <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>gd</kbd></td><td><strong>Definition:</strong> Jump to where the symbol under the cursor is defined.</td></tr>
-        <tr><td><kbd>gD</kbd></td><td><strong>Declaration:</strong> Jump to the original symbol declaration when it differs from the definition.</td></tr>
-        <tr><td><kbd>gi</kbd></td><td><strong>Implementation:</strong> Jump to concrete implementations of the current interface or method.</td></tr>
-        <tr><td><kbd>gr</kbd></td><td><strong>References:</strong> Find every location where the current symbol is used.</td></tr>
-        <tr><td><kbd>K</kbd></td><td><strong>Documentation:</strong> Show the hover-doc or type signature for the symbol.</td></tr>
-        <tr><td><kbd>Space K</kbd></td><td><strong>Current File Docs:</strong> Open the DevDocs sets mapped to the current filetype.</td></tr>
-        <tr><td><kbd>Space cf</kbd></td><td><strong>Format:</strong> Automatically tidy the current file using configured formatters.</td></tr>
-        <tr><td><kbd>Space rn</kbd></td><td><strong>Refactor Rename:</strong> Rename the symbol globally with a live preview of changes.</td></tr>
-        <tr><td><kbd>Space ca</kbd></td><td><strong>Code Action:</strong> Open quick-fix or refactoring suggestions (LSP).</td></tr>
-        <tr><td><kbd>Space ci</kbd></td><td><strong>Callers:</strong> View a tree of functions that call the current one.</td></tr>
-        <tr><td><kbd>Space co</kbd></td><td><strong>Callees:</strong> View a tree of functions called by the current one.</td></tr>
-        <tr><td><kbd>Space dd</kbd></td><td><strong>Diagnostic Info:</strong> Show full error/warning message in a floating window.</td></tr>
-        <tr><td><kbd>[d</kbd> / <kbd>]d</kbd></td><td><strong>Jump Diagnostic:</strong> Navigate to the previous or next code issue.</td></tr>
-        <tr><td><kbd>[q</kbd> / <kbd>]q</kbd></td><td><strong>Jump Quickfix:</strong> Navigate to the previous or next item in the quickfix list.</td></tr>
-        <tr><td><kbd>[Q</kbd> / <kbd>]Q</kbd></td><td><strong>Start/End Quickfix:</strong> Jump to the first or last item in the quickfix list.</td></tr>
-        <tr><td><kbd>Space xx</kbd></td><td><strong>Issues Panel:</strong> Toggle the main diagnostics viewer (Trouble).</td></tr>
-        <tr><td><kbd>Space xw</kbd></td><td><strong>Warnings Panel:</strong> Focus specifically on warning-level issues.</td></tr>
-        <tr><td><kbd>Space xd</kbd></td><td><strong>Buffer Diagnostics:</strong> Show issues only for the current file.</td></tr>
-        <tr><td><kbd>Space xL</kbd></td><td><strong>Location View:</strong> Show items from the location list in Trouble.</td></tr>
-        <tr><td><kbd>Space xQ</kbd></td><td><strong>Quickfix View:</strong> Show items from the quickfix list in Trouble.</td></tr>
-        <tr><td><kbd>:LspStatus</kbd></td><td><strong>Buffer Status:</strong> Print the current file path, filetype, project root, and attached LSP clients.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-<!-- Runtimes -->
-  <div class="section runtimes" id="runtimes">
-    <h2><span class="dot"></span> Runtimes &amp; Languages <span class="collapse-icon">&#9660;</span></h2>
-    <div class="doc-links">
-      <a class="doc-link" href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvm<span class="doc-desc">Node version manager</span></span></a>
-      <a class="doc-link" href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">pyenv<span class="doc-desc">Python version manager</span></span></a>
-      <a class="doc-link" href="https://github.com/rbenv/rbenv" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">rbenv<span class="doc-desc">Ruby version manager</span></span></a>
-      <a class="doc-link" href="https://direnv.net/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">direnv<span class="doc-desc">Project-local environment loader</span></span></a>
-      <a class="doc-link" href="https://go.dev/doc/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Go<span class="doc-desc">Go language reference</span></span></a>
-      <a class="doc-link" href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Rust<span class="doc-desc">The Rust Book</span></span></a>
-    </div>
-    <div class="section-body">
-    <table>
-      <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Node.js</strong></td><td><strong>Version Manager:</strong> Managed by <code>nvm</code>. Run <code>nvm install 20</code> to install the latest LTS version.</td></tr>
-        <tr><td><strong>Python</strong></td><td><strong>Interpreter + Project Env:</strong> Base versions are managed by <code>pyenv</code>. Project-local <code>.venv</code> activation is handled by <code>direnv</code> when an <code>.envrc</code> is present.</td></tr>
-        <tr><td><strong>Ruby</strong></td><td><strong>Version Manager:</strong> Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code> to switch between different Ruby environments.</td></tr>
-        <tr><td><strong>Lua</strong></td><td><strong>Editor Config:</strong> Uses <code>lua_ls</code> with Neovim-aware diagnostics and completion, plus DevDocs mapping for <code>python</code>, frontend, and systems languages where useful.</td></tr>
-        <tr><td><strong>Shell</strong></td><td><strong>Shell Scripts:</strong> Uses <code>bashls</code> for LSP, <code>shellcheck</code> for linting, and <code>shfmt</code> for formatting.</td></tr>
-        <tr><td><strong>JSON / YAML</strong></td><td><strong>Config Files:</strong> Uses <code>jsonls</code> and <code>yamlls</code> for schema-aware completion and validation.</td></tr>
-        <tr><td><strong>HTML / CSS / Tailwind</strong></td><td><strong>Frontend Markup:</strong> Uses <code>html</code>, <code>cssls</code>, and <code>tailwindcss</code> LSPs with <code>prettier</code> handling formatting.</td></tr>
-        <tr><td><strong>Django Templates</strong></td><td><strong>Template Support:</strong> Uses <code>djlsp</code> on <code>htmldjango</code> files, with project-aware completions when Neovim is launched from a shell using the correct project environment.</td></tr>
-        <tr><td><strong>SQL</strong></td><td><strong>Database Queries:</strong> Uses <code>sqlls</code> for language-server support, <code>sql_formatter</code> for formatting, and PostgreSQL docs in DevDocs.</td></tr>
-        <tr><td><strong>C/C++</strong></td><td><strong>Clang Toolchain:</strong> Uses <code>llvm</code>/<code>clangd</code> for LSP and <code>clang-format</code> for code style. Debugging is handled by <code>codelldb</code>.</td></tr>
-        <tr><td><strong>TypeScript / JavaScript</strong></td><td><strong>Web Development:</strong> Uses <code>ts_ls</code> plus <code>eslint</code> for diagnostics and code actions, with <code>prettier</code> handling formatting.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-<!-- Shell & Navigation -->
-  <div class="section shell" id="shell">
-    <h2><span class="dot"></span> Shell &amp; Navigation (Zsh) <span class="collapse-icon">&#9660;</span></h2>
-    <div class="doc-links">
-      <a class="doc-link" href="https://github.com/ajeetdsouza/zoxide" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">zoxide<span class="doc-desc">Smarter cd command</span></span></a>
-      <a class="doc-link" href="https://github.com/eza-community/eza" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">eza<span class="doc-desc">Modern ls replacement</span></span></a>
-      <a class="doc-link" href="https://github.com/sharkdp/bat" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">bat<span class="doc-desc">Cat with syntax highlighting</span></span></a>
-      <a class="doc-link" href="https://github.com/junegunn/fzf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">fzf<span class="doc-desc">Command-line fuzzy finder</span></span></a>
-      <a class="doc-link" href="https://github.com/zsh-users/zsh-autosuggestions" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">zsh-autosuggestions<span class="doc-desc">Fish-like shell suggestions</span></span></a>
-      <a class="doc-link" href="https://starship.rs/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Starship<span class="doc-desc">Shell prompt</span></span></a>
-      <a class="doc-link" href="https://direnv.net/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">direnv<span class="doc-desc">Project-local env loader</span></span></a>
-    </div>
-    <div class="section-body">
-    <p><strong>Prompt:</strong> Starship shows <code>user@host</code>, shortened path, active <code>.venv</code>, <code>direnv</code> state, git branch/status, failed exit status, background jobs, and command duration for commands slower than 50ms.</p>
-    <p><strong>Python/Django Projects:</strong> <code>direnv</code> does not activate a virtualenv just because a <code>.venv</code> folder exists. Add an <code>.envrc</code> in the project root, then approve it once with <code>direnv allow</code>.</p>
-    <pre>printf '%s\n' 'source .venv/bin/activate' &gt; .envrc
-direnv allow</pre>
-    <p>If the project also needs Django-specific environment variables, extend <code>.envrc</code> with exports such as <code>DJANGO_SETTINGS_MODULE</code>.</p>
-    <table>
-      <thead><tr><th>Command</th><th>Description</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>z &lt;dir&gt;</kbd></td><td><strong>Smart Jump:</strong> Uses <code>zoxide</code> to jump to your most frequent/recent directories using partial names.</td></tr>
-        <tr><td><kbd>ls</kbd> / <kbd>ll</kbd></td><td><strong>Enhanced Listing:</strong> Uses <code>eza</code> to list files with color-coding, icons, and Git integration.</td></tr>
-        <tr><td><kbd>la</kbd></td><td><strong>List All:</strong> Show all files, including hidden dotfiles, in a detailed grid format.</td></tr>
-        <tr><td><kbd>tree</kbd></td><td><strong>Visual Hierarchy:</strong> Display a recursive directory tree (defaulting to 2 levels deep).</td></tr>
-        <tr><td><kbd>cat &lt;file&gt;</kbd></td><td><strong>Smart View:</strong> Uses <code>bat</code> to display file contents with syntax highlighting and line numbers.</td></tr>
-        <tr><td><kbd>cls</kbd></td><td><strong>Clear Screen:</strong> Quickly wipe the current terminal display (alias for <code>clear</code>).</td></tr>
-        <tr><td><kbd>Ctrl + r</kbd></td><td><strong>Fuzzy History:</strong> Interactively search through your entire command history using <code>fzf</code>.</td></tr>
-        <tr><td><kbd>Ctrl + t</kbd></td><td><strong>Fuzzy File:</strong> Find a file anywhere in the current project and paste its path into the command line.</td></tr>
-        <tr><td><kbd>Alt + c</kbd></td><td><strong>Fuzzy CD:</strong> Find a subdirectory and immediately change into it using a fuzzy interface.</td></tr>
-        <tr><td><kbd>→</kbd></td><td><strong>Auto-Complete:</strong> Accept the gray suggestion from <code>zsh-autosuggestions</code>.</td></tr>
-        <tr><td><kbd>Tab</kbd></td><td><strong>Interactive Complete:</strong> Open <code>fzf-tab</code> for fuzzy-searchable tab completion of commands, paths, and arguments.</td></tr>
-        <tr><td><kbd>Shift + Tab</kbd></td><td><strong>Reverse Complete:</strong> Cycle backwards through the completion menu options.</td></tr>
-        <tr><td><kbd>rm / cp / mv</kbd></td><td><strong>Safe Mode:</strong> Aliased to always prompt for confirmation (<code>-i</code>) before destructive operations.</td></tr>
-        <tr><td><kbd>venv &lt;name&gt;</kbd></td><td><strong>Python Setup:</strong> Quickly initialize a new Python virtual environment in the current folder.</td></tr>
-        <tr><td><kbd>venvact</kbd></td><td><strong>Python Activate:</strong> Find and activate the <code>.venv</code> or <code>venv</code> folder in your current directory.</td></tr>
-        <tr><td><kbd>direnv allow</kbd></td><td><strong>Project Env:</strong> Approve the current project's <code>.envrc</code> so entering the directory auto-loads its environment.</td></tr>
-        <tr><td><kbd>direnv status</kbd></td><td><strong>Env Debug:</strong> Inspect whether <code>direnv</code> has loaded the current project's <code>.envrc</code>.</td></tr>
-        <tr><td><kbd>explain &lt;question&gt;</kbd></td><td><strong>AI Assistant:</strong> Send a natural language query directly to the Gemini API for terminal help.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-<!-- System & Config -->
-  <div class="section system" id="system">
-    <h2><span class="dot"></span> System &amp; Config Management <span class="collapse-icon">&#9660;</span></h2>
-    <div class="doc-links">
-      <a class="doc-link" href="https://brew.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Homebrew<span class="doc-desc">macOS package manager</span></span></a>
-      <a class="doc-link" href="https://ohmyz.sh" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Oh My Zsh<span class="doc-desc">Zsh config framework</span></span></a>
-    </div>
-    <div class="section-body">
-    <table>
-      <thead><tr><th>Command</th><th>Description</th></tr></thead>
-      <tbody>
-        <tr><td><kbd>update</kbd></td><td><strong>Global Update:</strong> Orchestrate updates for macOS, Homebrew packages, and Oh My Zsh plugins.</td></tr>
-        <tr><td><kbd>bbu</kbd></td><td><strong>Brew Bundle:</strong> Synchronize your installed Homebrew packages to the <code>Brewfile</code> for version control.</td></tr>
-        <tr><td><kbd>zshconfig</kbd></td><td><strong>Edit Config:</strong> Open the <code>.zshrc</code> configuration file in Neovim for quick customization.</td></tr>
-        <tr><td><kbd>reload</kbd></td><td><strong>Source Config:</strong> Apply changes from <code>.zshrc</code> to the current session without restarting the terminal.</td></tr>
-        <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td><strong>Create & Jump:</strong> Create a new directory and immediately change into it in a single step.</td></tr>
-        <tr><td><kbd>icloud</kbd> / <kbd>ic</kbd></td><td><strong>Jump to iCloud:</strong> Quickly navigate to your personal iCloud Drive folder in the terminal.</td></tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
 <!-- Testing & Debugging -->
   <div class="section neovim-sub" id="testing">
     <h2><span class="dot"></span> Testing, Debugging &amp; Tasks <span class="collapse-icon">&#9660;</span></h2>
     <div class="doc-links">
-      <a class="doc-link" href="https://github.com/nvim-neotest/neotest" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Neotest<span class="doc-desc">Test runner framework</span></span></a>
-      <a class="doc-link" href="https://github.com/mfussenegger/nvim-dap" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">nvim-dap<span class="doc-desc">Debug adapter protocol</span></span></a>
-      <a class="doc-link" href="https://github.com/stevearc/overseer.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Overseer<span class="doc-desc">Task runner and manager</span></span></a>
-      <a class="doc-link" href="https://github.com/folke/flash.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Flash<span class="doc-desc">Quick cursor navigation</span></span></a>
-      <a class="doc-link" href="https://github.com/sindrets/diffview.nvim" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Diffview<span class="doc-desc">Git diff and merge tool</span></span></a>
+      <a class="doc-link" href="https://github.com/nvim-neotest/neotest" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Neotest</span></span><span class="doc-desc">Test runner framework</span></a>
+      <a class="doc-link" href="https://github.com/mfussenegger/nvim-dap" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">nvim-dap</span></span><span class="doc-desc">Debug adapter protocol</span></a>
+      <a class="doc-link" href="https://github.com/stevearc/overseer.nvim" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Overseer</span></span><span class="doc-desc">Task runner and manager</span></a>
+      <a class="doc-link" href="https://github.com/folke/flash.nvim" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Flash</span></span><span class="doc-desc">Quick cursor navigation</span></a>
+      <a class="doc-link" href="https://github.com/sindrets/diffview.nvim" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Diffview</span></span><span class="doc-desc">Git diff and merge tool</span></a>
     </div>
     <div class="section-body">
 
@@ -1089,51 +1014,70 @@ direnv allow</pre>
     </table>
     </div>
   </div>
-<!-- Tmux -->
-  <div class="section tmux" id="tmux">
-    <h2><span class="dot"></span> Tmux (Multiplexer) <span class="collapse-icon">&#9660;</span></h2>
+<!-- System & Config -->
+  <div class="section system" id="system">
+    <h2><span class="dot"></span> System &amp; Config Management <span class="collapse-icon">&#9660;</span></h2>
     <div class="doc-links">
-      <a class="doc-link" href="https://github.com/tmux/tmux/wiki" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">Tmux Wiki<span class="doc-desc">Official tmux reference</span></span></a>
-      <a class="doc-link" href="https://github.com/tmux-plugins/tpm" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">TPM<span class="doc-desc">Tmux plugin manager</span></span></a>
-      <a class="doc-link" href="https://github.com/christoomey/vim-tmux-navigator" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-text">vim-tmux-navigator<span class="doc-desc">Seamless vim/tmux panes</span></span></a>
+      <a class="doc-link" href="https://brew.sh" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Homebrew</span></span><span class="doc-desc">macOS package manager</span></a>
+      <a class="doc-link" href="https://ohmyz.sh" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Oh My Zsh</span></span><span class="doc-desc">Zsh config framework</span></a>
     </div>
     <div class="section-body">
-    <div class="prefix-note"><strong>Prefix:</strong> <kbd>Ctrl + a</kbd> (Replaces standard <kbd>Ctrl + b</kbd>)</div>
     <table>
-      <thead><tr><th>Key</th><th>Action</th></tr></thead>
+      <thead><tr><th>Command</th><th>Description</th></tr></thead>
       <tbody>
-        <tr><td><kbd>ta</kbd></td><td><strong>Smart Alias:</strong> Attaches to the last session or creates a new one.</td></tr>
-        <tr><td><kbd>tls</kbd></td><td><strong>List Sessions:</strong> Show all active Tmux sessions and their number of windows.</td></tr>
-        <tr><td><kbd>tk &lt;name&gt;</kbd></td><td><strong>Kill Session:</strong> Terminate a specific Tmux session by its name.</td></tr>
-        <tr><td><kbd>tka</kbd></td><td><strong>Kill All:</strong> Wipe out all running Tmux sessions and processes.</td></tr>
-        <tr><td><kbd>Ctrl + h/j/k/l</kbd></td><td><strong>Seamless Navigation:</strong> Move focus between Tmux panes and Neovim splits without extra prefixes.</td></tr>
-        <tr><td><kbd>Prefix + |</kbd></td><td><strong>Vertical Split:</strong> Divide the current pane into two side-by-side.</td></tr>
-        <tr><td><kbd>Prefix + -</kbd></td><td><strong>Horizontal Split:</strong> Divide the current pane into two stacked on top of each other.</td></tr>
-        <tr><td><kbd>Prefix + H/J/K/L</kbd></td><td><strong>Resize Pane:</strong> Use arrow-style keys to expand or shrink the focused pane.</td></tr>
-        <tr><td><kbd>Prefix + c</kbd></td><td><strong>New Window:</strong> Create a completely new window within the current session.</td></tr>
-        <tr><td><kbd>Prefix + n</kbd></td><td><strong>Next Window:</strong> Cycle to the next window in the sequence.</td></tr>
-        <tr><td><kbd>Prefix + p</kbd></td><td><strong>Previous Window:</strong> Cycle to the previous window in the sequence.</td></tr>
-        <tr><td><kbd>Prefix + ,</kbd></td><td><strong>Rename Window:</strong> Open a prompt to change the name of the active window.</td></tr>
-        <tr><td><kbd>Prefix + &amp;</kbd></td><td><strong>Kill Window:</strong> Close the current window and all its contained panes.</td></tr>
-        <tr><td><kbd>Prefix + z</kbd> / <kbd>m</kbd></td><td><strong>Toggle Zoom:</strong> Expand the current pane to fill the entire window (and back).</td></tr>
-        <tr><td><kbd>Prefix + b</kbd></td><td><strong>Break Pane:</strong> Move the current pane out into its own dedicated window.</td></tr>
-        <tr><td><kbd>Prefix + x</kbd></td><td><strong>Kill Pane:</strong> Prompt to terminate the currently focused pane.</td></tr>
-        <tr><td><kbd>Prefix + Space</kbd></td><td><strong>Last Window:</strong> Instantly jump back to the most recently active window.</td></tr>
-        <tr><td><kbd>Prefix + $</kbd></td><td><strong>Rename Session:</strong> Assign a new name to the current Tmux session.</td></tr>
-        <tr><td><kbd>Prefix + s</kbd></td><td><strong>Choose Session:</strong> Open an interactive list to switch between sessions.</td></tr>
-        <tr><td><kbd>Ctrl + j</kbd></td><td><strong>Fuzzy Switcher:</strong> Quickly jump between sessions using a fuzzy search menu.</td></tr>
-        <tr><td><kbd>Prefix + I</kbd></td><td><strong>Install Plugins:</strong> Download and initialize new plugins via TPM.</td></tr>
-        <tr><td><kbd>Prefix + U</kbd></td><td><strong>Update Plugins:</strong> Check for and install updates for all Tmux plugins.</td></tr>
-        <tr><td><kbd>Prefix + Ctrl + s</kbd></td><td><strong>Save Session:</strong> Manually save the current Tmux layout and history.</td></tr>
-        <tr><td><kbd>Prefix + Ctrl + r</kbd></td><td><strong>Restore Session:</strong> Recover the last saved Tmux environment.</td></tr>
-        <tr><td><kbd>Prefix + r</kbd></td><td><strong>Reload Config:</strong> Instantly apply changes made to <code>.tmux.conf</code>.</td></tr>
-        <tr><td><kbd>Prefix + [</kbd></td><td><strong>Copy Mode:</strong> Enter scrollback buffer (v: select, y: copy).</td></tr>
-        <tr><td><kbd>Prefix + d</kbd></td><td><strong>Detach:</strong> Exit the session while keeping it running in the background.</td></tr>
-        <tr><td><kbd>Prefix + :</kbd></td><td><strong>Command Mode:</strong> Open the Tmux command prompt for direct commands.</td></tr>
-        <tr><td><kbd>Prefix + ?</kbd></td><td><strong>List Keybinds:</strong> Show all current Tmux key bindings.</td></tr>
-        <tr><td><kbd>Prefix + ]</kbd></td><td><strong>Paste:</strong> Paste text from the Tmux copy buffer.</td></tr>
+        <tr><td><kbd>update</kbd></td><td><strong>Global Update:</strong> Orchestrate updates for macOS, Homebrew packages, and Oh My Zsh plugins.</td></tr>
+        <tr><td><kbd>bbu</kbd></td><td><strong>Brew Bundle:</strong> Synchronize your installed Homebrew packages to the <code>Brewfile</code> for version control.</td></tr>
+        <tr><td><kbd>zshconfig</kbd></td><td><strong>Edit Config:</strong> Open the <code>.zshrc</code> configuration file in Neovim for quick customization.</td></tr>
+        <tr><td><kbd>reload</kbd></td><td><strong>Source Config:</strong> Apply changes from <code>.zshrc</code> to the current session without restarting the terminal.</td></tr>
+        <tr><td><kbd>mkcd &lt;dir&gt;</kbd></td><td><strong>Create & Jump:</strong> Create a new directory and immediately change into it in a single step.</td></tr>
+        <tr><td><kbd>icloud</kbd> / <kbd>ic</kbd></td><td><strong>Jump to iCloud:</strong> Quickly navigate to your personal iCloud Drive folder in the terminal.</td></tr>
       </tbody>
     </table>
+    </div>
+  </div>
+<!-- Runtimes -->
+  <div class="section runtimes" id="runtimes">
+    <h2><span class="dot"></span> Runtimes &amp; Languages <span class="collapse-icon">&#9660;</span></h2>
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/nvm-sh/nvm" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">nvm</span></span><span class="doc-desc">Node version manager</span></a>
+      <a class="doc-link" href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">pyenv</span></span><span class="doc-desc">Python version manager</span></a>
+      <a class="doc-link" href="https://github.com/rbenv/rbenv" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">rbenv</span></span><span class="doc-desc">Ruby version manager</span></a>
+      <a class="doc-link" href="https://direnv.net/" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">direnv</span></span><span class="doc-desc">Project-local environment loader</span></a>
+      <a class="doc-link" href="https://go.dev/doc/" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Go</span></span><span class="doc-desc">Go language reference</span></a>
+      <a class="doc-link" href="https://doc.rust-lang.org/book/" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">Rust</span></span><span class="doc-desc">The Rust Book</span></a>
+    </div>
+    <div class="section-body">
+    <table>
+      <thead><tr><th>Tool</th><th>Usage</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Node.js</strong></td><td><strong>Version Manager:</strong> Managed by <code>nvm</code>. Run <code>nvm install 20</code> to install the latest LTS version.</td></tr>
+        <tr><td><strong>Python</strong></td><td><strong>Interpreter + Project Env:</strong> Base versions are managed by <code>pyenv</code>. Project-local <code>.venv</code> activation is handled by <code>direnv</code> when an <code>.envrc</code> is present.</td></tr>
+        <tr><td><strong>Ruby</strong></td><td><strong>Version Manager:</strong> Managed by <code>rbenv</code>. Run <code>rbenv install 3.3.0</code> to switch between different Ruby environments.</td></tr>
+        <tr><td><strong>Lua</strong></td><td><strong>Editor Config:</strong> Uses <code>lua_ls</code> with Neovim-aware diagnostics and completion, plus DevDocs mapping for <code>python</code>, frontend, and systems languages where useful.</td></tr>
+        <tr><td><strong>Shell</strong></td><td><strong>Shell Scripts:</strong> Uses <code>bashls</code> for LSP, <code>shellcheck</code> for linting, and <code>shfmt</code> for formatting.</td></tr>
+        <tr><td><strong>JSON / YAML</strong></td><td><strong>Config Files:</strong> Uses <code>jsonls</code> and <code>yamlls</code> for schema-aware completion and validation.</td></tr>
+        <tr><td><strong>HTML / CSS / Tailwind</strong></td><td><strong>Frontend Markup:</strong> Uses <code>html</code>, <code>cssls</code>, and <code>tailwindcss</code> LSPs with <code>prettier</code> handling formatting.</td></tr>
+        <tr><td><strong>Django Templates</strong></td><td><strong>Template Support:</strong> Uses <code>djlsp</code> on <code>htmldjango</code> files, with project-aware completions when Neovim is launched from a shell using the correct project environment.</td></tr>
+        <tr><td><strong>SQL</strong></td><td><strong>Database Queries:</strong> Uses <code>sqlls</code> for language-server support, <code>sql_formatter</code> for formatting, and PostgreSQL docs in DevDocs.</td></tr>
+        <tr><td><strong>C/C++</strong></td><td><strong>Clang Toolchain:</strong> Uses <code>llvm</code>/<code>clangd</code> for LSP and <code>clang-format</code> for code style. Debugging is handled by <code>codelldb</code>.</td></tr>
+        <tr><td><strong>TypeScript / JavaScript</strong></td><td><strong>Web Development:</strong> Uses <code>ts_ls</code> plus <code>eslint</code> for diagnostics and code actions, with <code>prettier</code> handling formatting.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+<!-- DevDocs -->
+  <div class="section devdocs" id="devdocs">
+    <h2><span class="dot"></span> DevDocs Setup (First Time) <span class="collapse-icon">&#9660;</span></h2>
+    <div class="doc-links">
+      <a class="doc-link" href="https://github.com/luckasRanarison/nvim-devdocs" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">nvim-devdocs</span></span><span class="doc-desc">Browse docs in Neovim</span></a>
+      <a class="doc-link" href="https://devdocs.io" target="_blank" rel="noopener"><span class="doc-title"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg><span class="doc-name">DevDocs.io</span></span><span class="doc-desc">API docs in the browser</span></a>
+    </div>
+    <div class="section-body">
+    <p>After installing plugins, run these commands in Neovim to download offline docs:</p>
+    <pre>:DevdocsFetch
+:DevdocsInstall python~3.12 javascript typescript html css tailwindcss django~5.2 c cpp postgresql~18</pre>
+    <p><kbd>Space K</kbd> opens DevDocs for the current filetype. For troubleshooting the current buffer, use <code>:LspStatus</code>.</p>
+    <p>The interactive <code>:DevdocsInstall</code> picker is currently unreliable upstream, so explicit install arguments are the safer workflow.</p>
     </div>
   </div>
 
@@ -1186,21 +1130,6 @@ direnv allow</pre>
   darkMq.addEventListener('change', () => {
     const mode = localStorage.getItem('theme-mode') || 'auto';
     if (mode === 'auto') applyTheme('auto');
-  });
-
-  // Nav burger toggle
-  const burger = document.getElementById('navBurger');
-  const navLinks = document.getElementById('navLinks');
-
-  burger.addEventListener('click', () => {
-    navLinks.classList.toggle('open');
-  });
-
-  // Close nav on link click (mobile)
-  navLinks.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navLinks.classList.remove('open');
-    });
   });
 
   // --- Search ---

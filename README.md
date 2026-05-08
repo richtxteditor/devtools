@@ -34,3 +34,24 @@ Plain HTML, CSS, and JavaScript. No frameworks or build tools. Hosted on GitHub 
 ## Related
 
 This cheat sheet documents the setup from [dotfiles](https://github.com/richtxteditor/dotfiles).
+
+## Source-backed maintenance workflow
+
+The page is still a static GitHub Pages site, but keybind rows now have a metadata layer in `data/keybinds.js`.
+Each entry is tagged with:
+
+- `type`: shortcut, command, alias, function, or setup-note
+- `origin`: dotfiles-custom, plugin-default, app-default, or manual-note
+- `platform`: all, macos, linux, or macos/linux
+- `mode`: normal, insert/select, command-line, typed-command, interactive-shell, tmux, etc.
+- `source`: the dotfiles path/line range or upstream default/docs reference
+- `confidence`: high/medium/low
+
+Run the audit after changing dotfiles or before publishing the cheat sheet:
+
+```sh
+python3 scripts/audit-dotfiles-keybinds.py
+python3 scripts/audit-dotfiles-keybinds.py --json
+```
+
+The audit compares obvious mappings, Ghostty keybinds, tmux binds, zsh aliases, and shell functions from `/Users/what/Sites/dotfiles` against the online cheat-sheet metadata. Review any “possible missing signals” and either add them to `data/keybinds.js` or intentionally leave them out if they are noisy/internal.
