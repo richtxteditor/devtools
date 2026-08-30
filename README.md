@@ -2,7 +2,7 @@
 
 A single-page reference for a terminal-centric development environment built around Zsh, Tmux, and Neovim.
 
-**Live site:** [https://richtxteditor.github.io/devtools](https://richtxteditor.github.io/devtools)
+**Live site:** [https://freechie.github.io/devtools/](https://freechie.github.io/devtools/)
 
 ## What's covered
 
@@ -33,7 +33,7 @@ Plain HTML, CSS, and JavaScript. No frameworks or build tools. Hosted on GitHub 
 
 ## Related
 
-This cheat sheet documents the setup from [dotfiles](https://github.com/richtxteditor/dotfiles).
+This cheat sheet documents the setup from [dotfiles](https://github.com/freechie/dotfiles).
 
 ## Source-backed maintenance workflow
 
